@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@custom-variant dark (&:where(.dark, .dark *));
 .menu {
     @apply hover:text-orange-500 hover:scale-90 hover:cursor-pointer duration-200 duration-300 transition-all;
 }

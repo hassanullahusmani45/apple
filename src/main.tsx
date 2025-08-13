@@ -1,10 +1,15 @@
+// import "./utils/ThemeFlicler"
+
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.tsx'
+import Router from './Router'
+import { ThemeContextProvider } from './services/provider/ThemeContextProvider.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <ThemeContextProvider>
+      <Router />
+    </ThemeContextProvider>
   </StrictMode>,
 )
