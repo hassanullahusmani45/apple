@@ -4,7 +4,7 @@ import Footer from "./components/Footer"
 
 function App() {
   return (
-    <div>
+    <div className="container mx-auto overflow-x-hidden overflow-y-auto">
       <Header />
       <div className='w-full px-6 pt-32'>
         <Outlet />
