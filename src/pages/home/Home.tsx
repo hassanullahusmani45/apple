@@ -4,10 +4,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/autoplay';
+import { Swiper as SwiperType } from "swiper/types";
 
 import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineWhatshot } from 'react-icons/md';
 import { FaBrain } from 'react-icons/fa';
+import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import { HiInboxStack, HiMiniMagnifyingGlass, HiMiniSquare3Stack3D, HiOutlineAcademicCap, HiOutlineCircleStack, HiOutlineClipboardDocumentList, HiOutlineShieldCheck, HiOutlineUsers, HiSparkles } from 'react-icons/hi2';
 import { RiComputerLine } from "react-icons/ri";
 import LandingCounter from '../../components/LandingCounter';
@@ -15,12 +17,12 @@ import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { fetchHomeData } from '../../redux/slices/homeSlice';
 import TeamMemmberCard from '../../components/TeamMemmberCard';
 import hassanProfile from '../../assets/hassan.png';
-import post1 from '../../assets/post1.webp';
-import Post from '../../components/Post';
+import articleImage from '../../assets/post1.webp';
+import Article from '../../components/Article';
 
 export default function Home() {
   const dispatch = useAppDispatch();
-  const { teamMembers, articles, loading } = useAppSelector((state) => state.home);
+  const { teamMembers, articles, newArticles, loading } = useAppSelector((state) => state.home);
   useEffect(() => {
     dispatch(fetchHomeData());
   }, [dispatch]);
@@ -34,9 +36,8 @@ export default function Home() {
     security: 0
   });
   const navigat = useNavigate()
-  const swiperRef = useRef(null);
+  const swiperRef = useRef<SwiperType | null>(null);
 
-  const [allArticles, setAllArticles] = useState([]);
   const [allSearchArticles, setAllSearchArticles] = useState([]);
   const [searchArticle, setSearchArticle] = useState([]);
   const [onFocus, setOnFocus] = useState(false);
@@ -58,17 +59,17 @@ export default function Home() {
   }
 
 
-  //   const handleNext = () => {
-  //     if (swiperRef.current) {
-  //       swiperRef.current.slideNext();
-  //     }
-  //   };
+  const handleNext = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slideNext();
+    }
+  };
 
-  //   const handlePrev = () => {
-  //     if (swiperRef.current) {
-  //       swiperRef.current.slidePrev();
-  //     }
-  //   };
+  const handlePrev = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slidePrev();
+    }
+  };
   return (
     <div>
       {/*start heading part  */}
@@ -170,8 +171,8 @@ export default function Home() {
 
               {articles.map((article) => (
                 <div key={article.id} className='col-span-1'>
-                  <Post
-                    src={article.cover_image || post1}
+                  <Article
+                    src={article.cover_image || articleImage}
                     author={article.authorName}
                     date={article.created_at && (article.created_at).slice(0, 10)}
                     link={`/show-article/${article.title}`}
@@ -236,33 +237,33 @@ export default function Home() {
           </div>
 
           <div className='flex justify-center items-center gap-2'>
-            {/* <span className='p-2 bg-green-500 rounded-full hover:bg-green-700 transition-colors cursor-pointer' onClick={handlePrev}><ChevronLeftIcon className='size-7 font-bold text-white' /></span> */}
-            {/* <span className='p-2 bg-green-500 rounded-full hover:bg-green-700 transition-colors cursor-pointer' onClick={handleNext}><ChevronRightIcon className='size-7 text-white' /></span> */}
+            <span className='p-2 bg-green-500 rounded-full hover:bg-green-700 transition-colors cursor-pointer' onClick={handlePrev}><FiChevronLeft className='size-7 font-bold text-white' /></span>
+            <span className='p-2 bg-green-500 rounded-full hover:bg-green-700 transition-colors cursor-pointer' onClick={handleNext}><FiChevronRight className='size-7 text-white' /></span>
           </div>
         </div>
 
         <div className='py-8'>
-          {/* <Swiper
-              slidesPerView={4}
-              spaceBetween={10}
-              loop={true}
-              className="mySwiper"
-              onSwiper={(swiper) => (swiperRef.current = swiper)}
-            >
-              {newArticles.map((newArticle, index) => (
-                <SwiperSlide key={index}>
-                  <Post
-                    src={post3}
-                    author={newArticle.author.fullName}
-                    date={newArticle.created_at && (newArticle.created_at).slice(0, 10)}
-                    link={`/show-article/${newArticle.title}`}
-                    title={newArticle.title}
-                    desc={newArticle.shorInfo}
-                  />
-                </SwiperSlide>
-              ))}
+          <Swiper
+            slidesPerView={4}
+            spaceBetween={10}
+            loop={true}
+            className="mySwiper"
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+          >
+            {newArticles.map((newArticle) => (
+              <SwiperSlide key={newArticle.id}>
+                <Article
+                  src={newArticle.cover_image ||articleImage}
+                  author={newArticle.authorName}
+                  date={newArticle.created_at && (newArticle.created_at).slice(0, 10)}
+                  link={`/show-article/${newArticle.title}`}
+                  title={newArticle.title}
+                  desc={newArticle.shorInfo}
+                />
+              </SwiperSlide>
+            ))}
 
-            </Swiper> */}
+          </Swiper>
         </div>
         {/* end new articles part  */}
 

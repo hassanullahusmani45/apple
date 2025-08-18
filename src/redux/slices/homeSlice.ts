@@ -5,6 +5,7 @@ import { supabase } from "../../lib/SupabaseClient";
 interface HomeState {
     teamMembers: any[];
     articles: any[];
+    newArticles: any[];
     loading: boolean;
     error: string | null;
 }
@@ -12,6 +13,7 @@ interface HomeState {
 const initialState: HomeState = {
     teamMembers: [],
     articles: [],
+    newArticles: [],
     loading: false,
     error: null
 };
@@ -55,6 +57,7 @@ const homeSlice = createSlice({
                         authorName: author ? `${author.first_name} ${author.last_name}` : "Unknown",
                     };
                 });
+                state.newArticles = state.articles.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).slice(0, 6);
                 console.log("Fetched articles:", state.articles);
                 
             })
