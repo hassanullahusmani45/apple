@@ -19,6 +19,7 @@ import TeamMemmberCard from '../../components/TeamMemmberCard';
 import hassanProfile from '../../assets/hassan.png';
 import articleImage from '../../assets/post1.webp';
 import Article from '../../components/Article';
+import SearchBar from '../../components/SearchBar';
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -35,28 +36,7 @@ export default function Home() {
     artificialIntelligence: 0,
     security: 0
   });
-  const navigat = useNavigate()
   const swiperRef = useRef<SwiperType | null>(null);
-
-  const [allSearchArticles, setAllSearchArticles] = useState([]);
-  const [searchArticle, setSearchArticle] = useState([]);
-  const [onFocus, setOnFocus] = useState(false);
-  const [searchInputValue, setSearchInputValue] = useState('');
-
-  const searchHandler = (title) => {
-    navigat(`/show-article/${encodeURIComponent(title)}`)
-  }
-  const searchInputOnchangeHandler = (event) => {
-    const inputValue = event.target.value.toLowerCase();
-    setSearchInputValue(event.target.value);
-    const filteredArticle = [...allSearchArticles].filter(article => article.title.toLowerCase().includes(inputValue));
-
-    if (event.target.value.trim().length) {
-      setSearchArticle(filteredArticle);
-    } else {
-      setSearchArticle(allArticles);
-    }
-  }
 
 
   const handleNext = () => {
@@ -75,24 +55,8 @@ export default function Home() {
       {/*start heading part  */}
       <div className='flex flex-col justify-center items-center h-[80vh] pt-32'>
 
-        <div className='text-4xl font-bold font-serif'>Apple Tecnology The Best Place For Lernig Articles</div>
-
-        <div className={`relative bg-slate-800 ${onFocus ? 'rounded-t-2xl' : 'rounded-full'} mb-20 mt-14 w-4/6`}>
-          <input onFocus={() => setOnFocus(true)} onChange={searchInputOnchangeHandler} value={searchInputValue} type="text" placeholder="Search posts here..."
-            className={`block border-none outline-none bg-slate-800 w-full py-5 ps-8 pe-10 text-base  placeholder:text-slate-300 placeholder:text-sm ${onFocus ? 'rounded-t-2xl' : 'rounded-full'}`}
-            required autoComplete='off' />
-          <button onClick={() => setOnFocus(false)} type="submit"
-            className="absolute end-3 bottom-2 bg-teal-700 hover:bg-teal-900 font-medium rounded-full text-sm p-3">
-            <HiMiniMagnifyingGlass className='size-6' />
-          </button>
-          <div className={`absolute inset-0 top-16 h-40 w-full bg-slate-700/95 rounded-b-2xl py-1 overflow-hidden transition-all ${onFocus ? 'opacity-100 pointer-events-auto' : 'hidden'}`} >
-            <div>
-              {searchArticle.map((article, index) => (
-                <div onClick={() => searchHandler(article.title)} key={index} className={`block px-8 py-3 cursor-pointer hover:bg-slate-600 pointer-events-auto`}>{article.title}</div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <div className='text-3xl font-bold font-serif'>Apple Tecnology The Best Place For Lernig Articles</div>
+        <SearchBar articles={articles} />
 
 
         <div className='grid grid-cols-3 w-1/2'>
@@ -253,7 +217,7 @@ export default function Home() {
             {newArticles.map((newArticle) => (
               <SwiperSlide key={newArticle.id}>
                 <Article
-                  src={newArticle.cover_image ||articleImage}
+                  src={newArticle.cover_image || articleImage}
                   author={newArticle.authorName}
                   date={newArticle.created_at && (newArticle.created_at).slice(0, 10)}
                   link={`/show-article/${newArticle.title}`}
