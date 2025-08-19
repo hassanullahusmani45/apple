@@ -1,6 +1,6 @@
 import { MdLightMode } from "react-icons/md";
 import { useTheme } from "../services/provider/ThemeContextProvider";
-import { BsMoonStarsFill } from "react-icons/bs";
+import { BsMoonStars } from "react-icons/bs";
 
 const ThemeToggleButton: React.FC = () => {
   const { theme, setTheme } = useTheme();
@@ -8,9 +8,9 @@ const ThemeToggleButton: React.FC = () => {
   return (
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="flex items-center gap-x-2 px-3 py-1 rounded dark:hover:text-orange-300 hover:text-sky-500"
+      className="flex items-center gap-x-2 px-3 py-1 rounded dark:hover:text-orange-400 hover:text-green-500"
     >
-      {theme === 'dark' ? <MdLightMode className="size-6" /> :<BsMoonStarsFill className="size-5" />}
+      {theme === 'dark' ? <MdLightMode className="size-6" /> : <BsMoonStars className="size-5" />}
     </button>
   );
 };

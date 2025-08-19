@@ -66,14 +66,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
                     setSearchInputValue('');
                 }}
                 type="submit"
-                className="absolute end-3 bottom-2 bg-sky-500 hover:bg-sky-600 dark:bg-orange-500 dark:hover:bg-orange-400 text-white font-medium rounded-full text-sm p-3"
+                className="absolute end-3 bottom-2 bg-green-600 hover:bg-green-500 dark:bg-orange-500 dark:hover:bg-orange-400 text-white font-medium rounded-full text-sm p-3"
             >
                 <HiMiniMagnifyingGlass className='size-6' />
             </button>
 
             <div className={`absolute right-0 left-0 top-16 max-h-64 w-full bg-slate-200 dark:bg-slate-700/95 rounded-b-2xl py-1 overflow-hidden transition-all ${onFocus ? 'opacity-100 shadow-md dark:shadow-sm dark:shadow-slate-500 pointer-events-auto' : 'hidden'}`}>
                 {searchArticle.length === 0 ?
-                    <div className="text-center text-sky-500 dark:text-orange-400 py-8">
+                    <div className="text-center font-bold text-lg text-green-600 dark:text-orange-400 py-8">
                         No articles found
                     </div> :
                     searchArticle.map((article, index) => (

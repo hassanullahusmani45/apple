@@ -20,6 +20,7 @@ import hassanProfile from '../../assets/hassan.png';
 import articleImage from '../../assets/post1.webp';
 import Article from '../../components/Article';
 import SearchBar from '../../components/SearchBar';
+import { fetchStats } from '../../redux/slices/statsSlice';
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -28,6 +29,13 @@ export default function Home() {
     dispatch(fetchHomeData());
   }, [dispatch]);
 
+
+  const { teamMembers: countTeamMembers,articles:countArticles, subscribers:countSubscribers, fetched } = useAppSelector(state => state.stats)
+  useEffect(() => {
+    if (!fetched) {
+      dispatch(fetchStats());
+    }
+  }, [fetched]);
 
 
   const [categoryCounts, setCategoryCounts] = useState({
@@ -53,26 +61,26 @@ export default function Home() {
   return (
     <div>
       {/*start heading part  */}
-      <div className='flex flex-col justify-center items-center h-[80vh] pt-32'>
+      <div className='flex flex-col justify-center items-center h-[50vh] pt-32'>
 
         <div className='text-3xl font-bold font-serif'>Apple Tecnology The Best Place For Lernig Articles</div>
         <SearchBar articles={articles} />
 
 
         <div className='grid grid-cols-3 w-1/2'>
-          <div className=' col-span-1 flex flex-col justify-center items-center'>
+          <div className='col-span-1 flex flex-col justify-center items-center'>
             <HiOutlineUsers className='size-14 mb-3' />
-            <LandingCounter count={45} />
+            <LandingCounter count={countTeamMembers} />
             <div className='text-xl font-medium'>Team Mammbers</div>
           </div>
           <div className='col-span-1 flex flex-col justify-center items-center'>
             <HiOutlineClipboardDocumentList className='size-14 mb-3' />
-            <LandingCounter count={58} />
+            <LandingCounter count={countArticles} />
             <div className='text-xl font-medium'>Total Articles</div>
           </div>
           <div className='col-span-1 flex flex-col justify-center items-center'>
             <HiOutlineAcademicCap className='size-14 mb-3' />
-            <LandingCounter count={234} />
+            <LandingCounter count={countSubscribers} />
             <div className='text-xl font-medium'>Users</div>
           </div>
         </div>
