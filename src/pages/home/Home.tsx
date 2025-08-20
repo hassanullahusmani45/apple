@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef} from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
@@ -33,7 +33,7 @@ export default function Home() {
     if (!fetched) {
       dispatch(fetchStats());
     }
-  }, [fetched]);
+  }, [fetched,dispatch]);
 
 
   const swiperRef = useRef<SwiperType | null>(null);

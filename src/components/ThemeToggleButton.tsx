@@ -10,7 +10,7 @@ const ThemeToggleButton: React.FC = () => {
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       className="flex items-center gap-x-2 px-3 py-1 rounded dark:hover:text-orange-400 hover:text-green-500"
     >
-      {theme === 'dark' ? <MdLightMode className="size-6" /> : <BsMoonStars className="size-5" />}
+      {theme === 'dark' ? <MdLightMode className="size-5" /> : <BsMoonStars className="size-[1rem]" />}
     </button>
   );
 };

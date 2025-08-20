@@ -52,6 +52,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
         <div className={`relative bg-slate-800 ${onFocus ? 'rounded-t-2xl' : 'rounded-full'} mb-20 mt-14 w-4/6`}>
             <input
                 onFocus={() => setOnFocus(true)}
+                onBlur={() => {
+                    setTimeout(() => {
+                        setOnFocus(false);
+                        setSearchInputValue('');
+                    }, 300); // Delay to allow click on suggestions
+                }}
                 onChange={(e) => setSearchInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
                 value={searchInputValue}
@@ -62,8 +68,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
             />
             <button
                 onClick={() => {
-                    setOnFocus(false);
-                    setSearchInputValue('');
+                    setTimeout(() => {
+                        setOnFocus(false);
+                        setSearchInputValue('');
+                    }, 300); // Delay to allow click on suggestions
                 }}
                 type="submit"
                 className="absolute end-3 bottom-2 bg-green-600 hover:bg-green-500 dark:bg-orange-500 dark:hover:bg-orange-400 text-white font-medium rounded-full text-sm p-3"
@@ -74,7 +82,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
             <div className={`absolute right-0 left-0 top-16 max-h-64 w-full bg-slate-200 dark:bg-slate-700/95 rounded-b-2xl py-1 overflow-hidden transition-all ${onFocus ? 'opacity-100 shadow-md dark:shadow-sm dark:shadow-slate-500 pointer-events-auto' : 'hidden'}`}>
                 {searchArticle.length === 0 ?
                     <div className="text-center font-bold text-lg text-green-600 dark:text-orange-400 py-8">
-                        No articles found
+                        🙈 No articles found !!!
                     </div> :
                     searchArticle.map((article, index) => (
                         <div
