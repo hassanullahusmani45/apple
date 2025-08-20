@@ -25,7 +25,7 @@ export default function TeamMemmberCard(props:any) {
                         </div>
                         
                         {/* Name and Position */}
-                        <Link to={`/team-memmber-profile/${props.name}`} className='block bg-gray-500 dark:bg-slate-700 text-base px-4 py-2 mt-4 space-y-4 rounded-full hover:rounded-xl transition-all ease-in-out duration-200'>
+                        <Link to={`/team-memmber-profile/${props.name}`} className='block bg-gradient-to-br from-blue-500 to-green-500 text-base px-4 py-2 mt-4 space-y-4 rounded-full hover:rounded-xl transition-all ease-in-out duration-150'>
                             <div className='text-white font-medium text-base'>{props.name}</div>
                             <div className='text-slate-200 text-sm'>{props.positionTitle}</div>
                         </Link>

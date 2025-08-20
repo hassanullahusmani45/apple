@@ -15,7 +15,7 @@ export default function ArticleCard(props:any) {
           <div className="line-clamp-1 flex justify-start items-center gap-1 text-sm"><FaRegUser className="size-5 text-green-500 dark:text-orange-400"/>{props.author}</div>
           <div className="text-nowrap">{props.date}</div>
         </div>
-        <Link to={props.link} className="flex justify-center items-center gap-1 text-sm hover:text-green-500 hover:scale-105 transition-all">
+        <Link to={props.link} className="flex justify-center items-center gap-1 text-sm hover:text-green-500 dark:hover:text-orange-400 hover:scale-105 transition-all">
           Study the article
           <FiArrowRightCircle className="size-6 text-green-500 dark:text-orange-400" />
         </Link>

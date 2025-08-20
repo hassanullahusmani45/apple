@@ -248,7 +248,7 @@ export default function Home() {
         <div className='mt-28 text-center font-semibold text-2xl text-teal-400'>Why we chose Apple web sit</div>
         <div className=' w-1/3 mx-auto mt-2 border-t-2 border-dotted border-teal-500 ' ></div>
 
-        <div className='py-8 leading-8 text-justify font-serif dark:text-slate-300 text-base font-medium'>
+        <div className='py-8 leading-8 text-justify text-slate-600 dark:text-slate-300 text-base font-semibold'>
           In today is digital age, having a reliable and user-friendly platform is essential for achieving goals efficiently. Apple website has emerged as a top choice for individuals and organizations, offering exceptional features and unmatched performance. Here is why Apple stands out:
 
           Modern Design: Apple boasts a sleek, intuitive design that ensures easy navigation for all users.
