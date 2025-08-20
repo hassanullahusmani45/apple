@@ -31,7 +31,7 @@ export default function TeamMemmberCard(props:any) {
                         </Link>
 
                         {/* Quick Info */}
-                        <div className='dark:text-slate-200 justify-center text-sm leading-6 h-40 mt-6 line-clamp-6'>{(props.quickInfo).slice(0,250)} ...</div>
+                        <div className='dark:text-slate-200 justify-center text-sm leading-6  mt-6 line-clamp-4  min-h-24 mb-4'>{props.quickInfo}</div>
 
                     </div>
                 </div>

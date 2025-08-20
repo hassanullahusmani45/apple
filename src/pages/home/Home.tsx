@@ -21,6 +21,7 @@ import articleImage from '../../assets/post1.webp';
 import ArticleCard from '../../components/ArticleCard';
 import SearchBar from '../../components/SearchBar';
 import { fetchStats } from '../../redux/slices/statsSlice';
+import GaregoryCount from '../../components/GaregoryCount';
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -167,35 +168,7 @@ export default function Home() {
         {/* start category part  */}
         <div className='mt-28 text-start font-semibold text-xl text-sky-500'><HiMiniSquare3Stack3D className='inline size-8 me-2 text-blue-500' />Numbers of the categories articles</div>
         <div className='w-1/3 mt-2 border-t-2 border-dotted border-sky-300'></div>
-
-
-        <div className='grid grid-cols-4 gap-x-6 py-8 text-white'>
-
-          <Link to={"/posts"} className='flex flex-col justify-center items-center py-5 bg-gradient-to-r from-[#3564ff] to-[#62f229] overflow-hidden rounded-xl shadow-md shadow-slate-400'>
-            <HiOutlineShieldCheck className='size-12 mb-3' />
-            <div className=' font-medium'>{categoryCounts.security}</div>
-            <div className='text-base font-semibold'>Security</div>
-          </Link>
-
-          <Link to={"/posts"} className='flex flex-col justify-center items-center py-5 bg-gradient-to-r from-[#5bf0ca] to-[#0b75ee] overflow-hidden rounded-xl shadow-md shadow-slate-400'>
-            <RiComputerLine className='size-12 mb-3' />
-            <div className=' font-medium'>{categoryCounts.frontend}</div>
-            <div className='text-base font-semibold'>Frontend</div>
-          </Link>
-
-          <Link to={"/posts"} className='flex flex-col justify-center items-center py-5 bg-gradient-to-r from-[#9e4bc5] to-[#60d6f3] overflow-hidden rounded-xl shadow-md shadow-slate-400'>
-            <HiOutlineCircleStack className='size-12 mb-3' />
-            <div className=' font-medium'>{categoryCounts.backend}</div>
-            <div className='text-base font-semibold'>Backend</div>
-          </Link>
-
-          <Link to={"/posts"} className='flex flex-col justify-center items-center py-5 bg-gradient-to-r from-[#f1ce59] to-[#f04d75] overflow-hidden rounded-xl  shadow-md shadow-slate-400'>
-            <FaBrain className='size-12 mb-3' />
-            <div className='font-medium'>{categoryCounts.artificialIntelligence}</div>
-            <div className='text-base font-semibold'>Artificial intelligence</div>
-          </Link>
-
-        </div>
+        <GaregoryCount />
         {/* end category part  */}
 
 
