@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function TeamMemmberCard(props:any) {
     return (
             <div className='transition-all'>
-                <div className='flex justify-center items-center bg-slate-200 shadow-sm dark:bg-slate-800/90 pt-6 px-4 rounded-2xl shadow-3xl'>
+                <div className='flex justify-center items-center bg-slate-200 shadow-md shadow-slate-300 dark:shadow-slate-950 dark:bg-slate-800/90 pt-6 px-4 rounded-2xl shadow-3xl my-4'>
                     <div className='text-center'>
 
                         <Link to={`/team-memmber-profile/${props.name}`} className='inline-block'>

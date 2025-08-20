@@ -6,11 +6,11 @@ import 'swiper/css';
 import 'swiper/css/autoplay';
 import { Swiper as SwiperType } from "swiper/types";
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MdOutlineWhatshot } from 'react-icons/md';
 import { FaBrain } from 'react-icons/fa';
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
-import { HiInboxStack, HiMiniMagnifyingGlass, HiMiniSquare3Stack3D, HiOutlineAcademicCap, HiOutlineCircleStack, HiOutlineClipboardDocumentList, HiOutlineShieldCheck, HiOutlineUsers, HiSparkles } from 'react-icons/hi2';
+import { HiInboxStack, HiMiniSquare3Stack3D, HiOutlineAcademicCap, HiOutlineCircleStack, HiOutlineClipboardDocumentList, HiOutlineShieldCheck, HiOutlineUsers, HiSparkles } from 'react-icons/hi2';
 import { RiComputerLine } from "react-icons/ri";
 import LandingCounter from '../../components/LandingCounter';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
@@ -18,7 +18,7 @@ import { fetchHomeData } from '../../redux/slices/homeSlice';
 import TeamMemmberCard from '../../components/TeamMemmberCard';
 import hassanProfile from '../../assets/hassan.png';
 import articleImage from '../../assets/post1.webp';
-import Article from '../../components/Article';
+import ArticleCard from '../../components/ArticleCard';
 import SearchBar from '../../components/SearchBar';
 import { fetchStats } from '../../redux/slices/statsSlice';
 
@@ -30,7 +30,7 @@ export default function Home() {
   }, [dispatch]);
 
 
-  const { teamMembers: countTeamMembers,articles:countArticles, subscribers:countSubscribers, fetched } = useAppSelector(state => state.stats)
+  const { teamMembers: countTeamMembers, articles: countArticles, subscribers: countSubscribers, fetched } = useAppSelector(state => state.stats)
   useEffect(() => {
     if (!fetched) {
       dispatch(fetchStats());
@@ -143,13 +143,14 @@ export default function Home() {
 
               {articles.map((article) => (
                 <div key={article.id} className='col-span-1'>
-                  <Article
+                  <ArticleCard
                     src={article.cover_image || articleImage}
                     author={article.authorName}
                     date={article.created_at && (article.created_at).slice(0, 10)}
                     link={`/show-article/${article.title}`}
                     title={article.title}
                     desc={article.summary}
+                    className="bg-slate-200 dark:bg-slate-800"
                   />
                 </div>
               ))}
@@ -217,20 +218,21 @@ export default function Home() {
         <div className='py-8'>
           <Swiper
             slidesPerView={4}
-            spaceBetween={10}
+            spaceBetween={20}
             loop={true}
             className="mySwiper"
             onSwiper={(swiper) => (swiperRef.current = swiper)}
           >
             {newArticles.map((newArticle) => (
               <SwiperSlide key={newArticle.id}>
-                <Article
+                <ArticleCard
                   src={newArticle.cover_image || articleImage}
                   author={newArticle.authorName}
                   date={newArticle.created_at && (newArticle.created_at).slice(0, 10)}
                   link={`/show-article/${newArticle.title}`}
                   title={newArticle.title}
-                  desc={newArticle.shorInfo}
+                  desc={newArticle.summary}
+                  className="bg-slate-200 dark:bg-slate-800 shadow-md shadow-slate-300 dark:shadow-slate-950 my-4"
                 />
               </SwiperSlide>
             ))}
