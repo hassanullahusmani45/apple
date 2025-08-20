@@ -6,12 +6,13 @@ import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
 import { fetchCategoryCount } from '../redux/slices/articleCategoryCount'
 import { useEffect } from 'react';
 
-export default function GaregoryCount() {
+export default function CategoryCount() {
 
     const dispatch = useAppDispatch();
     const { security, frontend, backend, artificialIntelligence, fetched } = useAppSelector((state) => state.categoryCount);
 
-
+    console.log("Category Count:", { security, frontend, backend, artificialIntelligence, fetched });
+    
     useEffect(() => {
         // if (!fetched) {
         dispatch(fetchCategoryCount());

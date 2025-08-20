@@ -6,12 +6,9 @@ import 'swiper/css';
 import 'swiper/css/autoplay';
 import { Swiper as SwiperType } from "swiper/types";
 
-import { Link } from 'react-router-dom';
 import { MdOutlineWhatshot } from 'react-icons/md';
-import { FaBrain } from 'react-icons/fa';
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
-import { HiInboxStack, HiMiniSquare3Stack3D, HiOutlineAcademicCap, HiOutlineCircleStack, HiOutlineClipboardDocumentList, HiOutlineShieldCheck, HiOutlineUsers, HiSparkles } from 'react-icons/hi2';
-import { RiComputerLine } from "react-icons/ri";
+import { HiInboxStack, HiMiniSquare3Stack3D, HiOutlineAcademicCap, HiOutlineClipboardDocumentList, HiOutlineUsers, HiSparkles } from 'react-icons/hi2';
 import LandingCounter from '../../components/LandingCounter';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { fetchHomeData } from '../../redux/slices/homeSlice';
@@ -21,7 +18,7 @@ import articleImage from '../../assets/post1.webp';
 import ArticleCard from '../../components/ArticleCard';
 import SearchBar from '../../components/SearchBar';
 import { fetchStats } from '../../redux/slices/statsSlice';
-import GaregoryCount from '../../components/GaregoryCount';
+import CategoryCount from '../../components/CategoryCount';
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -39,14 +36,7 @@ export default function Home() {
   }, [fetched]);
 
 
-  const [categoryCounts, setCategoryCounts] = useState({
-    frontend: 0,
-    backend: 0,
-    artificialIntelligence: 0,
-    security: 0
-  });
   const swiperRef = useRef<SwiperType | null>(null);
-
 
   const handleNext = () => {
     if (swiperRef.current) {
@@ -168,7 +158,7 @@ export default function Home() {
         {/* start category part  */}
         <div className='mt-28 text-start font-semibold text-xl text-sky-500'><HiMiniSquare3Stack3D className='inline size-8 me-2 text-blue-500' />Numbers of the categories articles</div>
         <div className='w-1/3 mt-2 border-t-2 border-dotted border-sky-300'></div>
-        <GaregoryCount />
+        <CategoryCount />
         {/* end category part  */}
 
 
