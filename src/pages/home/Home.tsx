@@ -1,4 +1,4 @@
-import { useEffect, useRef} from 'react';
+import { useEffect, useRef } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
@@ -20,6 +20,7 @@ import SearchBar from '../../components/SearchBar';
 import { fetchStats } from '../../redux/slices/statsSlice';
 import CategoryCount from '../../components/CategoryCount';
 
+
 export default function Home() {
   const dispatch = useAppDispatch();
   const { teamMembers, articles, newArticles, loading } = useAppSelector((state) => state.home);
@@ -28,13 +29,14 @@ export default function Home() {
   }, [dispatch]);
 
 
-  const { teamMembers: countTeamMembers, articles: countArticles, subscribers: countSubscribers, fetched } = useAppSelector(state => state.stats)
+  const { teamMembers: countTeamMembers, articles: countArticles, subscribers: countSubscribers, loading: countLoading, fetched } = useAppSelector(state => state.stats)
   useEffect(() => {
     if (!fetched) {
       dispatch(fetchStats());
     }
-  }, [fetched,dispatch]);
+  }, [fetched, dispatch]);
 
+  const { loading: categoryLoading } = useAppSelector(state => state.categoryCount);
 
   const swiperRef = useRef<SwiperType | null>(null);
 
@@ -57,25 +59,25 @@ export default function Home() {
         <div className='text-3xl font-bold font-serif'>Apple Tecnology The Best Place For Lernig Articles</div>
         <SearchBar articles={articles} />
 
-
-        <div className='grid grid-cols-3 w-1/2'>
-          <div className='col-span-1 flex flex-col justify-center items-center'>
-            <HiOutlineUsers className='size-14 mb-3' />
-            <LandingCounter count={countTeamMembers} />
-            <div className='text-xl font-medium'>Team Mammbers</div>
+        {countLoading ? <div></div> : (
+          <div className='grid grid-cols-3 w-1/2'>
+            <div className='col-span-1 flex flex-col justify-center items-center'>
+              <HiOutlineUsers className='size-14 mb-3' />
+              <LandingCounter count={countTeamMembers} />
+              <div className='text-xl font-medium'>Team Mammbers</div>
+            </div>
+            <div className='col-span-1 flex flex-col justify-center items-center'>
+              <HiOutlineClipboardDocumentList className='size-14 mb-3' />
+              <LandingCounter count={countArticles} />
+              <div className='text-xl font-medium'>Total Articles</div>
+            </div>
+            <div className='col-span-1 flex flex-col justify-center items-center'>
+              <HiOutlineAcademicCap className='size-14 mb-3' />
+              <LandingCounter count={countSubscribers} />
+              <div className='text-xl font-medium'>Users</div>
+            </div>
           </div>
-          <div className='col-span-1 flex flex-col justify-center items-center'>
-            <HiOutlineClipboardDocumentList className='size-14 mb-3' />
-            <LandingCounter count={countArticles} />
-            <div className='text-xl font-medium'>Total Articles</div>
-          </div>
-          <div className='col-span-1 flex flex-col justify-center items-center'>
-            <HiOutlineAcademicCap className='size-14 mb-3' />
-            <LandingCounter count={countSubscribers} />
-            <div className='text-xl font-medium'>Users</div>
-          </div>
-        </div>
-
+        )}
       </div>
       {/* end heading part  */}
 
@@ -156,9 +158,13 @@ export default function Home() {
 
 
         {/* start category part  */}
-        <div className='mt-28 text-start font-semibold text-xl text-sky-500'><HiMiniSquare3Stack3D className='inline size-8 me-2 text-blue-500' />Numbers of the categories articles</div>
-        <div className='w-1/3 mt-2 border-t-2 border-dotted border-sky-300'></div>
-        <CategoryCount />
+        {categoryLoading ? <div></div> : (
+          <>
+            <div className='mt-28 text-start font-semibold text-xl text-sky-500'><HiMiniSquare3Stack3D className='inline size-8 me-2 text-blue-500' />Numbers of the categories articles</div>
+            <div className='w-1/3 mt-2 border-t-2 border-dotted border-sky-300'></div>
+            <CategoryCount />
+          </>
+        )}
         {/* end category part  */}
 
 
@@ -166,66 +172,74 @@ export default function Home() {
 
 
         {/* start new articles part  */}
-        <div className=' flex justify-between items-center mt-28'>
-          <div className='w-full'>
-            <div className='text-start font-semibold text-xl text-emerald-500'><MdOutlineWhatshot className='inline size-8 me-2 text-green-500' /> New Articles</div>
-            <div className='w-1/4 mt-2 border-t-2 border-dotted border-emerald-300 '></div>
-          </div>
+        {loading ? <div></div> : (
+          <>
+            <div className=' flex justify-between items-center mt-28'>
+              <div className='w-full'>
+                <div className='text-start font-semibold text-xl text-emerald-500'><MdOutlineWhatshot className='inline size-8 me-2 text-green-500' /> New Articles</div>
+                <div className='w-1/4 mt-2 border-t-2 border-dotted border-emerald-300 '></div>
+              </div>
 
-          <div className='flex justify-center items-center gap-2'>
-            <span className='p-2 bg-green-500 rounded-full hover:bg-green-700 transition-colors cursor-pointer' onClick={handlePrev}><FiChevronLeft className='size-7 font-bold text-white' /></span>
-            <span className='p-2 bg-green-500 rounded-full hover:bg-green-700 transition-colors cursor-pointer' onClick={handleNext}><FiChevronRight className='size-7 text-white' /></span>
-          </div>
-        </div>
+              <div className='flex justify-center items-center gap-2'>
+                <span className='p-2 bg-green-500 rounded-full hover:bg-green-700 transition-colors cursor-pointer' onClick={handlePrev}><FiChevronLeft className='size-7 font-bold text-white' /></span>
+                <span className='p-2 bg-green-500 rounded-full hover:bg-green-700 transition-colors cursor-pointer' onClick={handleNext}><FiChevronRight className='size-7 text-white' /></span>
+              </div>
+            </div>
 
-        <div className='py-8'>
-          <Swiper
-            slidesPerView={4}
-            spaceBetween={20}
-            loop={true}
-            className="mySwiper"
-            onSwiper={(swiper) => (swiperRef.current = swiper)}
-          >
-            {newArticles.map((newArticle) => (
-              <SwiperSlide key={newArticle.id}>
-                <ArticleCard
-                  src={newArticle.cover_image || articleImage}
-                  author={newArticle.authorName}
-                  date={newArticle.created_at && (newArticle.created_at).slice(0, 10)}
-                  link={`/show-article/${newArticle.title}`}
-                  title={newArticle.title}
-                  desc={newArticle.summary}
-                  className="bg-slate-200 dark:bg-slate-800 shadow-md shadow-slate-300 dark:shadow-slate-950 my-4"
-                />
-              </SwiperSlide>
-            ))}
+            <div className='py-8'>
+              <Swiper
+                slidesPerView={4}
+                spaceBetween={20}
+                loop={true}
+                className="mySwiper"
+                onSwiper={(swiper) => (swiperRef.current = swiper)}
+              >
+                {newArticles.map((newArticle) => (
+                  <SwiperSlide key={newArticle.id}>
+                    <ArticleCard
+                      src={newArticle.cover_image || articleImage}
+                      author={newArticle.authorName}
+                      date={newArticle.created_at && (newArticle.created_at).slice(0, 10)}
+                      link={`/show-article/${newArticle.title}`}
+                      title={newArticle.title}
+                      desc={newArticle.summary}
+                      className="bg-slate-200 dark:bg-slate-800 shadow-md shadow-slate-300 dark:shadow-slate-950 my-4"
+                    />
+                  </SwiperSlide>
+                ))}
 
-          </Swiper>
-        </div>
+              </Swiper>
+            </div>
+          </>
+        )}
         {/* end new articles part  */}
 
 
 
 
         {/* start Discription abute site articles */}
-        <div className='mt-28 text-center font-semibold text-2xl text-teal-400'>Why we chose Apple web sit</div>
-        <div className=' w-1/3 mx-auto mt-2 border-t-2 border-dotted border-teal-500 ' ></div>
+        {loading ? <div></div> : (
+          <>
+            <div className='mt-28 text-center font-semibold text-2xl text-teal-400'>Why we chose Apple web sit</div>
+            <div className=' w-1/3 mx-auto mt-2 border-t-2 border-dotted border-teal-500 ' ></div>
 
-        <div className='py-8 leading-8 text-justify text-slate-600 dark:text-slate-300 text-base font-semibold'>
-          In today is digital age, having a reliable and user-friendly platform is essential for achieving goals efficiently. Apple website has emerged as a top choice for individuals and organizations, offering exceptional features and unmatched performance. Here is why Apple stands out:
+            <div className='py-8 leading-8 text-justify text-slate-600 dark:text-slate-300 text-base font-semibold'>
+              In today is digital age, having a reliable and user-friendly platform is essential for achieving goals efficiently. Apple website has emerged as a top choice for individuals and organizations, offering exceptional features and unmatched performance. Here is why Apple stands out:
 
-          Modern Design: Apple boasts a sleek, intuitive design that ensures easy navigation for all users.
-          Speed and Reliability: The site is optimized for fast loading times, ensuring a seamless user experience.
-          Mobile Responsiveness: Apple is fully compatible with all devices, from desktops to smartphones.
-          Comprehensive Features: It offers tools and resources tailored to diverse needs, be it for education, business, or personal use.
-          Security First: Advanced security measures protect user data and provide a safe browsing experience.
-          User-Centered Experience: With feedback-driven updates, Apple always prioritizes user satisfaction.
-          Offline Support: Innovative offline functionalities make it accessible anytime, anywhere.
-          Customizability: Users can personalize their experience to suit their unique preferences.
-          Expert Support Team: A responsive and professional team is always ready to assist with any issues.
-          Community Engagement: Apple fosters a vibrant community, enabling users to connect, collaborate, and grow together.
-          Apple is more than just a website; it is a gateway to achieving your objectives with ease. Its innovative approach and dedication to quality make it the perfect partner for modern digital needs. Whether you are a student, developer, or entrepreneur, Apple is designed to empower you every step of the way.
-        </div>
+              Modern Design: Apple boasts a sleek, intuitive design that ensures easy navigation for all users.
+              Speed and Reliability: The site is optimized for fast loading times, ensuring a seamless user experience.
+              Mobile Responsiveness: Apple is fully compatible with all devices, from desktops to smartphones.
+              Comprehensive Features: It offers tools and resources tailored to diverse needs, be it for education, business, or personal use.
+              Security First: Advanced security measures protect user data and provide a safe browsing experience.
+              User-Centered Experience: With feedback-driven updates, Apple always prioritizes user satisfaction.
+              Offline Support: Innovative offline functionalities make it accessible anytime, anywhere.
+              Customizability: Users can personalize their experience to suit their unique preferences.
+              Expert Support Team: A responsive and professional team is always ready to assist with any issues.
+              Community Engagement: Apple fosters a vibrant community, enabling users to connect, collaborate, and grow together.
+              Apple is more than just a website; it is a gateway to achieving your objectives with ease. Its innovative approach and dedication to quality make it the perfect partner for modern digital needs. Whether you are a student, developer, or entrepreneur, Apple is designed to empower you every step of the way.
+            </div>
+          </>
+        )}
         {/* end Discription abute site articeles */}
 
 
