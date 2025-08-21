@@ -11,13 +11,12 @@ export default function CategoryCount() {
     const dispatch = useAppDispatch();
     const { security, frontend, backend, artificialIntelligence, fetched } = useAppSelector((state) => state.categoryCount);
 
-    console.log("Category Count:", { security, frontend, backend, artificialIntelligence, fetched });
     
     useEffect(() => {
-        // if (!fetched) {
+        if (!fetched) {
         dispatch(fetchCategoryCount());
-        // }
-    }, [dispatch]);
+        }
+    }, [dispatch, fetched]);
     return (
 
 
