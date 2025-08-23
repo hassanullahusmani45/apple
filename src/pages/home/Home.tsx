@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
@@ -10,31 +10,19 @@ import { MdOutlineWhatshot } from 'react-icons/md';
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import { HiInboxStack, HiMiniSquare3Stack3D, HiOutlineAcademicCap, HiOutlineClipboardDocumentList, HiOutlineUsers, HiSparkles } from 'react-icons/hi2';
 import LandingCounter from '../../components/LandingCounter';
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { fetchHomeData } from '../../redux/slices/homeSlice';
+import { useAppSelector } from '../../hooks/reduxHooks';
 import TeamMemmberCard from '../../components/TeamMemmberCard';
 import hassanProfile from '../../assets/hassan.png';
 import articleImage from '../../assets/post1.webp';
 import ArticleCard from '../../components/ArticleCard';
 import SearchBar from '../../components/SearchBar';
-import { fetchStats } from '../../redux/slices/statsSlice';
 import CategoryCount from '../../components/CategoryCount';
 
 
 export default function Home() {
-  const dispatch = useAppDispatch();
   const { teamMembers, articles, newArticles, loading } = useAppSelector((state) => state.home);
-  useEffect(() => {
-    dispatch(fetchHomeData());
-  }, [dispatch]);
-
 
   const { teamMembers: countTeamMembers, articles: countArticles, subscribers: countSubscribers, loading: countLoading, fetched } = useAppSelector(state => state.stats)
-  useEffect(() => {
-    if (!fetched) {
-      dispatch(fetchStats());
-    }
-  }, [fetched, dispatch]);
 
   const { loading: categoryLoading } = useAppSelector(state => state.categoryCount);
 
@@ -143,6 +131,7 @@ export default function Home() {
                     link={`/show-article/${article.title}`}
                     title={article.title}
                     desc={article.summary}
+                    viewCount={article.view_count}
                     className="bg-slate-200 dark:bg-slate-800"
                   />
                 </div>
@@ -203,6 +192,7 @@ export default function Home() {
                       link={`/show-article/${newArticle.title}`}
                       title={newArticle.title}
                       desc={newArticle.summary}
+                      viewCount={newArticle.view_count}
                       className="bg-slate-200 dark:bg-slate-800 shadow-md shadow-slate-300 dark:shadow-slate-950 my-4"
                     />
                   </SwiperSlide>

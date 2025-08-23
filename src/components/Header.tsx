@@ -18,7 +18,7 @@ export default function Header() {
 
         <div className="flex justify-center items-center gap-x-5 font-semibold h-20">
           <Link to={"/"} className=" dark:hover:text-orange-400 hover:text-green-500 px-2 hover:translate-y-[-5px] ease-linear duration-200 transition-all">HOME</Link>
-          <Link to={"/posts"} className=" dark:hover:text-orange-400 hover:text-green-500 px-2 hover:translate-y-[-5px] ease-linear duration-200 transition-all">ARTICLES</Link>
+          <Link to={"/articles"} className=" dark:hover:text-orange-400 hover:text-green-500 px-2 hover:translate-y-[-5px] ease-linear duration-200 transition-all">ARTICLES</Link>
           <Link to={"/abute"} className=" dark:hover:text-orange-400 hover:text-green-500 px-2 hover:translate-y-[-5px] ease-linear duration-200 transition-all">ABOUT</Link>
           <Link to={"/contact-as"} className=" dark:hover:text-orange-400 hover:text-green-500 px-2 hover:translate-y-[-5px] ease-linear duration-200 transition-all">CONTACT AS</Link>
         </div>

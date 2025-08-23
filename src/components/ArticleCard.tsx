@@ -1,11 +1,12 @@
-import { FaRegUser } from "react-icons/fa";
+import { FaEye, FaRegUser } from "react-icons/fa";
 import { FiArrowRightCircle } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 export default function ArticleCard(props: any) {
 
   return (
-    <div className={`flex flex-col justify-between rounded-xl text-black dark:text-white ${!props.className && "bg-slate-800"} ${props.className}`}>
+    <div className={`relative flex flex-col justify-between rounded-xl text-black dark:text-white ${!props.className && "bg-slate-800"} ${props.className}`}>
+      <span className="absolute right-2 top-2 w-10 h-10 flex flex-col justify-center items-center text-slate-200 bg-green-500 rounded-full text-sm font-semibold shadow shadow-white"><FaEye className="size-4 text-white" />{props.viewCount}</span>
       <Link to={props.link}><img className="w-full h-46 rounded-t-xl overflow-hidden" src={props.src} /></Link>
       <div className="px-4 py-8 flex flex-col justify-between h-[295px]">
         <Link to={props.link} className="font-medium line-clamp-2">{props.title}</Link>

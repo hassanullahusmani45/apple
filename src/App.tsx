@@ -1,8 +1,25 @@
 import { Outlet } from "react-router-dom"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import { useEffect } from "react";
+import { fetchHomeData } from "./redux/slices/homeSlice";
+import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks";
+import { fetchStats } from "./redux/slices/statsSlice";
 
 function App() {
+  const dispatch = useAppDispatch();
+  const { fetched } = useAppSelector(state => state.stats)
+
+  useEffect(() => {
+    dispatch(fetchHomeData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!fetched) {
+      dispatch(fetchStats());
+    }
+  }, [fetched, dispatch]);
+  
   return (
     <div className="container mx-auto overflow-x-hidden overflow-y-auto">
       <Header />
@@ -12,7 +29,7 @@ function App() {
       <div className="mx-6 my-5">
         <Footer />
       </div>
-      
+
     </div>
   )
 }
