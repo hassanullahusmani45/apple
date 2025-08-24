@@ -63,7 +63,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
                 value={searchInputValue}
                 type="text"
                 placeholder="Search articles here..."
-                className={`block border-none outline-none bg-slate-600 dark:bg-slate-800 text-white dark:text-slate-100 w-full py-5 ps-8 pe-10 text-base placeholder:text-slate-100 dark:placeholder:text-slate-300 placeholder:text-sm ${onFocus ? 'rounded-t-2xl' : 'rounded-full'}`}
+                className={`block border-none outline-none bg-slate-600 dark:bg-slate-800 text-white dark:text-slate-100 w-full py-3 ps-8 pe-10 text-base placeholder:text-slate-100 dark:placeholder:text-slate-300 placeholder:text-sm ${onFocus ? 'rounded-t-2xl' : 'rounded-full'}`}
                 autoComplete='off'
             />
             <button
@@ -74,12 +74,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
                     }, 300); // Delay to allow click on suggestions
                 }}
                 type="submit"
-                className="absolute end-3 bottom-2 bg-green-600 hover:bg-green-500 dark:bg-orange-500 dark:hover:bg-orange-400 text-white font-medium rounded-full text-sm p-3"
+                className="absolute end-1.5 bottom-1 bg-green-600 hover:bg-green-500 dark:bg-orange-500 dark:hover:bg-orange-400 text-white font-medium rounded-full text-sm p-2"
             >
                 <HiMiniMagnifyingGlass className='size-6' />
             </button>
 
-            <div className={`absolute right-0 left-0 top-16 max-h-64 w-full bg-slate-200 dark:bg-slate-700/95 rounded-b-2xl py-1 overflow-hidden transition-all ${onFocus ? 'opacity-100 shadow-md dark:shadow-sm dark:shadow-slate-500 pointer-events-auto' : 'hidden'}`}>
+            <div className={`absolute right-0 left-0 top-12.5 max-h-64 w-full bg-slate-200 dark:bg-slate-700/95 rounded-b-2xl py-1 overflow-hidden transition-all ${onFocus ? 'opacity-100 shadow-md dark:shadow-sm dark:shadow-slate-500 pointer-events-auto' : 'hidden'}`}>
                 {searchArticle.length === 0 ?
                     <div className="text-center font-bold text-lg text-green-600 dark:text-orange-400 py-8">
                         🙈 No articles found !!!

@@ -42,7 +42,7 @@ export default function Home() {
   return (
     <div>
       {/*start heading part  */}
-      <div className='flex flex-col justify-center items-center h-[50vh] pt-32'>
+      <div className='flex flex-col justify-center items-center  pt-32'>
 
         <div className='text-3xl font-bold font-serif'>Apple Tecnology The Best Place For Lernig Articles</div>
         <div dir='rtl' className=' text-3xl font-bold font-serif mt-4 text-emerald-500'>يَا رَبِّ لَكَ الحَمْدُ كَمَا يَنْبَغِي لِجَلالِ وَجْهِكَ وَعَظِيمِ سُلْطَانِكَ</div>

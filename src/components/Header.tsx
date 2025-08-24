@@ -10,8 +10,8 @@ export default function Header() {
   const { theme } = useTheme();
 
   return (
-    <header className="fixed inset-0 h-20 rounded-full shadow-md z-50  m-5 bg-slate-200 text-slate-950 shadow-slate-400 dark:bg-slate-800 dark:text-white dark:shadow-slate-950">
-      <div className="flex justify-between items-center h-20 px-8 py-4">
+    <header className="fixed inset-0 h-16 rounded-full shadow-md z-50  m-5 bg-slate-200 text-slate-950 shadow-slate-400 dark:bg-slate-800 dark:text-white dark:shadow-slate-950">
+      <div className="flex justify-between items-center h-16 px-8 py-4">
         <Link to={"/"}>
           <img src={theme === 'dark' ? LogoLight : LogoDark} className="w-10 h-12 rounded-full" alt="logo" />
         </Link>
