@@ -5,6 +5,7 @@ import Articles from './pages/article/Articles'
 
 import Home from './pages/home/Home';
 import ShowArticle from './pages/article/ShowArticle';
+import TeamMemmber from './pages/teamMember/teamMember';
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
             {
                 path: '/article/:title',
                 element: <ShowArticle />
+            },
+            {
+                path: '/author-profile/:id',
+                element: <TeamMemmber />
             },
             {
                 path: '/not-found',

@@ -84,7 +84,7 @@ export default function Home() {
                 modules={[Autoplay]}
                 slidesPerView={4}
                 spaceBetween={40}
-                loop={true}
+                loop={teamMembers.length >= 4}
                 autoplay={{
                   delay: 2500,
                   disableOnInteraction: false,
@@ -182,7 +182,7 @@ export default function Home() {
               <Swiper
                 slidesPerView={4}
                 spaceBetween={20}
-                loop={true}
+                loop={newArticles.length >= 4}
                 className="mySwiper"
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
               >
