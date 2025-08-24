@@ -35,4 +35,5 @@ export interface Article {
   updated_at: string;
   team_members: TeamMember;
   article_sections: ArticleSection[];
+  authorName:string;
 }

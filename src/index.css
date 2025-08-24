@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+
 .menu {
     @apply hover:text-orange-500 hover:scale-90 hover:cursor-pointer duration-200 duration-300 transition-all;
 }
@@ -20,14 +21,13 @@
     box-shadow: 5px 5px 5px #b35e2d, -5px -5px 5px #ffd1b4;
 }
 
-
-
 html {
     scroll-behavior: smooth;
-    font-family: 'Roboto', sans-serif;
-    
+    font-family: "Roboto", sans-serif;
 }
 
-
+.linkClass {
+    @apply leading-16 font-semibold text-sm dark:hover:text-orange-400 hover:text-green-500 hover:-translate-y-1 transition-all duration-200 ease-linear;
+}
 
 /* style="transform: perspective(1000px) rotateX(-11.38deg) rotateY(15.82deg) scale3d(1.1, 1.1, 1.1);" */

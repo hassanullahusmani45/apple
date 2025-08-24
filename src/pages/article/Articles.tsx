@@ -6,6 +6,7 @@ import ArticleCard from '../../components/ArticleCard';
 import { useAppSelector } from '../../hooks/reduxHooks';
 import { FaFilter } from "react-icons/fa6";
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import type { Article } from '../../types/type';
 
 export default function Articles() {
     const { articles, loading } = useAppSelector((state) => state.home);
@@ -13,7 +14,7 @@ export default function Articles() {
 
 
 
-    const [filterArticles, setFilterArticles] = useState<any[]>([]);
+    const [filterArticles, setFilterArticles] = useState<Article[]>([]);
     const [filterStatus, setFilterStatus] = useState("all");
     const [searchValue, setSearchValue] = useState('');
 

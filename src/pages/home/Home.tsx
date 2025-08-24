@@ -42,28 +42,28 @@ export default function Home() {
   return (
     <div>
       {/*start heading part  */}
-      <div className='flex flex-col justify-center items-center  pt-32'>
+      <div className='flex flex-col justify-center items-center pt-20'>
 
-        <div className='text-3xl font-bold font-serif'>Apple Tecnology The Best Place For Lernig Articles</div>
+        <div className='text-3xl font-bold font-serif bg-gradient-to-r from-purple-500 via-green-500 to-sky-500 bg-clip-text text-transparent'>Apple Tecnology The Best Place For Lernig Articles</div>
         <div dir='rtl' className=' text-3xl font-bold font-serif mt-4 text-emerald-500'>يَا رَبِّ لَكَ الحَمْدُ كَمَا يَنْبَغِي لِجَلالِ وَجْهِكَ وَعَظِيمِ سُلْطَانِكَ</div>
         <SearchBar articles={articles} />
 
 
         <div className='grid grid-cols-3 w-1/2'>
           <div className='col-span-1 flex flex-col justify-center items-center'>
-            <HiOutlineUsers className='size-14 mb-3' />
+            <HiOutlineUsers className='size-12 mb-3' />
             <LandingCounter count={countTeamMembers} />
-            <div className='text-xl font-medium'>Team Mammbers</div>
+            <div className='text-base font-semibold'>Team Mammbers</div>
           </div>
           <div className='col-span-1 flex flex-col justify-center items-center'>
-            <HiOutlineClipboardDocumentList className='size-14 mb-3' />
+            <HiOutlineClipboardDocumentList className='size-12 mb-3' />
             <LandingCounter count={countArticles} />
-            <div className='text-xl font-medium'>Total Articles</div>
+            <div className='text-base font-semibold'>Total Articles</div>
           </div>
           <div className='col-span-1 flex flex-col justify-center items-center'>
-            <HiOutlineAcademicCap className='size-14 mb-3' />
+            <HiOutlineAcademicCap className='size-12 mb-3' />
             <LandingCounter count={countSubscribers} />
-            <div className='text-xl font-medium'>Users</div>
+            <div className='text-base font-semibold'>Users</div>
           </div>
         </div>
 
