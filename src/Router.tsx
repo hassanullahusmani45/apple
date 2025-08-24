@@ -4,6 +4,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import Articles from './pages/article/Articles'
 
 import Home from './pages/home/Home';
+import ShowArticle from './pages/article/ShowArticle';
 
 const router = createBrowserRouter([
     {
@@ -18,6 +19,14 @@ const router = createBrowserRouter([
             {
                 path: '/articles',
                 element: <Articles />
+            },
+            {
+                path: '/article/:title',
+                element: <ShowArticle />
+            },
+            {
+                path: '/not-found',
+                element: <NotFoundPage />
             },
            
         ]

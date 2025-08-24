@@ -5,9 +5,11 @@ import { IoFolderOpen } from "react-icons/io5";
 import ArticleCard from '../../components/ArticleCard';
 import { useAppSelector } from '../../hooks/reduxHooks';
 import { FaFilter } from "react-icons/fa6";
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 export default function Articles() {
     const { articles, loading } = useAppSelector((state) => state.home);
+    const [articlesBody] = useAutoAnimate<HTMLDivElement>();
 
 
 
@@ -141,7 +143,7 @@ export default function Articles() {
                             <div onClick={() => { setFilterStatus("old") }} className={`text-base cursor-pointer font-semibold px-1.5 ${filterStatus == "old" ? "text-teal-500 border-y-2 border-teal-600 py-3" : "text-slate-600 dark:text-slate-400"}`}>Oldest</div>
                         </div>
 
-                        <div className='grid grid-cols-3 gap-4 my-10'>
+                        <div className='grid grid-cols-3 gap-4 my-10 overflow-hidden' ref={articlesBody}>
 
                             {filterArticles.length > 0 ? (
                                 filterArticles.map((allArticle, index) => (
@@ -150,7 +152,7 @@ export default function Articles() {
                                             src={allArticle.cover_image || articleImage}
                                             author={allArticle.authorName}
                                             date={allArticle.created_at && (allArticle.created_at).slice(0, 10)}
-                                            link={`/show-article/${allArticle.title}`}
+                                            link={`/article/${allArticle.title}`}
                                             title={allArticle.title}
                                             desc={allArticle.summary}
                                             viewCount={allArticle.view_count}

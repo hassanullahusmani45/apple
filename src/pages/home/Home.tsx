@@ -22,7 +22,7 @@ import CategoryCount from '../../components/CategoryCount';
 export default function Home() {
   const { teamMembers, articles, newArticles, loading } = useAppSelector((state) => state.home);
 
-  const { teamMembers: countTeamMembers, articles: countArticles, subscribers: countSubscribers, loading: countLoading, fetched } = useAppSelector(state => state.stats)
+  const { teamMembers: countTeamMembers, articles: countArticles, subscribers: countSubscribers } = useAppSelector(state => state.stats)
 
   const { loading: categoryLoading } = useAppSelector(state => state.categoryCount);
 
@@ -129,7 +129,7 @@ export default function Home() {
                     src={article.cover_image || articleImage}
                     author={article.authorName}
                     date={article.created_at && (article.created_at).slice(0, 10)}
-                    link={`/show-article/${article.title}`}
+                    link={`/article/${article.title}`}
                     title={article.title}
                     desc={article.summary}
                     viewCount={article.view_count}
@@ -190,7 +190,7 @@ export default function Home() {
                       src={newArticle.cover_image || articleImage}
                       author={newArticle.authorName}
                       date={newArticle.created_at && (newArticle.created_at).slice(0, 10)}
-                      link={`/show-article/${newArticle.title}`}
+                      link={`/article/${newArticle.title}`}
                       title={newArticle.title}
                       desc={newArticle.summary}
                       viewCount={newArticle.view_count}
