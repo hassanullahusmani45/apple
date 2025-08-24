@@ -91,16 +91,17 @@ export default function Home() {
                 }}
                 className="mySwiper"
               >
-                {teamMembers.map((teamMember) => (
-                  <SwiperSlide key={teamMember.id}>
+                {teamMembers.map(({ id, profile, emailLink, linkedinLink, webLink, first_name, last_name, position, info }) => (
+                  <SwiperSlide key={id}>
                     <TeamMemmberCard
-                      profile={teamMember.profile || hassanProfile}
-                      emaillink={teamMember.emaillink}
-                      linkedinlink={teamMember.linkedinlink}
-                      weblink={teamMember.weblink}
-                      name={`${teamMember.first_name}  ${teamMember.last_name}`}
-                      positionTitle={teamMember.position}
-                      quickInfo={teamMember.info}
+                      id={id}
+                      profile={profile || hassanProfile}
+                      emaillink={emailLink}
+                      linkedinlink={linkedinLink}
+                      weblink={webLink}
+                      name={`${first_name}  ${last_name}`}
+                      positionTitle={position || ''}
+                      quickInfo={info}
                     />
                   </SwiperSlide>
                 ))}
@@ -123,16 +124,17 @@ export default function Home() {
 
             <div className='grid grid-cols-4 gap-4 my-10'>
 
-              {articles.map((article) => (
-                <div key={article.id} className='col-span-1'>
+              {articles.map(({ id, cover_image, team_members, created_at, title, summary, view_count }) => (
+                <div key={id} className='col-span-1'>
                   <ArticleCard
-                    src={article.cover_image || articleImage}
-                    author={article.authorName}
-                    date={article.created_at && (article.created_at).slice(0, 10)}
-                    link={`/article/${article.title}`}
-                    title={article.title}
-                    desc={article.summary}
-                    viewCount={article.view_count}
+                    src={cover_image || articleImage}
+                    author={`${team_members.first_name} ${team_members.last_name}`}
+                    authorID={team_members.id}
+                    date={created_at.slice(0, 10)}
+                    link={`/article/${encodeURIComponent(title)}`}
+                    title={title}
+                    desc={summary || ''}
+                    viewCount={view_count}
                     className="bg-slate-200 dark:bg-slate-800"
                   />
                 </div>
@@ -184,16 +186,17 @@ export default function Home() {
                 className="mySwiper"
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
               >
-                {newArticles.map((newArticle) => (
-                  <SwiperSlide key={newArticle.id}>
+                {newArticles.map(({ id, cover_image, team_members, created_at, title, summary, view_count }) => (
+                  <SwiperSlide key={id}>
                     <ArticleCard
-                      src={newArticle.cover_image || articleImage}
-                      author={newArticle.authorName}
-                      date={newArticle.created_at && (newArticle.created_at).slice(0, 10)}
-                      link={`/article/${newArticle.title}`}
-                      title={newArticle.title}
-                      desc={newArticle.summary}
-                      viewCount={newArticle.view_count}
+                      src={cover_image || articleImage}
+                      author={`${team_members.first_name} ${team_members.last_name}`}
+                      authorID={team_members.id}
+                      date={created_at.slice(0, 10)}
+                      link={`/article/${encodeURIComponent(title)}`}
+                      title={title}
+                      desc={summary || ''}
+                      viewCount={view_count}
                       className="bg-slate-200 dark:bg-slate-800 shadow-md shadow-slate-300 dark:shadow-slate-950 my-4"
                     />
                   </SwiperSlide>

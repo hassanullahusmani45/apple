@@ -1,15 +1,14 @@
 
 import { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { HiBars4, HiOutlineBuildingOffice2, HiSquare2Stack } from "react-icons/hi2";
-import { TfiEmail } from "react-icons/tfi";
-import { LuBicepsFlexed, LuMapPinHouse } from "react-icons/lu";
-import { FaEye, FaHeartPulse, FaUser } from "react-icons/fa6";
+import { useNavigate, useParams } from 'react-router-dom'
+import { HiBars4, HiSquare2Stack } from "react-icons/hi2";
+import { FaEye, FaUser } from "react-icons/fa6";
 import { IoCalendarSharp } from "react-icons/io5";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { fetchArticleData } from "../../redux/slices/article/articleSlice";
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import TeamMemberSidebar from '../../components/TeamMemberSidebar';
 
 export default function ShowArticle() {
     const { title } = useParams<{ title: string }>();
@@ -47,29 +46,9 @@ export default function ShowArticle() {
         <div>
             {loading ? <div className='w-full h-[40vh] flex justify-center items-center text-4xl font-extrabold'>loading ...</div> : (
                 <div className=' grid grid-cols-7 gap-4' ref={articleBody}>
-                    <div className='col-span-2 p-8 rounded-xl bg-slate-200 dark:bg-slate-800 h-fit'>
-
-                        <span className='flex justify-center'>
-                            <span className='relative'>
-                                <Link to={`/team-memmber-profile/${author?.first_name} ${author?.last_name}`}>
-                                    <img className=" w-56 h-56 rounded-full p-1.5 border-2 border-green-500 dark:border-orange-300 border-dotted" src={author?.profile} />
-                                </Link>
-                                <div className='absolute -right-1 bottom-7 p-1.5 bg-white dark:bg-slate-900 rounded-full border border-green-500 dark:border-orange-300'>🎯</div>
-                            </span>
-                        </span>
-                        <div className='space-y-2 text-slate-700 dark:text-slate-300'>
-                            <div className='text-lg font-semibold my-6 text-slate-800 dark:text-white'>{author?.first_name} {author?.last_name}</div>
-                            <div className='flex justify-start items-center gap-2 text-slate-600 dark:text-slate-200 font-semibold'>{author?.position} <FaHeartPulse className='size-5 text-red-600' /></div>
-                            <div className='text-sm'>{author?.biography}</div>
-                            <div className='flex items-center gap-2 text-sm'><HiOutlineBuildingOffice2 className='size-5 text-black dark:text-white' />{author?.jobplace}</div>
-                            <div className='flex items-center gap-2 text-sm'><TfiEmail className='size-5 text-black dark:text-white' />{author?.email}</div>
-                            <div className='flex items-center gap-2 text-sm'><LuMapPinHouse className='size-5 text-black dark:text-white' />{author?.address}</div>
-                        </div>
-
-                        <div className='flex justify-start items-center gap-2 text-lg font-medium mt-6 mb-2 text-slate-900 dark:text-white'>My Skills <LuBicepsFlexed className='size-6 text-green-500 dark:text-orange-400' /> </div>
-                        <div className='text-sm font-serif text-slate-700 dark:text-slate-300'>{author?.skills}</div>
-
-                    </div>
+                    
+                    {/* the autor or this article */}
+                    <TeamMemberSidebar author ={author!}/>
 
                     <div className='col-span-5 rounded-xl p-8 bg-slate-200 dark:bg-slate-800'>
                         <div className='text-2xl font-bold text-black dark:text-white'>{article?.title}</div>
@@ -82,7 +61,7 @@ export default function ShowArticle() {
 
                         {/* show the articl cover_img */}
                         <div className=' w-full my-8'>
-                            <img className=' bg-cover w-full h-[500px]  rounded-xl' src={article?.cover_image}></img>
+                            <img className=' bg-cover w-full max-h-[400px]  rounded-xl' src={article?.cover_image}></img>
                         </div>
 
                         {/* show the Article Siction titles */}

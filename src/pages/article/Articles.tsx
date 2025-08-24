@@ -75,7 +75,7 @@ export default function Articles() {
     const searchHandler = () => {
         const search = articles.filter(article => article.title.toLowerCase().includes(searchValue));
         setFilterArticles(search);
-        setSearchValue("") 
+        setSearchValue("")
 
     }
 
@@ -147,16 +147,17 @@ export default function Articles() {
                         <div className='grid grid-cols-3 gap-4 my-10 overflow-hidden' ref={articlesBody}>
 
                             {filterArticles.length > 0 ? (
-                                filterArticles.map((allArticle, index) => (
-                                    <div key={index} className='col-span-1'>
+                                filterArticles.map(({ id, cover_image, team_members, created_at, title, summary, view_count }) => (
+                                    <div key={id} className='col-span-1'>
                                         <ArticleCard
-                                            src={allArticle.cover_image || articleImage}
-                                            author={allArticle.authorName}
-                                            date={allArticle.created_at && (allArticle.created_at).slice(0, 10)}
-                                            link={`/article/${allArticle.title}`}
-                                            title={allArticle.title}
-                                            desc={allArticle.summary}
-                                            viewCount={allArticle.view_count}
+                                            src={cover_image || articleImage}
+                                            author={`${team_members.first_name} ${team_members.last_name}`}
+                                            authorID={team_members.id}
+                                            date={created_at.slice(0, 10)}
+                                            link={`/article/${encodeURIComponent(title)}`}
+                                            title={title}
+                                            desc={summary || ''}
+                                            viewCount={view_count}
                                             className="bg-slate-200 dark:bg-slate-800 shadow-md shadow-slate-300 dark:shadow-slate-950"
                                         />
                                     </div>

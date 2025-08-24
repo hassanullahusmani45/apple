@@ -34,7 +34,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
     }, [debouncedValue, articles]);
 
     const searchHandler = (title: string) => {
-        navigate(`/show-article/${encodeURIComponent(title)}`);
+        navigate(`/article/${encodeURIComponent(title)}`);
         setOnFocus(false);
     };
 

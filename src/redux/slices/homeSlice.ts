@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { supabase } from "../../lib/SupabaseClient";
+import type { Article, TeamMember } from "../../types/type";
 
 
 interface HomeState {
-    teamMembers: any[];
-    articles: any[];
-    newArticles: any[];
+    teamMembers: TeamMember[];
+    articles: Article[];
+    newArticles: Article[];
     loading: boolean;
     error: string | null;
 }
@@ -28,7 +29,7 @@ export const fetchHomeData = createAsyncThunk(
 
         const { data: articles } = await supabase
             .from('articles')
-            .select("*");
+            .select(`*,team_members (id , first_name , last_name)`);
 
         return { teamMembers, articles };
     }
@@ -50,16 +51,11 @@ const homeSlice = createSlice({
 
                 state.teamMembers = action.payload.teamMembers ?? [];
 
-                state.articles = (action.payload.articles ?? []).map(article => {
-                    const author = state.teamMembers.find(tm => tm.id === article.author_id);
-                    return {
-                        ...article,
-                        authorName: author ? `${author.first_name} ${author.last_name}` : "Unknown",
-                    };
-                });
+                state.articles = action.payload.articles ?? [];
+                
                 state.newArticles = state.articles.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).slice(0, 6);
                 console.log("Fetched articles:", state.articles);
-                
+
             })
             .addCase(fetchHomeData.rejected, (state, action) => {
                 state.loading = false;

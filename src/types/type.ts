@@ -2,13 +2,21 @@ export interface TeamMember {
   id: string;
   first_name: string;
   last_name: string;
-  position: string;
-  biography: string;
-  jobplace: string;
   email: string;
-  address: string;
-  skills: string;
+  role_id?: number;
+  position?: string;
+  biography?: string;
+  skills?: string;
+  info?: string;
+  jobPlace?: string;
+  address?: string;
+  webLink?: string;
+  emailLink?: string;
+  linkedinLink?: string;
   profile?: string;
+  created_at?: string;
+  updated_at?: string | null;
+  deleted_at?: string | null;
 }
 
 export interface ArticleSection {
@@ -35,5 +43,28 @@ export interface Article {
   updated_at: string;
   team_members: TeamMember;
   article_sections: ArticleSection[];
-  authorName:string;
+  authorName: string;
 }
+
+export interface TeamMemberCardType {
+  id: string;
+  profile?: string;
+  emaillink?: string;
+  linkedinlink?: string;
+  weblink?: string;
+  name: string;
+  positionTitle: string;
+  quickInfo?: string;
+};
+
+export interface ArticleCardType {
+  src: string;
+  author: string;
+  authorID:string;
+  date: string;
+  link: string;
+  title: string;
+  desc: string;
+  viewCount: number;
+  className?: string;
+};
