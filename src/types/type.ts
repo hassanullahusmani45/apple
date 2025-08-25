@@ -8,7 +8,7 @@ export interface TeamMember {
   biography?: string;
   skills?: string;
   info?: string;
-  jobPlace?: string;
+  jobplace?: string;
   address?: string;
   webLink?: string;
   emailLink?: string;

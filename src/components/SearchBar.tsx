@@ -1,3 +1,4 @@
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useState, useEffect } from "react";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +19,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
     const [searchInputValue, setSearchInputValue] = useState('');
     const [debouncedValue, setDebouncedValue] = useState('');
     const [activeIndex, setActiveIndex] = useState(-1);
+    const [searchBody] = useAutoAnimate<HTMLDivElement>();
 
     // Debounce input
     useEffect(() => {
@@ -79,7 +81,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
                 <HiMiniMagnifyingGlass className='size-6' />
             </button>
 
-            <div className={`absolute right-0 left-0 top-12.5 max-h-64 w-full bg-slate-200 dark:bg-slate-700/95 rounded-b-2xl py-1 overflow-hidden transition-all ${onFocus ? 'opacity-100 shadow-md dark:shadow-sm dark:shadow-slate-500 pointer-events-auto' : 'hidden'}`}>
+            <div ref={searchBody} className={`absolute right-0 left-0 top-12.5 max-h-64 w-full bg-slate-200 dark:bg-slate-700/95 rounded-b-2xl py-1 overflow-hidden transition-all ${onFocus ? 'opacity-100 shadow-md dark:shadow-sm dark:shadow-slate-500 pointer-events-auto' : 'hidden'}`}>
                 {searchArticle.length === 0 ?
                     <div className="text-center font-bold text-lg text-green-600 dark:text-orange-400 py-8">
                         🙈 No articles found !!!
