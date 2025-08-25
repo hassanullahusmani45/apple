@@ -21,7 +21,7 @@ export default function Footer() {
         {/* Logo and Description part*/}
         <div className="col-span-2 text-left">
           <Link to={"/"}>
-            <img src={theme === 'dark' ? LogoLight : LogoDark} className="w-10 h-12 rounded-full" alt="logo" />
+            <img src={theme === 'dark' ? LogoLight : LogoDark} className="w-10 h-12 rounded-full hover:opacity-80 dark:hover:opacity-70" alt="logo" />
           </Link>
           <div className="mt-6">
             Apple is the best place for learning articles, offering insightful and high-quality content to help you stay ahead in technology and beyond. Whether you are a beginner or an expert, our articles are designed to inspire and educate, empowering you to expand your knowledge and skills.
@@ -30,17 +30,17 @@ export default function Footer() {
 
         {/* Links part */}
         <div className="col-span-1 text-left">
-          <div className="flex items-center gap-1 my-5 font-semibold">Pages</div>
+          <div className="flex items-center gap-1 my-5 font-semibold">PAGES</div>
           <div className="text-sm leading-[2rem] dark:text-slate-300 text-slate-800">
             <Link to={"/articles"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><HiOutlineClipboardDocumentList className="size-5 dark:text-white text-slate-950" />Article</Link>
-            <Link to={"/abute"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><BiMessageError className="size-5 dark:text-white text-slate-950" />Abute As</Link>
-            <Link to={"/contact-as"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><MdConnectWithoutContact className="size-5 dark:text-white text-slate-950" />Contact As</Link>
+            <Link to={"/abute"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><BiMessageError className="size-5 dark:text-white text-slate-950" />Abute</Link>
+            <Link to={"/contact-us"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><MdConnectWithoutContact className="size-5 dark:text-white text-slate-950" />Contact Us</Link>
           </div>
         </div>
 
         {/* Suport part */}
         <div className="col-span-1 text-left">
-          <div className="flex gap-1 my-5 font-semibold">Support</div>
+          <div className="flex gap-1 my-5 font-semibold">SUPPORT</div>
           <div className="text-sm leading-[2rem] dark:text-slate-300 text-slate-800">
             <div className="flex items-center gap-1"><MdMarkEmailUnread className="size-5 dark:text-white text-slate-950" /> hassanullahusmani45@gmail.com</div>
             <div className="flex items-center gap-1"><IoPhonePortraitOutline className="size-5 dark:text-white text-slate-950" /> +93 772 181 609</div>

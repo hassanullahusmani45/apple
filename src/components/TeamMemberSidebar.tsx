@@ -18,9 +18,9 @@ export default function TeamMemberSidebar({ author }: TeamMemberSidebarProps) {
         <div ref={teamMemberSection} className='col-span-2 p-8 rounded-xl bg-slate-200 dark:bg-slate-800 h-fit'>
 
             <span className='flex justify-center'>
-                <span className='relative'>
+                <span className='relative  hover:scale-95  transition-all  ease-linear duration-200'>
                     <Link to={`/author-profile/${author?.id}`}>
-                        <img className=" w-56 h-56 rounded-full p-1.5 border-2 border-green-500 dark:border-orange-300 border-dotted hover:border-dotted hover:scale-95  transition-all  ease-linear duration-200" src={author?.profile} />
+                        <img className=" w-56 h-56 rounded-full p-1.5 border-2 border-green-500 dark:border-orange-300 border-dotted hover:border-dotted" src={author?.profile} />
                     </Link>
                     <div className='absolute -right-1 bottom-7 p-1.5 bg-white dark:bg-slate-900 rounded-full border border-green-500 dark:border-orange-300'>🎯</div>
                 </span>

@@ -13,14 +13,14 @@ export default function Header() {
     <header className="fixed inset-0 h-16 rounded-full shadow-md z-50  m-5 bg-slate-200 text-slate-950 shadow-slate-400 dark:bg-slate-800 dark:text-white dark:shadow-slate-950">
       <div className="flex justify-between items-center h-16 px-8 py-4">
         <Link to={"/"}>
-          <img src={theme === 'dark' ? LogoLight : LogoDark} className="w-10 h-12 rounded-full" alt="logo" />
+          <img src={theme === 'dark' ? LogoLight : LogoDark} className="w-10 h-12 rounded-full hover:opacity-80 dark:hover:opacity-70" alt="logo" />
         </Link>
 
         <div className="flex justify-center items-center gap-x-5">
           <Link to={"/"} className="linkClass">HOME</Link>
           <Link to={"/articles"} className="linkClass">ARTICLES</Link>
           <Link to={"/abute"} className="linkClass">ABOUT</Link>
-          <Link to={"/contact-as"} className="linkClass">CONTACT AS</Link>
+          <Link to={"/contact-us"} className="linkClass">CONTACT US</Link>
         </div>
         <div className="flex justify-center items-center gap-2">
 
