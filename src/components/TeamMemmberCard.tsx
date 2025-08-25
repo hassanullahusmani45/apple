@@ -20,7 +20,7 @@ export default function TeamMemmberCard({
                 <div className='text-center'>
 
                     <Link to={`/author-profile/${id}`} className='inline-block'>
-                        <img src={profile} alt='abute' className='w-40 h-40 rounded-full border-2 border-green-500 p-1.5 mx-auto' />
+                        <img src={profile} alt='abute' className='w-40 h-40 rounded-full border-2 hover:border-dotted hover:scale-95 border-green-500 p-1.5 mx-auto  transition-all  ease-linear duration-400' />
                     </Link>
                     <div className='flex justify-center items-center gap-4 mt-4 text-green-500'>
                         <a href={emaillink} target="_blank" rel="noopener noreferrer" className="hover:translate-y-[-5px] hover:text-green-700 dark:hover:text-orange-400 transition-transform duration-500">

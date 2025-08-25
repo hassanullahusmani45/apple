@@ -44,8 +44,8 @@ export default function Home() {
       {/*start heading part  */}
       <div className='flex flex-col justify-center items-center pt-20'>
 
-        <div className='text-3xl font-bold font-serif bg-gradient-to-r from-purple-500 via-green-500 to-sky-500 bg-clip-text text-transparent'>Apple Tecnology The Best Place For Lernig Articles</div>
-        <div dir='rtl' className=' text-3xl font-bold font-serif mt-4 text-emerald-500'>يَا رَبِّ لَكَ الحَمْدُ كَمَا يَنْبَغِي لِجَلالِ وَجْهِكَ وَعَظِيمِ سُلْطَانِكَ</div>
+        <div className='text-3xl font-bold font-serif bg-gradient-to-r from-green-600 dark:from-orange-500 to-orange-500 dark:to-green-500 bg-clip-text text-transparent'>Apple Tecnology The Best Place For Lernig Articles</div>
+        {/* <div dir='rtl' className=' text-3xl font-bold font-serif mt-4 text-emerald-500'>يَا رَبِّ لَكَ الحَمْدُ كَمَا يَنْبَغِي لِجَلالِ وَجْهِكَ وَعَظِيمِ سُلْطَانِكَ</div> */}
         <SearchBar articles={articles} />
 
 

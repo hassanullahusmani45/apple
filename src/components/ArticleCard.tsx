@@ -23,7 +23,7 @@ export default function ArticleCard({
       <Link to={link}><img className="w-full h-46 rounded-t-xl overflow-hidden" src={src} /></Link>
 
       <div className="px-4 py-8 flex flex-col justify-between h-[295px]">
-        <Link to={link} className="font-medium line-clamp-2">{title}</Link>
+        <Link to={link} className="font-medium line-clamp-2 hover:text-green-500 dark:hover:text-orange-400 transition-all">{title}</Link>
         <div className="text-slate-700 dark:text-slate-400 text-sm line-clamp-3">{desc}</div>
 
         <div className="flex justify-between items-center text-sm text-slate-800 dark:text-slate-300 pb-4 border-b border-b-slate-500">

@@ -19,15 +19,17 @@ export default function TeamMemberSidebar({ author }: TeamMemberSidebarProps) {
 
             <span className='flex justify-center'>
                 <span className='relative'>
-                    <Link to={`/author-profile/${author?.first_name} ${author?.last_name}`}>
-                        <img className=" w-56 h-56 rounded-full p-1.5 border-2 border-green-500 dark:border-orange-300 border-dotted" src={author?.profile} />
+                    <Link to={`/author-profile/${author?.id}`}>
+                        <img className=" w-56 h-56 rounded-full p-1.5 border-2 border-green-500 dark:border-orange-300 border-dotted hover:border-dotted hover:scale-95  transition-all  ease-linear duration-200" src={author?.profile} />
                     </Link>
                     <div className='absolute -right-1 bottom-7 p-1.5 bg-white dark:bg-slate-900 rounded-full border border-green-500 dark:border-orange-300'>🎯</div>
                 </span>
             </span>
             <div className='space-y-2 text-slate-700 dark:text-slate-300'>
-                <div className='text-lg font-semibold my-6 text-slate-800 dark:text-white'>{author?.first_name} {author?.last_name}</div>
-                <div className='flex justify-start items-center gap-2 text-slate-600 dark:text-slate-200 font-semibold'>{author?.position} <FaHeartPulse className='size-5 text-red-600' /></div>
+                <div className="my-6">
+                    <Link to={`/author-profile/${author?.id}`} className='text-lg font-semibold text-slate-800 dark:text-white hover:text-green-500 dark:hover:text-orange-400 transition-all'>{author?.first_name} {author?.last_name}</Link>
+                </div>
+                <div className='flex justify-start items-center gap-2 text-slate-600 dark:text-slate-200 font-semibold'>{author?.position} <FaHeartPulse className='size-5 text-red-600 animate-pulse' /></div>
                 <div className='text-sm'>{author?.biography}</div>
                 <div className='flex items-center gap-2 text-sm'><HiOutlineBuildingOffice2 className='size-5 text-black dark:text-white' />{author?.jobplace}</div>
                 <div className='flex items-center gap-2 text-sm'><TfiEmail className='size-5 text-black dark:text-white' />{author?.email}</div>

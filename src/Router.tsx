@@ -5,7 +5,7 @@ import Articles from './pages/article/Articles'
 
 import Home from './pages/home/Home';
 import ShowArticle from './pages/article/ShowArticle';
-import TeamMemmber from './pages/teamMember/teamMember';
+import TeamMemmber from './pages/teamMember/TeamMember';
 
 const router = createBrowserRouter([
     {

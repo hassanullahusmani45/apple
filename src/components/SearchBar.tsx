@@ -51,7 +51,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
     };
 
     return (
-        <div className={`relative bg-slate-800 ${onFocus ? 'rounded-t-2xl' : 'rounded-full'} mb-20 mt-14 w-4/6`}>
+        <div className={`relative bg-slate-800 ${onFocus ? 'rounded-t-2xl' : 'rounded-full'} m-20 w-4/6`}>
             <input
                 onFocus={() => setOnFocus(true)}
                 onBlur={() => {

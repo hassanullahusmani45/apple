@@ -32,7 +32,7 @@ export default function Footer() {
         <div className="col-span-1 text-left">
           <div className="flex items-center gap-1 my-5 font-semibold">Pages</div>
           <div className="text-sm leading-[2rem] dark:text-slate-300 text-slate-800">
-            <Link to={"/posts"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><HiOutlineClipboardDocumentList className="size-5 dark:text-white text-slate-950" />Article</Link>
+            <Link to={"/articles"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><HiOutlineClipboardDocumentList className="size-5 dark:text-white text-slate-950" />Article</Link>
             <Link to={"/abute"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><BiMessageError className="size-5 dark:text-white text-slate-950" />Abute As</Link>
             <Link to={"/contact-as"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><MdConnectWithoutContact className="size-5 dark:text-white text-slate-950" />Contact As</Link>
           </div>
