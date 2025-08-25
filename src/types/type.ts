@@ -10,9 +10,9 @@ export interface TeamMember {
   info?: string;
   jobplace?: string;
   address?: string;
-  webLink?: string;
-  emailLink?: string;
-  linkedinLink?: string;
+  weblink?: string;
+  emaillink?: string;
+  linkedinlink?: string;
   profile?: string;
   created_at?: string;
   updated_at?: string | null;

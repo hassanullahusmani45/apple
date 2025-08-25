@@ -23,13 +23,13 @@ export default function TeamMemmberCard({
                         <img src={profile} alt='abute' className='w-40 h-40 rounded-full border-2 border-green-500 p-1.5 mx-auto' />
                     </Link>
                     <div className='flex justify-center items-center gap-4 mt-4 text-green-500'>
-                        <a href={emaillink} target="_blank" rel="noopener noreferrer" className="hover:translate-y-[-5px] hover:text-green-700 dark:hover:hover:text-orange-400 transition-transform duration-500">
+                        <a href={emaillink} target="_blank" rel="noopener noreferrer" className="hover:translate-y-[-5px] hover:text-green-700 dark:hover:text-orange-400 transition-transform duration-500">
                             <HiOutlineMail className="size-6" />
                         </a>
-                        <a href={linkedinlink} target="_blank" rel="noopener noreferrer" className="hover:translate-y-[-5px] hover:text-green-700 dark:hover:hover:text-orange-400 transition-transform duration-500">
+                        <a href={linkedinlink} target="_blank" rel="noopener noreferrer" className="hover:translate-y-[-5px] hover:text-green-700 dark:hover:text-orange-400 transition-transform duration-500">
                             <FiLinkedin className="size-6" />
                         </a>
-                        <a href={weblink} target="_blank" rel="noopener noreferrer" className="hover:translate-y-[-5px] hover:text-green-700 dark:hover:hover:text-orange-400 transition-transform duration-500">
+                        <a href={weblink} target="_blank" rel="noopener noreferrer" className="hover:translate-y-[-5px] hover:text-green-700 dark:hover:text-orange-400 transition-transform duration-500">
                             <HiOutlineGlobeEuropeAfrica className="size-6" />
                         </a>
                     </div>

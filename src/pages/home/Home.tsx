@@ -86,19 +86,19 @@ export default function Home() {
                 spaceBetween={40}
                 loop={teamMembers.length >= 4}
                 autoplay={{
-                  delay: 2500,
+                  delay: 3000,
                   disableOnInteraction: false,
                 }}
                 className="mySwiper"
               >
-                {teamMembers.map(({ id, profile, emailLink, linkedinLink, webLink, first_name, last_name, position, info }) => (
+                {teamMembers.map(({ id, profile, emaillink, linkedinlink, weblink, first_name, last_name, position, info }) => (
                   <SwiperSlide key={id}>
                     <TeamMemmberCard
                       id={id}
                       profile={profile || hassanProfile}
-                      emaillink={emailLink}
-                      linkedinlink={linkedinLink}
-                      weblink={webLink}
+                      emaillink={emaillink}
+                      linkedinlink={linkedinlink}
+                      weblink={weblink}
                       name={`${first_name}  ${last_name}`}
                       positionTitle={position || ''}
                       quickInfo={info}
