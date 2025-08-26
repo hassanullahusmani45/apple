@@ -60,7 +60,7 @@ export interface TeamMemberCardType {
 export interface ArticleCardType {
   src: string;
   author: string;
-  authorID:string;
+  authorID: string;
   date: string;
   link: string;
   title: string;
@@ -68,3 +68,9 @@ export interface ArticleCardType {
   viewCount: number;
   className?: string;
 };
+
+export interface LandingCounterSectionProps {
+  teamMembers: number;
+  articles: number;
+  subscribers: number;
+}

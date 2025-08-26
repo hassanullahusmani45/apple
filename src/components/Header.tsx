@@ -19,7 +19,7 @@ export default function Header() {
         <div className="flex justify-center items-center gap-x-5">
           <Link to={"/"} className="linkClass">HOME</Link>
           <Link to={"/articles"} className="linkClass">ARTICLES</Link>
-          <Link to={"/abute"} className="linkClass">ABOUT</Link>
+          <Link to={"/about"} className="linkClass">ABOUT</Link>
           <Link to={"/contact-us"} className="linkClass">CONTACT US</Link>
         </div>
         <div className="flex justify-center items-center gap-2">

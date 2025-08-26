@@ -33,7 +33,7 @@ export default function Footer() {
           <div className="flex items-center gap-1 my-5 font-semibold">PAGES</div>
           <div className="text-sm leading-[2rem] dark:text-slate-300 text-slate-800">
             <Link to={"/articles"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><HiOutlineClipboardDocumentList className="size-5 dark:text-white text-slate-950" />Article</Link>
-            <Link to={"/abute"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><BiMessageError className="size-5 dark:text-white text-slate-950" />Abute</Link>
+            <Link to={"/about"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><BiMessageError className="size-5 dark:text-white text-slate-950" />About</Link>
             <Link to={"/contact-us"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><MdConnectWithoutContact className="size-5 dark:text-white text-slate-950" />Contact Us</Link>
           </div>
         </div>

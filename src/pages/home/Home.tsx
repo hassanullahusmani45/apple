@@ -8,8 +8,7 @@ import { Swiper as SwiperType } from "swiper/types";
 
 import { MdOutlineWhatshot } from 'react-icons/md';
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
-import { HiInboxStack, HiMiniSquare3Stack3D, HiOutlineAcademicCap, HiOutlineClipboardDocumentList, HiOutlineUsers, HiSparkles } from 'react-icons/hi2';
-import LandingCounter from '../../components/LandingCounter';
+import { HiInboxStack, HiMiniSquare3Stack3D, HiSparkles } from 'react-icons/hi2';
 import { useAppSelector } from '../../hooks/reduxHooks';
 import TeamMemmberCard from '../../components/TeamMemmberCard';
 import hassanProfile from '../../assets/hassan.png';
@@ -17,6 +16,7 @@ import articleImage from '../../assets/post1.webp';
 import ArticleCard from '../../components/ArticleCard';
 import SearchBar from '../../components/SearchBar';
 import CategoryCount from '../../components/CategoryCount';
+import LandingCounterSection from '../../components/LandingCounterSection';
 
 
 export default function Home() {
@@ -50,21 +50,11 @@ export default function Home() {
 
 
         <div className='grid grid-cols-3 w-1/2'>
-          <div className='col-span-1 flex flex-col justify-center items-center'>
-            <HiOutlineUsers className='size-12 mb-3' />
-            <LandingCounter count={countTeamMembers} />
-            <div className='text-base font-semibold'>Team Mammbers</div>
-          </div>
-          <div className='col-span-1 flex flex-col justify-center items-center'>
-            <HiOutlineClipboardDocumentList className='size-12 mb-3' />
-            <LandingCounter count={countArticles} />
-            <div className='text-base font-semibold'>Total Articles</div>
-          </div>
-          <div className='col-span-1 flex flex-col justify-center items-center'>
-            <HiOutlineAcademicCap className='size-12 mb-3' />
-            <LandingCounter count={countSubscribers} />
-            <div className='text-base font-semibold'>Users</div>
-          </div>
+          <LandingCounterSection  
+          teamMembers={countTeamMembers} 
+          articles={countArticles}
+          subscribers={countSubscribers}
+          />
         </div>
 
       </div>
