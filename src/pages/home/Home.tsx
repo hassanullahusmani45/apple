@@ -11,7 +11,7 @@ import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import { HiInboxStack, HiMiniSquare3Stack3D, HiSparkles } from 'react-icons/hi2';
 import { useAppSelector } from '../../hooks/reduxHooks';
 import TeamMemmberCard from '../../components/TeamMemmberCard';
-import hassanProfile from '../../assets/hassan.png';
+import hassanProfile from '../../assets/hassan.jpeg';
 import articleImage from '../../assets/post1.webp';
 import ArticleCard from '../../components/ArticleCard';
 import SearchBar from '../../components/SearchBar';

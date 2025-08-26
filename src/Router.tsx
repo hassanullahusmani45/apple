@@ -7,6 +7,7 @@ import Home from './pages/home/Home';
 import ShowArticle from './pages/article/ShowArticle';
 import TeamMemmber from './pages/teamMember/TeamMember';
 import About from './pages/about/About';
+import ContactUs from './pages/contact/ContactUs';
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             {
                 path: '/about',
                 element: <About />
+            },
+            {
+                path: '/contact-us',
+                element: <ContactUs />
             },
             {
                 path: '/not-found',
