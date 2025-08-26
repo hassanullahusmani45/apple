@@ -2,10 +2,37 @@ import { LuMapPinned } from 'react-icons/lu';
 import hassanProfile from '../../assets/hassan.jpeg';
 import { BsEnvelopeAt } from 'react-icons/bs';
 import { HiOutlineDevicePhoneMobile, HiOutlineGlobeAlt } from 'react-icons/hi2';
+import z from 'zod'
+import { zodResolver } from "@hookform/resolvers/zod";
+import RHFInput from '../../components/form/RHFInput';
+import { FormProvider, useForm } from 'react-hook-form';
+
 
 
 export default function ContactUs() {
 
+    const schema = z.object({
+        name: z.string().min(3, "Name must be at least 3 characters!"),
+        email: z.string().nonempty("Email is required").email({ message: "Invalid email!" }),
+        message: z.string().min(5, "The message must be at least 5 characters!").max(2000, "The message is over 2000 characters!"),
+        subject: z.string().min(3, "Subject must be at least 3 characters!").max(200, "Subject must be under 200 characters!")
+    });
+
+    type FormData = z.infer<typeof schema>
+
+    const methods = useForm<FormData>({
+        defaultValues: {
+            name: '',
+            email: '',
+            message: '',
+            subject: '',
+        },
+        resolver: zodResolver(schema)
+    });
+
+    const onSubmit = (data: FormData) => {
+        console.log("Data", data);
+    }
 
     return (
 
@@ -15,15 +42,27 @@ export default function ContactUs() {
                 <div>
                     {/* {error && <p className=" flex gap-2 items-center text-red-400"><ExclamationTriangleIcon className='size-5 text-red-500' /> {error}</p>} */}
                 </div>
-                <form className="pt-6" >
+                <FormProvider {...methods}>
+                    <form className="pt-6" onSubmit={methods.handleSubmit(onSubmit)} noValidate>
+                        <RHFInput name="name" label="Name" placeholder='Enter your name' />
+                        <RHFInput name="email" label="Email" type="email" placeholder='example@gmail.com' />
+                        <RHFInput name="subject" label="Subject" disabled placeholder='write your subject'/>
+                        <RHFInput name="message" label="Message" type='textearea' />
 
-                </form>
+                        <button
+                            type="submit"
+                            className="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md"
+                        >
+                            Send
+                        </button>
+                    </form>
+                </FormProvider>
             </div>
 
             <div className="relative col-span-1 bg-slate-200 dark:bg-slate-800 p-8 my-8 rounded-2xl shadow-md">
 
-                <div className="flex bg-inherit justify-center items-center w-40 h-40 rounded-full border-4 border-slate-500 dark:border-slate-300 border-dotted absolute mx-auto right-0 left-0 -inset-y-20">
-                    <img className=" min-w-40 min-h-40 p-2 rounded-full "
+                <div className="flex bg-slate-100 dark:bg-slate-900 justify-center items-center w-42 h-42 rounded-full border-0 absolute mx-auto right-0 left-0 -inset-y-20">
+                    <img className=" min-w-42 min-h-42 p-2.5 rounded-full "
                         src={hassanProfile} />
                 </div>
                 <div className="text-base font-bold mt-8">Abute Me</div>
