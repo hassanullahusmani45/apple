@@ -10,10 +10,27 @@ import RHFTextarea from '../../components/form/RHFTextarea';
 import Button from '../../components/ui/Button';
 import { GrSend } from "react-icons/gr";
 import { ContactUsSchema } from '../../types/zodSchema';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
+import { createContact, resetStatus } from '../../redux/slices/contactUs/contactUsSlice';
+import { useEffect } from 'react';
+import { toastSuccess } from '../../lib/toastSuccess';
+import { toastError } from '../../lib/toastError';
 
 
 export default function ContactUs() {
+    const dispatch = useAppDispatch();
+    const { success, error } = useAppSelector(state => state.contactUs);
 
+    useEffect(() => {
+        if (success) {
+            toastSuccess("The contact message was saved successfully.");
+            dispatch(resetStatus());
+        }
+        if (error) {
+            toastError("Something was wrong, please try again!");
+            dispatch(resetStatus());
+        }
+    }, [success, error]);
 
     type FormData = z.infer<typeof ContactUsSchema>
     const defaultValues = {
@@ -30,6 +47,7 @@ export default function ContactUs() {
 
     const onSubmit = (data: FormData) => {
         console.log("Data", data);
+        dispatch(createContact(data));
     }
 
     return (

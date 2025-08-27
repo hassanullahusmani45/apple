@@ -6,14 +6,20 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     name: string,
     label?: string,
     error?: string
+    id?: string;
 }
 
-const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({ name, label, error, ...props }, ref) => {
+const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({ name, label, error, id, ...props }, ref) => {
+
+    const elementId = id || name;
+
+
     return (
         <div className="">
-            {label && <label className="font-medium ms-4">{label} :</label>}
+            {label && <label htmlFor={elementId} className="font-medium ms-4">{label} :</label>}
 
             <textarea
+                id={elementId}
                 ref={ref}
                 name={name}
                 {...props}

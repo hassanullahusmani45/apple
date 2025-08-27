@@ -4,13 +4,17 @@ import { TiWarningOutline } from "react-icons/ti";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
+  id?: string;
 }
 
-const Input = forwardRef<HTMLInputElement, InputProps>(({ label, error, ...props }, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProps>(({ label, error, id, ...props }, ref) => {
+  const inputId = id || props.name;
+
   return (
     <div className="flex flex-col gap-1 mb-1.5">
-      {label && <label className="font-medium ms-4">{label} :</label>}
+      {label && <label htmlFor={inputId} className="font-bold ms-4">{label} :</label>}
       <input
+        id={inputId}
         ref={ref}
         {...props}
         autoComplete="off"

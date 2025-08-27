@@ -18,9 +18,8 @@ export const createContact = createAsyncThunk(
     "contactUs/createContact",
     async (data: ContactMessageType, { rejectWithValue }) => {
         const { error } = await supabase
-            .from("contact_messages")
+            .from("contact_messagesx")
             .insert([data]);
-
         if (error) {
             return rejectWithValue(error.message);
         }
