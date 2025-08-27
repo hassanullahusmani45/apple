@@ -20,5 +20,5 @@ html {
 }
 
 .button-style {
-    @apply flex justify-center items-center gap-1.5 min-w-20 px-6 py-2 font-semibold text-white bg-gradient-to-r from-green-500 to-green-900 dark:from-orange-400 dark:to-orange-700 rounded-full transform transition-transform duration-300 hover:scale-90 cursor-pointer disabled:hover:scale-100 disabled:opacity-70 disabled:cursor-default shadow-md shadow-slate-500;
+    @apply flex justify-center items-center gap-1.5 w-fit min-w-20 px-6 py-2 font-semibold text-white bg-gradient-to-r from-green-500 to-green-900 dark:from-orange-400 dark:to-orange-700 rounded-full transform transition-transform duration-300 hover:scale-90 cursor-pointer disabled:hover:scale-100 disabled:opacity-70 disabled:cursor-default shadow-md shadow-slate-500;
 }

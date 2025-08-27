@@ -74,3 +74,9 @@ export interface LandingCounterSectionProps {
   articles: number;
   subscribers: number;
 }
+export interface ContactMessageType {
+  name: string;
+  email: string;
+  subject?: string;
+  message: string;
+}
