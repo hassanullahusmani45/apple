@@ -18,3 +18,7 @@ html {
 .textarea-style {
     @apply font-normal rounded-xl shadow-md block w-full p-2.5 px-6 text-gray-800 dark:text-slate-200 bg-slate-300 dark:bg-slate-900/50 placeholder:text-gray-500 dark:placeholder:text-gray-500 placeholder:text-sm placeholder:font-normal ring-0 outline-slate-600 border-2 border-slate-400 dark:outline-slate-200 dark:border-slate-600;
 }
+
+.button-style {
+    @apply flex justify-center items-center gap-1.5 min-w-20 px-6 py-2 font-semibold text-white bg-gradient-to-r from-green-500 to-green-900 dark:from-orange-400 dark:to-orange-700 rounded-full transform transition-transform duration-300 hover:scale-90 cursor-pointer disabled:hover:scale-100 disabled:opacity-70 disabled:cursor-default shadow-md shadow-slate-500;
+}

@@ -7,11 +7,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import RHFInput from '../../components/form/RHFInput';
 import { FormProvider, useForm } from 'react-hook-form';
 import RHFTextarea from '../../components/form/RHFTextarea';
-
+import Button from '../../components/ui/Button';
+import { GrSend } from "react-icons/gr";
 
 
 export default function ContactUs() {
-
     const schema = z.object({
         name: z.string().min(3, "Name must be at least 3 characters!"),
         email: z.string().nonempty("Email is required").email({ message: "Invalid email!" }),
@@ -40,7 +40,7 @@ export default function ContactUs() {
 
         <div className=" grid md:grid-cols-2 gap-20 my-10">
             <div className="col-span-1 h-fit bg-slate-200 dark:bg-slate-800 p-8 my-8 rounded-2xl shadow-md">
-                <div className="text-xl font-bold text-center mb-4">Contact Us</div>
+                <div className="text-2xl font-bold text-center mb-4 text-green-600 dark:text-orange-400">Contact Us</div>
                 <div>
                     {/* {error && <p className=" flex gap-2 items-center text-red-400"><ExclamationTriangleIcon className='size-5 text-red-500' /> {error}</p>} */}
                 </div>
@@ -49,14 +49,18 @@ export default function ContactUs() {
                         <RHFInput name="name" label="Name" placeholder='Enter your name' />
                         <RHFInput name="email" label="Email" type="email" placeholder='example@gmail.com' />
                         <RHFInput name="subject" label="Subject" placeholder='Write your subject' />
-                        <RHFTextarea name='message' label='Message' placeholder='Enter your contact message' />
-
-                        <button
-                            type="submit"
-                            className="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md"
-                        >
-                            Send
-                        </button>
+                        <RHFTextarea
+                            name='message'
+                            label='Message'
+                            placeholder='Enter your contact message'
+                            rows={5}
+                        />
+                        <div className="flex justify-center items-center mt-5">
+                            <Button type="submit">
+                                <GrSend className="size-6" />
+                                Send
+                            </Button>
+                        </div>
                     </form>
                 </FormProvider>
             </div>
@@ -96,6 +100,6 @@ export default function ContactUs() {
                     </a>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

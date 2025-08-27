@@ -26,7 +26,7 @@ export default function About() {
                             <div className='mt-5 mb-16 pl-6 text-slate-900 dark:text-slate-200 leading-7'>
                                 Apple is the best place for learning articles, offering insightful and high-quality content to help you stay ahead in technology and beyond. Whether you are a beginner or an expert, our articles are designed to inspire and educate, empowering you to expand your knowledge and skills.
                             </div>
-                            <Link to='/contact-us' className='inline-block px-4 py-2.5 font-semibold text-white bg-gradient-to-r from-green-500 to-green-900  dark:from-orange-400 dark:to-orange-700 rounded-full  transform transition-transform duration-300 hover:scale-90'>Contact Us</Link>
+                            <Link to='/contact-us' className='button-style w-fit'>Contact Us</Link>
                         </div>
                     </div>
 
