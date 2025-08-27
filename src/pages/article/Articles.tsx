@@ -23,7 +23,9 @@ export default function Articles() {
     useEffect(() => {
         switch (filterStatus) {
             case "all": {
-                setFilterArticles(articles);
+                const allPopular = [...articles]
+                    .sort((a, b) => a.title.localeCompare(b.title));
+                setFilterArticles(allPopular);
                 break;
             }
             case "mostPopular": {
@@ -32,12 +34,12 @@ export default function Articles() {
                 setFilterArticles(mostPopular);
                 break;
             }
-            case "new": {
-                const newArticles = [...articles].reverse();
-                setFilterArticles(newArticles);
+            case "old": {
+                const oldArticles = [...articles].reverse();
+                setFilterArticles(oldArticles);
                 break;
             }
-            case "old": {
+            case "new": {
                 setFilterArticles(articles);
                 break;
             }
