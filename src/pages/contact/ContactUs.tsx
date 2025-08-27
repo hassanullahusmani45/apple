@@ -6,6 +6,7 @@ import z from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
 import RHFInput from '../../components/form/RHFInput';
 import { FormProvider, useForm } from 'react-hook-form';
+import RHFTextarea from '../../components/form/RHFTextarea';
 
 
 
@@ -39,7 +40,7 @@ export default function ContactUs() {
 
         <div className=" grid md:grid-cols-2 gap-20 my-10">
             <div className="col-span-1 h-fit bg-slate-200 dark:bg-slate-800 p-8 my-8 rounded-2xl shadow-md">
-                <div className="text-xl font-bold text-center mb-4">Contact As</div>
+                <div className="text-xl font-bold text-center mb-4">Contact Us</div>
                 <div>
                     {/* {error && <p className=" flex gap-2 items-center text-red-400"><ExclamationTriangleIcon className='size-5 text-red-500' /> {error}</p>} */}
                 </div>
@@ -47,8 +48,8 @@ export default function ContactUs() {
                     <form className="pt-6" onSubmit={methods.handleSubmit(onSubmit)} noValidate>
                         <RHFInput name="name" label="Name" placeholder='Enter your name' />
                         <RHFInput name="email" label="Email" type="email" placeholder='example@gmail.com' />
-                        <RHFInput name="subject" label="Subject" placeholder='write your subject' />
-                        <RHFInput name="message" label="Message" type='textearea' />
+                        <RHFInput name="subject" label="Subject" placeholder='Write your subject' />
+                        <RHFTextarea name='message' label='Message' placeholder='Enter your contact message' />
 
                         <button
                             type="submit"
