@@ -19,14 +19,15 @@ export default function ContactUs() {
     });
 
     type FormData = z.infer<typeof schema>
+    const defaultValues = {
+        name: '',
+        email: '',
+        message: '',
+        subject: '',
+    };
 
     const methods = useForm<FormData>({
-        defaultValues: {
-            name: '',
-            email: '',
-            message: '',
-            subject: '',
-        },
+        defaultValues,
         resolver: zodResolver(schema)
     });
 
@@ -46,7 +47,7 @@ export default function ContactUs() {
                     <form className="pt-6" onSubmit={methods.handleSubmit(onSubmit)} noValidate>
                         <RHFInput name="name" label="Name" placeholder='Enter your name' />
                         <RHFInput name="email" label="Email" type="email" placeholder='example@gmail.com' />
-                        <RHFInput name="subject" label="Subject" disabled placeholder='write your subject'/>
+                        <RHFInput name="subject" label="Subject" placeholder='write your subject' />
                         <RHFInput name="message" label="Message" type='textearea' />
 
                         <button
