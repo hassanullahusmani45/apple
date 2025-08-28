@@ -8,6 +8,8 @@ import ShowArticle from './pages/article/ShowArticle';
 import TeamMemmber from './pages/teamMember/TeamMember';
 import About from './pages/about/About';
 import ContactUs from './pages/contact/ContactUs';
+import Login from './pages/auth/login';
+import Register from './pages/auth/register';
 
 const router = createBrowserRouter([
     {
@@ -43,10 +45,17 @@ const router = createBrowserRouter([
                 path: '/not-found',
                 element: <NotFoundPage />
             },
-           
+
         ]
     },
-
+    {
+        path: '/login',
+        element: <Login />
+    },
+    {
+        path: '/register',
+        element: <Register />
+    },
 ]);
 
 const Router = () => <RouterProvider router={router} />;
