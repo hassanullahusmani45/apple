@@ -1,20 +1,20 @@
+import { useEffect } from 'react';
 import { LuMapPinned } from 'react-icons/lu';
-import hassanProfile from '../../assets/hassan.jpeg';
 import { BsEnvelopeAt } from 'react-icons/bs';
 import { HiOutlineDevicePhoneMobile, HiOutlineGlobeAlt } from 'react-icons/hi2';
+import { GrSend } from "react-icons/gr";
+import hassanProfile from '../../assets/hassan.jpeg';
 import z from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
 import RHFInput from '../../components/form/RHFInput';
 import { FormProvider, useForm } from 'react-hook-form';
 import RHFTextarea from '../../components/form/RHFTextarea';
 import Button from '../../components/ui/Button';
-import { GrSend } from "react-icons/gr";
 import { ContactUsSchema } from '../../types/zodSchema';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { createContact, resetStatus } from '../../redux/slices/contactUs/contactUsSlice';
-import { useEffect } from 'react';
-import { toastSuccess } from '../../lib/toastSuccess';
-import { toastError } from '../../lib/toastError';
+import { toastSuccess } from '../../utils/toastSuccess';
+import { toastError } from '../../utils/toastError';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 

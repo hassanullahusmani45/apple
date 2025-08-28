@@ -14,7 +14,7 @@ export default function Register() {
             page="Register"
             information="Already have an account"
         >
-            <div className="">Register</div>
+            
         </AuthLayout>
     )
 }
