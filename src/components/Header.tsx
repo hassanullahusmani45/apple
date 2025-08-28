@@ -54,10 +54,10 @@ export default function Header() {
             <>
 
               <ThemeToggleButton />
-              <Link to={"/user/register"} className="flex justify-around items-center gap-x-1 dark:hover:text-orange-400 hover:text-green-500">
+              <Link to={"/register"} className="flex justify-around items-center gap-x-1 dark:hover:text-orange-400 hover:text-green-500">
                 <HiOutlineSquaresPlus className="size-5" />Register
               </Link>
-              <Link to={"/user/login"} className="flex justify-around items-center gap-x-1 dark:hover:text-orange-400 hover:text-green-500">
+              <Link to={"/login"} className="flex justify-around items-center gap-x-1 dark:hover:text-orange-400 hover:text-green-500">
                 <BiLogIn className="size-5" />Login
               </Link>
             </>
