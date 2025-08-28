@@ -37,7 +37,7 @@ function App() {
         theme={theme === "dark" ? "dark" : 'light'}
         position='top-left'
         richColors
-        duration={28500}
+        duration={2500}
         containerAriaLabel="Notifications"
         toastOptions={{
           classNames: {

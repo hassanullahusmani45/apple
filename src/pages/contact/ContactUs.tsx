@@ -15,24 +15,15 @@ import { createContact, resetStatus } from '../../redux/slices/contactUs/contact
 import { useEffect } from 'react';
 import { toastSuccess } from '../../lib/toastSuccess';
 import { toastError } from '../../lib/toastError';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 
 export default function ContactUs() {
     const dispatch = useAppDispatch();
-    const { success, error } = useAppSelector(state => state.contactUs);
-
-    useEffect(() => {
-        if (success) {
-            toastSuccess("The contact message was saved successfully.");
-            dispatch(resetStatus());
-        }
-        if (error) {
-            toastError("Something was wrong, please try again!");
-            dispatch(resetStatus());
-        }
-    }, [success, error]);
-
+    const { success, error, loading } = useAppSelector(state => state.contactUs);
+    const [contacFormBody] = useAutoAnimate<HTMLFormElement>();
     type FormData = z.infer<typeof ContactUsSchema>
+
     const defaultValues = {
         name: '',
         email: '',
@@ -50,6 +41,20 @@ export default function ContactUs() {
         dispatch(createContact(data));
     }
 
+    useEffect(() => {
+        if (success) {
+            toastSuccess("The contact message was saved successfully.");
+            methods.reset();
+            dispatch(resetStatus());
+        }
+        if (error) {
+            toastError("Something was wrong, please try again!");
+            console.error("ERROR :", error);
+
+            dispatch(resetStatus());
+        }
+    }, [success, error]);
+
     return (
 
         <div className=" grid md:grid-cols-2 gap-20 my-10">
@@ -59,7 +64,7 @@ export default function ContactUs() {
                     {/* {error && <p className=" flex gap-2 items-center text-red-400"><ExclamationTriangleIcon className='size-5 text-red-500' /> {error}</p>} */}
                 </div>
                 <FormProvider {...methods}>
-                    <form className="pt-6" onSubmit={methods.handleSubmit(onSubmit)} noValidate>
+                    <form ref={contacFormBody} className="pt-6" onSubmit={methods.handleSubmit(onSubmit)} noValidate>
                         <RHFInput name="name" label="Name" placeholder='Enter your name' />
                         <RHFInput name="email" label="Email" type="email" placeholder='example@gmail.com' />
                         <RHFInput name="subject" label="Subject" placeholder='Write your subject' />
@@ -70,9 +75,16 @@ export default function ContactUs() {
                             rows={5}
                         />
                         <div className="flex justify-center items-center mt-5">
-                            <Button type="submit">
-                                <GrSend className="size-6" />
-                                Send
+                            <Button
+                                type="submit"
+                                disabled={loading}
+                            >
+                                {loading ? <div>Loading ...</div> :
+                                    (<>
+                                        <GrSend className="size-6" />
+                                        Send
+                                    </>)
+                                }
                             </Button>
                         </div>
                     </form>
@@ -81,10 +93,19 @@ export default function ContactUs() {
 
             <div className="relative col-span-1 bg-slate-200 dark:bg-slate-800 p-8 my-8 rounded-2xl shadow-md">
 
-                <div className="flex bg-slate-100 dark:bg-slate-900 justify-center items-center w-42 h-42 rounded-full border-0 absolute mx-auto right-0 left-0 -inset-y-20">
-                    <img className=" min-w-42 min-h-42 p-2.5 rounded-full "
-                        src={hassanProfile} />
+                <div className="flex bg-slate-100 dark:bg-slate-900 justify-center items-center w-45 h-45 rounded-full border-0 absolute mx-auto right-0 left-0 -inset-y-24">
+                    <div className="relative w-40 h-40 mx-auto rounded-full bg-inherit p-1 dark:p-[3px]">
+                        <div className="absolute inset-0 custom-gradient rounded-full animate-spin-slow"></div>
+                        <img
+                            className="relative w-full h-full  rounded-full object-cover"
+                            src={hassanProfile}
+                            alt="profile"
+                        />
+                    </div>
                 </div>
+
+
+
                 <div className="text-base font-bold mt-8">Abute Me</div>
                 <p className="text-slate-800 dark:text-gray-300 text-justify pt-4 leading-7">
                     My name is Hasssanullah usmani I’m a Full-Stack Developer with over three years of experience in web development.
