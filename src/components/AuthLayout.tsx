@@ -16,10 +16,10 @@ export default function AuthLayout({ page, information, children }: AuthLayoutPr
     return (
         <div className='flex justify-center items-center w-full h-screen bg-inherit text-inherit'>
             <section className='flex flex-col justify-center w-full sm:w-3/4 md:w-2/3 lg:w-[600px] h-fit bg-slate-200 dark:bg-slate-800 rounded-2xl shadow-md shadow-slate-400 dark:shadow-slate-950 p-8 mx-4 '>
-                <div className=' text-center text-green-500 text-lg font-medium'>Welcome To The {page} Page.</div>
+                <div className=' text-center text-green-500 text-xl font-bold mb-5'>Welcome To The {page} Page.</div>
 
                 <Link to={"/"} className='flex justify-center items-center'>
-                    <img src={theme === 'dark' ? LogoLight : LogoDark} className="w-20 h-24 rounded-full" alt="logo" />
+                    <img src={theme === 'dark' ? LogoLight : LogoDark} className="w-16 h-19 rounded-full" alt="logo" />
                 </Link>
 
                 {children}
