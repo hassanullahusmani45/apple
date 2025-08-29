@@ -11,8 +11,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ label, error, id, ...p
   const inputId = id || props.name;
 
   return (
-    <div className="flex flex-col gap-1 mb-1.5">
-      {label && <label htmlFor={inputId} className="font-bold ms-4">{label} :</label>}
+    <div className="flex flex-col gap-0.5">
+      {label && <label htmlFor={inputId} className="font-semibold ms-4">{label} :</label>}
       <input
         id={inputId}
         ref={ref}

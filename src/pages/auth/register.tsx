@@ -15,6 +15,7 @@ import { registeration, resetStatus } from "../../redux/slices/auth/authSlice";
 import { toastSuccess } from "../../utils/toastSuccess";
 import { toastError } from "../../utils/toastError";
 import { useNavigate } from "react-router-dom";
+import { splitFullName } from "../../utils/splitFullName";
 
 
 
@@ -32,8 +33,7 @@ export default function Register() {
     console.log("Success:", success);
 
     const defaultValues = {
-        first_name: '',
-        last_name: '',
+        full_name: '',
         email: '',
         password: ''
     }
@@ -44,8 +44,18 @@ export default function Register() {
     });
 
     const onSubmit = (data: FormData) => {
-        console.log("Form data :", data);
-        dispatch(registeration(data));
+        const { full_name, email, password } = data;
+
+        const { first_name, last_name } = splitFullName(full_name);
+
+        const registerData = {
+            first_name,
+            last_name,
+            email,
+            password
+        }
+
+        dispatch(registeration(registerData));
     }
 
 
@@ -54,13 +64,13 @@ export default function Register() {
             toastSuccess("You are successfully Register 🤣.");
             methods.reset();
             dispatch(resetStatus());
-            navigate('/');
+            // navigate('/');
         }
         if (error) {
             toastError(error);
             dispatch(resetStatus());
         }
-    }, [success, error]);
+    }, [success, error, navigate, methods, dispatch]);
 
 
     return (
@@ -70,12 +80,11 @@ export default function Register() {
         >
             <FormProvider {...methods}>
                 <form ref={regosterBody} onSubmit={methods.handleSubmit(onSubmit)} noValidate>
-                    <RHFInput name="first_name" label="First Name" placeholder="Enter your first name." />
-                    <RHFInput name="last_name" label="Last Name" placeholder="Enter your last name. " />
+                    <RHFInput name="full_name" label="Full Name" placeholder="Enter your full name. " />
                     <RHFInput name="email" label="Email" type="email" placeholder="user@gmail.com" />
                     <div ref={eyeWrapper} className=" relative">
                         <RHFInput name="password" label="Password" type={isShow ? "text" : "password"} placeholder="************" />
-                        <span className="absolute flex justify-center items-center  w-10 h-10 end-2 top-8 cursor-pointer" onMouseOver={() => setIsShow(true)} onMouseLeave={() => setIsShow(false)}>
+                        <span className="absolute flex justify-center items-center  w-10 h-10 end-2 top-7 2xl:top-8 cursor-pointer" onMouseOver={() => setIsShow(true)} onMouseLeave={() => setIsShow(false)}>
                             {isShow ? <IoMdEyeOff className="size-6 text-green-600 dark:text-orange-500" /> : <IoIosEye className="size-6" />}
                         </span>
                     </div>

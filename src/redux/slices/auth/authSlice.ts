@@ -60,7 +60,7 @@ export const registeration = createAsyncThunk(
 export const loginUser = createAsyncThunk(
     'auth/loginUser',
     async (data: loginType, { rejectWithValue }) => {
-        
+
         const { data: userData, error: loginError } = await supabase
             .auth.signInWithPassword({
                 email: data.email,

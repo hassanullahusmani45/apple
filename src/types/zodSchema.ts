@@ -23,17 +23,11 @@ export const ContactUsSchema = z.object({
 
 
 export const RegisterSchema = z.object({
-    first_name: z
+    full_name: z
         .string()
         .nonempty("First Name is required!")
         .min(3, "First Name must be at least 3 characters!")
         .max(20, "First Name cannot exceed 20 characters!"),
-
-    last_name: z
-        .string()
-        .nonempty("Last Name is required!")
-        .min(2, "Last Name must be at least 2 characters!")
-        .max(20, "Last Name cannot exceed 20 characters!"),
 
     email: z
         .string()
