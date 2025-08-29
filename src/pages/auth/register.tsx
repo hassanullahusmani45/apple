@@ -1,15 +1,20 @@
 import { IoMdEyeOff, IoIosEye } from "react-icons/io";
-import AuthLayout from "../../components/authLayout";
+import AuthLayout from "../../components/AuthLayout";
 import { RegisterSchema } from "../../types/zodSchema";
 import z from "zod";
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import RHFInput from "../../components/form/RHFInput";
 import Button from "../../components/ui/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiSquare } from "react-icons/fi";
 import { FaSquareCheck } from "react-icons/fa6";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { registeration, resetStatus } from "../../redux/slices/auth/authSlice";
+import { toastSuccess } from "../../utils/toastSuccess";
+import { toastError } from "../../utils/toastError";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -17,7 +22,14 @@ export default function Register() {
     const [regosterBody] = useAutoAnimate<HTMLFormElement>();
     const [eyeWrapper] = useAutoAnimate<HTMLDivElement>();
     const [isShow, setIsShow] = useState<boolean>(false);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+
+    const { success, loading, error } = useAppSelector((state) => state.auth);
+
     type FormData = z.infer<typeof RegisterSchema>
+    console.log("Success:", success);
 
     const defaultValues = {
         first_name: '',
@@ -33,7 +45,23 @@ export default function Register() {
 
     const onSubmit = (data: FormData) => {
         console.log("Form data :", data);
+        dispatch(registeration(data));
     }
+
+
+    useEffect(() => {
+        if (success) {
+            toastSuccess("You are successfully Register 🤣.");
+            methods.reset();
+            dispatch(resetStatus());
+            navigate('/');
+        }
+        if (error) {
+            toastError(error);
+            dispatch(resetStatus());
+        }
+    }, [success, error]);
+
 
     return (
         <AuthLayout
@@ -57,8 +85,12 @@ export default function Register() {
                     </div>
 
                     <div className="flex justify-center items-center">
-                        <Button type="submit">
-                            Register
+                        <Button
+                            type="submit"
+                            disabled={loading}
+                        >
+                            {loading ? "Loading ..." : "Register"}
+
                         </Button>
                     </div>
                 </form>

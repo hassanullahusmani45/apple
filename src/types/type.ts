@@ -80,3 +80,13 @@ export interface ContactMessageType {
   subject?: string;
   message: string;
 }
+export interface registerType {
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+}
+export interface loginType {
+  email: string;
+  password: string;
+}
