@@ -12,11 +12,11 @@ html {
 }
 
 .input-style {
-    @apply font-normal rounded-full shadow-md block w-full py-2 px-4 2xl:py-2.5 lg:px-6 text-gray-800 dark:text-slate-200 bg-slate-300 dark:bg-slate-900/50 placeholder:text-gray-500 dark:placeholder:text-gray-500 placeholder:text-sm placeholder:font-normal focus:outline-2 focus:outline-slate-600 border-2 border-slate-400 dark:focus:outline-slate-200 dark:border-slate-600;
+    @apply font-normal rounded-full shadow-md block w-full py-2 px-4 2xl:py-2.5 lg:px-6 text-gray-800 dark:text-slate-200 bg-slate-300 dark:bg-slate-900/50 placeholder:text-gray-500 dark:placeholder:text-gray-500 placeholder:text-sm placeholder:font-normal placeholder:italic focus:outline-2 focus:outline-slate-600 border-2 border-slate-400 dark:focus:outline-slate-200 dark:border-slate-600;
 }
 
 .textarea-style {
-    @apply font-normal rounded-xl shadow-md block w-full py-2 px-4 2xl:py-2.5 lg:px-6 text-gray-800 dark:text-slate-200 bg-slate-300 dark:bg-slate-900/50 placeholder:text-gray-500 dark:placeholder:text-gray-500 placeholder:text-sm placeholder:font-normal focus:outline-2 focus:outline-slate-600 border-2 border-slate-400 dark:focus:outline-slate-200 dark:border-slate-600;
+    @apply font-normal rounded-xl shadow-md block w-full py-2 px-4 2xl:py-2.5 lg:px-6 text-gray-800 dark:text-slate-200 bg-slate-300 dark:bg-slate-900/50 placeholder:text-gray-500 dark:placeholder:text-gray-500 placeholder:text-sm placeholder:font-normal placeholder:italic focus:outline-2 focus:outline-slate-600 border-2 border-slate-400 dark:focus:outline-slate-200 dark:border-slate-600;
 }
 
 .button-style {
@@ -28,7 +28,7 @@ html {
 }
 
 .auth-link-style {
-    @apply flex justify-around items-center gap-x-1 dark:hover:text-orange-400 hover:text-green-500 cursor-pointer;
+    @apply flex justify-start items-center gap-x-2 dark:hover:text-orange-400 hover:text-green-500 cursor-pointer;
 }
 
 .them-button-style {

@@ -3,12 +3,14 @@ import LogoDark from "../assets/Apple_Logo_dark.png";
 import { Link } from "react-router-dom";
 import ThemeToggleButton from '../components/ThemeToggleButton';
 import { HiOutlineSquaresPlus } from "react-icons/hi2";
-import { BiLogIn } from "react-icons/bi";
 import { useTheme } from "../services/provider/ThemeContextProvider";
-import Button from "./ui/Button";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { logoutUser } from "../redux/slices/auth/authSlice";
-import { FaPowerOff } from "react-icons/fa6";
+import { FaPowerOff, FaUser } from "react-icons/fa6";
+import { IoMdLogIn } from "react-icons/io";
+import HeaderDropdownMenu from "./HeaderDropdownMenu";
+
+
 export default function Header() {
 
   const dispatch = useAppDispatch();
@@ -34,48 +36,27 @@ export default function Header() {
         <div className="flex justify-center items-center gap-2">
 
           {
-            // <>
-            //   <div className="relative group">
-            //     <ChevronDownIcon className="size-5 cursor-pointer hover:text-orange-400 transition-all" />
-            //     <div className="absolute invisible group-hover:visible transition-all right-0 bg-gray-900 border-x rounded-lg px-6 py-4 space-y-3">
-            //       <Link to={"/profile"} className="flex justify-start items-center gap-x-2 hover:text-orange-400 text-sm">
-            //         <UserIcon className="size-5 text-white" />Profile
-            //       </Link>
-            //       <div onClick={()=>{}} className="flex justify-start items-center gap-x-2 hover:text-orange-400 text-sm hover:cursor-pointer">
-            //         <ArrowLeftStartOnRectangleIcon className="size-5 text-white" />Logout
-            //       </div>
-            //       {/* {
-            //         authContext.userInformation.role === "ADMIN" && <Link to={"/admin"} className="flex justify-start items-center gap-x-2 hover:text-orange-400 text-sm hover:cursor-pointer text-nowrap">
-            //           <CubeIcon className="size-5 text-white" />Admin Dashbord
-            //         </Link>
-            //       } */}
-            //     </div>
-            //   </div>
-
-            //   <Link to={"/profile"}>
-            //     <img
-            //       src={Profile}
-            //       className="w-12 h-12 border rounded-full"
-            //       alt="user-profile"
-            //     />
-            //   </Link>
-            // </>
             <>
               <ThemeToggleButton />
               {user!! ?
                 (
-                  <div className="auth-link-style" onClick={logout}>
-                      <FaPowerOff className="size-5" />Logout
-                  </div>
+                  <HeaderDropdownMenu>
+                    <Link to={"/profile"} className="auth-link-style">
+                      <FaUser className="size-4.5" />Profile
+                    </Link>
+                    <div className="auth-link-style" onClick={logout}>
+                      <FaPowerOff className="size-4.5" />Logout
+                    </div>
+                  </HeaderDropdownMenu>
                 ) : (
-                  <>
+                  <HeaderDropdownMenu>
                     <Link to={"/register"} className="auth-link-style">
                       <HiOutlineSquaresPlus className="size-5" />Register
                     </Link>
                     <Link to={"/login"} className="auth-link-style">
-                      <BiLogIn className="size-5" />Login
+                      <IoMdLogIn className="size-5" />Login
                     </Link>
-                  </>
+                  </HeaderDropdownMenu>
                 )}
             </>
           }
