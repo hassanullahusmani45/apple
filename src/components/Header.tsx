@@ -6,10 +6,13 @@ import { HiOutlineSquaresPlus } from "react-icons/hi2";
 import { BiLogIn } from "react-icons/bi";
 import { useTheme } from "../services/provider/ThemeContextProvider";
 import Button from "./ui/Button";
-import { useAppDispatch } from "../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { logoutUser } from "../redux/slices/auth/authSlice";
+import { FaPowerOff } from "react-icons/fa6";
 export default function Header() {
-    const dispatch = useAppDispatch();
+
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector(state => state.auth);
 
   const { theme } = useTheme();
   const logout = () => {
@@ -58,15 +61,22 @@ export default function Header() {
             //   </Link>
             // </>
             <>
-
               <ThemeToggleButton />
-              <Link to={"/register"} className="flex justify-around items-center gap-x-1 dark:hover:text-orange-400 hover:text-green-500">
-                <HiOutlineSquaresPlus className="size-5" />Register
-              </Link>
-              <Link to={"/login"} className="flex justify-around items-center gap-x-1 dark:hover:text-orange-400 hover:text-green-500">
-                <BiLogIn className="size-5" />Login
-              </Link>
-              <Button onClick={logout}>logout</Button>
+              {user!! ?
+                (
+                  <div className="auth-link-style" onClick={logout}>
+                      <FaPowerOff className="size-5" />Logout
+                  </div>
+                ) : (
+                  <>
+                    <Link to={"/register"} className="auth-link-style">
+                      <HiOutlineSquaresPlus className="size-5" />Register
+                    </Link>
+                    <Link to={"/login"} className="auth-link-style">
+                      <BiLogIn className="size-5" />Login
+                    </Link>
+                  </>
+                )}
             </>
           }
         </div>
