@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { loginType, registerType } from '../../../types/type'
 import { supabase } from "../../../lib/SupabaseClient";
+import type { User } from "@supabase/supabase-js";
 
 interface authState {
     loading: boolean;
     error: string | null;
     success: boolean;
-    user: any | null;
+    user: User | null;
 }
 
 const initialState: authState = {
