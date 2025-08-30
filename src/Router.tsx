@@ -10,6 +10,7 @@ import About from './pages/about/About';
 import ContactUs from './pages/contact/ContactUs';
 import Login from './pages/auth/login';
 import Register from './pages/auth/register';
+import { ProtectedRout } from './routes/AuthRoutes';
 
 const router = createBrowserRouter([
     {
@@ -35,27 +36,29 @@ const router = createBrowserRouter([
             },
             {
                 path: '/about',
-                element: <About />
+                element: <ProtectedRout >
+                             <About />
+                        </ProtectedRout >
             },
-            {
-                path: '/contact-us',
-                element: <ContactUs />
-            },
-            {
-                path: '/not-found',
-                element: <NotFoundPage />
-            },
+{
+    path: '/contact-us',
+        element: <ContactUs />
+},
+{
+    path: '/not-found',
+        element: <NotFoundPage />
+},
 
         ]
     },
-    {
-        path: '/login',
+{
+    path: '/login',
         element: <Login />
-    },
-    {
-        path: '/register',
+},
+{
+    path: '/register',
         element: <Register />
-    },
+},
 ]);
 
 const Router = () => <RouterProvider router={router} />;

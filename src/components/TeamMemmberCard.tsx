@@ -16,7 +16,7 @@ export default function TeamMemmberCard({
 }: TeamMemberCardType) {
     return (
         <div className='transition-all'>
-            <div className='flex justify-center items-center bg-slate-200 shadow-md shadow-slate-300 dark:shadow-slate-950 dark:bg-slate-800/90 pt-6 px-4 rounded-2xl shadow-3xl my-4'>
+            <div className='flex justify-center items-center bg-slate-200 shadow-md shadow-slate-300 dark:shadow-slate-950 dark:bg-slate-800/90 py-8 px-4 rounded-2xl shadow-3xl my-4'>
                 <div className='text-center'>
 
                     <Link to={`/author-profile/${id}`} className='inline-block'>
@@ -52,7 +52,7 @@ export default function TeamMemmberCard({
 
 
                     {/* Quick Info */}
-                    <div className='dark:text-slate-200 justify-center text-sm leading-6  mt-6 line-clamp-4  min-h-24 mb-4'>{quickInfo}</div>
+                    <div className='dark:text-slate-200 justify-center text-sm leading-6  mt-6 line-clamp-4  min-h-24'>{quickInfo}</div>
 
                 </div>
             </div>

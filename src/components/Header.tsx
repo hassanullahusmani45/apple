@@ -5,10 +5,16 @@ import ThemeToggleButton from '../components/ThemeToggleButton';
 import { HiOutlineSquaresPlus } from "react-icons/hi2";
 import { BiLogIn } from "react-icons/bi";
 import { useTheme } from "../services/provider/ThemeContextProvider";
+import Button from "./ui/Button";
+import { useAppDispatch } from "../hooks/reduxHooks";
+import { logoutUser } from "../redux/slices/auth/authSlice";
 export default function Header() {
+    const dispatch = useAppDispatch();
 
   const { theme } = useTheme();
-
+  const logout = () => {
+    dispatch(logoutUser())
+  }
   return (
     <header className="fixed inset-0 h-16 rounded-full shadow-md z-50  m-5 bg-slate-200 text-slate-950 shadow-slate-400 dark:bg-slate-800 dark:text-white dark:shadow-slate-950">
       <div className="flex justify-between items-center h-16 px-8 py-4">
@@ -60,6 +66,7 @@ export default function Header() {
               <Link to={"/login"} className="flex justify-around items-center gap-x-1 dark:hover:text-orange-400 hover:text-green-500">
                 <BiLogIn className="size-5" />Login
               </Link>
+              <Button onClick={logout}>logout</Button>
             </>
           }
         </div>

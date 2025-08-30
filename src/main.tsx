@@ -17,7 +17,7 @@ import { useTheme } from "./services/provider/ThemeContextProvider";
 
 
 function Root() {
-  const { theme } = useTheme(); // اینجا داخل کامپوننت است ✅
+  const { theme } = useTheme();
 
   return (
     <>

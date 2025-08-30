@@ -64,7 +64,7 @@ export default function Register() {
             toastSuccess("You are successfully Register 🤣.");
             methods.reset();
             dispatch(resetStatus());
-            // navigate('/');
+            navigate('/');
         }
         if (error) {
             toastError(error);

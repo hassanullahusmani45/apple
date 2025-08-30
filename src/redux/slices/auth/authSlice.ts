@@ -8,13 +8,15 @@ interface authState {
     error: string | null;
     success: boolean;
     user: User | null;
+    checkingSession: boolean;
 }
 
 const initialState: authState = {
     loading: false,
     error: null,
     success: false,
-    user: null
+    user: null,
+    checkingSession: true,
 }
 
 export const registeration = createAsyncThunk(
@@ -37,7 +39,10 @@ export const registeration = createAsyncThunk(
             if (registerError.status === 400) {
                 return rejectWithValue("Email address is invalid or already registered.");
             }
-            return rejectWithValue("Something went wrong during registration.");
+            if (registerError.status === 422) {
+                return rejectWithValue("A User already registered by this Email address.");
+            }
+            return rejectWithValue("Something wase wrong during registration.");
         }
 
         const { error: insertVisitorError } = await supabase
@@ -80,7 +85,19 @@ export const loginUser = createAsyncThunk(
 
         return { user: userData.user }
     }
-)
+);
+
+export const logoutUser = createAsyncThunk(
+    'auth/logoutUser',
+    async (_, { rejectWithValue }) => {
+        const { error } = await supabase.auth.signOut();
+
+        if (error) {
+            return rejectWithValue(error.message)
+        }
+        return true;
+    }
+);
 
 export const authSlice = createSlice({
     name: "auth",
@@ -91,9 +108,17 @@ export const authSlice = createSlice({
             state.error = null;
             state.success = false;
         },
+        setUser: (state, action) => {
+            state.user = action.payload;
+            state.loading = false;
+        },
+        setCheckingSession: (state, action) => {
+            state.checkingSession = action.payload;
+        }
     },
     extraReducers: (builder) => {
         builder
+            // Register
             .addCase(registeration.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -110,6 +135,8 @@ export const authSlice = createSlice({
                 state.success = false;
                 state.error = action.payload as string;
             })
+
+            // Login
             .addCase(loginUser.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -125,9 +152,16 @@ export const authSlice = createSlice({
                 state.loading = false;
                 state.success = false;
                 state.error = action.payload as string;
+            })
+
+            // Logout
+            .addCase(logoutUser.pending, (state) => {
+                state.user = null;
+                state.success = false;
+                state.loading = true;
             });
     }
 });
 
-export const { resetStatus } = authSlice.actions;
+export const { resetStatus, setUser, setCheckingSession } = authSlice.actions;
 export default authSlice.reducer;

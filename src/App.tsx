@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { fetchHomeData } from "./redux/slices/homeSlice";
 import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks";
 import { fetchStats } from "./redux/slices/statsSlice";
+import { initAuthListener } from "./redux/slices/auth/authListener";
 // import { Toaster } from 'sonner';
 // import { useTheme } from "./services/provider/ThemeContextProvider";
 function App() {
@@ -20,6 +21,11 @@ function App() {
       dispatch(fetchStats());
     }
   }, [fetched, dispatch]);
+
+  useEffect(() => {
+    initAuthListener();
+  }, []);
+  
 
   return (
     <div className="container mx-auto overflow-x-hidden overflow-y-auto">
