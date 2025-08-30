@@ -57,12 +57,9 @@ export default function ContactUs() {
 
     return (
 
-        <div className=" grid md:grid-cols-2 gap-20 my-10">
-            <div className="col-span-1 h-fit bg-slate-200 dark:bg-slate-800 p-8 my-8 rounded-2xl shadow-md">
+        <div className=" grid  lg:grid-cols-5 lg:gap-5 xl:gap-10 2xl:gap-20 lg:my-10">
+            <div className="lg:col-span-2 h-fit bg-slate-200 dark:bg-slate-800 p-4 sm:px-15 md:px-20 lg:p-3 xl:p-8 my-8 rounded-2xl shadow-md">
                 <div className="text-2xl font-bold text-center mb-4 text-green-600 dark:text-orange-400">Contact Us</div>
-                <div>
-                    {/* {error && <p className=" flex gap-2 items-center text-red-400"><ExclamationTriangleIcon className='size-5 text-red-500' /> {error}</p>} */}
-                </div>
                 <FormProvider {...methods}>
                     <form ref={contacFormBody} className="pt-6" onSubmit={methods.handleSubmit(onSubmit)} noValidate>
                         <RHFInput name="name" label="Name" placeholder='Enter your name' />
@@ -91,7 +88,7 @@ export default function ContactUs() {
                 </FormProvider>
             </div>
 
-            <div className="relative col-span-1 bg-slate-200 dark:bg-slate-800 p-8 my-8 rounded-2xl shadow-md">
+            <div className="relative lg:col-span-3 bg-slate-200 dark:bg-slate-800 p-4 lg:p-8 my-20 lg:my-8 rounded-2xl shadow-md">
 
                 <div className="flex bg-slate-100 dark:bg-slate-900 justify-center items-center w-45 h-45 rounded-full border-0 absolute mx-auto right-0 left-0 -inset-y-24">
                     <div className="relative w-40 h-40 mx-auto rounded-full bg-inherit p-1 dark:p-[3px]">
