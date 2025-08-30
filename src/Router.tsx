@@ -11,6 +11,7 @@ import ContactUs from './pages/contact/ContactUs';
 import Login from './pages/auth/login';
 import Register from './pages/auth/register';
 import { ProtectedRout } from './routes/AuthRoutes';
+import Profile from './pages/profile/profile';
 
 const router = createBrowserRouter([
     {
@@ -38,6 +39,12 @@ const router = createBrowserRouter([
                 path: '/about',
                 element: <ProtectedRout >
                              <About />
+                        </ProtectedRout >
+            },
+            {
+                path: '/profile',
+                element: <ProtectedRout >
+                             <Profile />
                         </ProtectedRout >
             },
 {

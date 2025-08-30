@@ -5,9 +5,10 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
   id?: string;
+  className?: string;
 }
 
-const Input = forwardRef<HTMLInputElement, InputProps>(({ label, error, id, ...props }, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProps>(({ label, error, id, className, ...props }, ref) => {
   const inputId = id || props.name;
 
   return (
@@ -18,7 +19,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ label, error, id, ...p
         ref={ref}
         {...props}
         autoComplete="off"
-        className="input-style"
+        className={`input-style ${className}`}
       />
       {error ? <span className="flex justify-start items-center gap-1 text-sm font-semibold text-red-500 ms-4"><TiWarningOutline className="size-6" />{error}</span> : <div className="min-h-[1.5rem]"></div>}
     </div>

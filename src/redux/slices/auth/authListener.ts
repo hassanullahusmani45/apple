@@ -1,19 +1,59 @@
-import { supabase } from "../../../lib/SupabaseClient"
+// import { supabase } from "../../../lib/SupabaseClient"
+// import { store } from "../../store";
+// import { setCheckingSession, setUser } from "./authSlice";
+
+
+// export const initAuthListener = () => {
+
+//     store.dispatch(setCheckingSession(true));
+
+//     supabase.auth.getSession().then(({ data }) => {
+//         store.dispatch(setUser(data.session?.user ?? null));
+//         store.dispatch(setCheckingSession(false));
+//     });
+
+
+//     supabase.auth.onAuthStateChange((_event, session) => {
+//         store.dispatch(setUser(session?.user ?? null));
+//     });
+// };
+
+
+import { supabase } from "../../../lib/SupabaseClient";
 import { store } from "../../store";
 import { setCheckingSession, setUser } from "./authSlice";
+import type { Visitor } from "./authSlice";
 
+export const initAuthListener = async () => {
+  store.dispatch(setCheckingSession(true));
 
-export const initAuthListener = () => {
+  const { data: sessionData } = await supabase.auth.getSession();
 
-    store.dispatch(setCheckingSession(true));
+  if (sessionData.session?.user) {
+    const { data: visitor } = await supabase
+      .from("visitors")
+      .select("*")
+      .eq("id", sessionData.session.user.id)
+      .single();
 
-    supabase.auth.getSession().then(({ data }) => {
-        store.dispatch(setUser(data.session?.user ?? null));
-        store.dispatch(setCheckingSession(false));
-    });
+    store.dispatch(setUser(visitor ?? null));
+  } else {
+    store.dispatch(setUser(null));
+  }
 
+  store.dispatch(setCheckingSession(false));
 
-    supabase.auth.onAuthStateChange((_event, session) => {
-        store.dispatch(setUser(session?.user ?? null));
-    });
+  supabase.auth.onAuthStateChange(async (_event, session) => {
+    if (session?.user) {
+      const { data: visitor } = await supabase
+        .from("visitors")
+        .select("*")
+        .eq("id", session.user.id)
+        .single();
+
+      store.dispatch(setUser(visitor ?? null));
+    } else {
+      store.dispatch(setUser(null));
+    }
+  });
 };

@@ -1,13 +1,23 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { loginType, registerType } from '../../../types/type'
 import { supabase } from "../../../lib/SupabaseClient";
-import type { User } from "@supabase/supabase-js";
+
+
+export interface Visitor {
+    id: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+    role_id: number;
+    profile?: string;
+    created_at?: string;
+}
 
 interface authState {
     loading: boolean;
     error: string | null;
     success: boolean;
-    user: User | null;
+    user: Visitor | null;
     checkingSession: boolean;
 }
 
@@ -24,7 +34,7 @@ export const registeration = createAsyncThunk(
     async (data: registerType, { rejectWithValue }) => {
         const { email, password, first_name, last_name } = data;
 
-        const { data: visitorUser, error: registerError } = await supabase
+        const { data: registeredUser, error: registerError } = await supabase
             .auth.signUp({
                 email, password,
                 options: {
@@ -45,21 +55,23 @@ export const registeration = createAsyncThunk(
             return rejectWithValue("Something wase wrong during registration.");
         }
 
-        const { error: insertVisitorError } = await supabase
+        const { data: visitorUser, error: insertVisitorError } = await supabase
             .from("visitors")
             .insert({
-                id: visitorUser.user?.id,
+                id: registeredUser.user?.id,
                 email,
                 first_name,
                 last_name,
                 role_id: 3
             })
+            .select('*')
+            .single();
 
         if (insertVisitorError) {
             return rejectWithValue(insertVisitorError.message);
         }
 
-        return { user: visitorUser.user };
+        return { user: visitorUser };
     }
 );
 
@@ -67,7 +79,7 @@ export const loginUser = createAsyncThunk(
     'auth/loginUser',
     async (data: loginType, { rejectWithValue }) => {
 
-        const { data: userData, error: loginError } = await supabase
+        const { data: loginedUser, error: loginError } = await supabase
             .auth.signInWithPassword({
                 email: data.email,
                 password: data.password
@@ -83,7 +95,14 @@ export const loginUser = createAsyncThunk(
             return rejectWithValue("Something wase wrong. Please try again later.");
         }
 
-        return { user: userData.user }
+        const { data: userData } = await supabase
+            .from('visitors')
+            .select("*")
+            .eq("id", loginedUser.user.id)
+            .single();
+
+        return { user: userData }
+
     }
 );
 
@@ -108,7 +127,7 @@ export const authSlice = createSlice({
             state.error = null;
             state.success = false;
         },
-        setUser: (state, action) => {
+        setUser: (state, action: PayloadAction<Visitor | null>) => {
             state.user = action.payload;
             state.loading = false;
         },
@@ -146,7 +165,7 @@ export const authSlice = createSlice({
                 state.loading = false;
                 state.error = null;
                 state.success = true;
-                state.user = action.payload.user;
+                state.user = action.payload.user ?? null;
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.loading = false;

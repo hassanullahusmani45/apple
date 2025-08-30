@@ -53,3 +53,17 @@ export const LoginSchema = z.object({
         .min(8, "Password must be at least 8 characters!")
         .max(20, "Password cannot exceed 20 characters!"),
 });
+
+
+export const visitorSchema = z.object({
+    email: z
+        .string()
+        .nonempty("Email is required!")
+        .email({ message: "Invalid email!" }),
+
+    full_name: z
+        .string()
+        .nonempty("First Name is required!")
+        .min(3, "First Name must be at least 3 characters!")
+        .max(20, "First Name cannot exceed 20 characters!"),
+});

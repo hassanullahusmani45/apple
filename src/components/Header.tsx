@@ -6,7 +6,7 @@ import { HiOutlineSquaresPlus } from "react-icons/hi2";
 import { useTheme } from "../services/provider/ThemeContextProvider";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { logoutUser } from "../redux/slices/auth/authSlice";
-import { FaPowerOff, FaUser } from "react-icons/fa6";
+import { FaPowerOff, FaRegUser } from "react-icons/fa6";
 import { IoMdLogIn } from "react-icons/io";
 import HeaderDropdownMenu from "./HeaderDropdownMenu";
 
@@ -42,10 +42,10 @@ export default function Header() {
                 (
                   <HeaderDropdownMenu>
                     <Link to={"/profile"} className="auth-link-style">
-                      <FaUser className="size-4.5" />Profile
+                      <FaRegUser className="size-4" />Profile
                     </Link>
                     <div className="auth-link-style" onClick={logout}>
-                      <FaPowerOff className="size-4.5" />Logout
+                      <FaPowerOff className="size-4" />Logout
                     </div>
                   </HeaderDropdownMenu>
                 ) : (
