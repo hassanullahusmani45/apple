@@ -34,12 +34,12 @@ export default function Profile() {
     }
 
     return (
-        <div className='mx-auto'>
+        <div className='mx-auto mb-14'>
 
             <div className=" grid grid-cols-8 gap-8 md:gap-4 xl:gap-8">
                 <div className='col-span-8 md:col-span-4 xl:col-span-3 bg-slate-200 dark:bg-slate-800 p-8 md:p-3 xl:p-8 rounded-2xl shadow-md'>
                     <div className="flex flex-col justify-center items-center">
-                        <div className="relative w-40 h-40 mx-auto rounded-full bg-inherit p-[2px]">
+                        <div className="relative w-40 h-40 mx-auto rounded-full bg-inherit p-[3px]">
                             <div className="absolute inset-0  rounded-full custom-gradient animate-spin-slow"></div>
                             <img
                                 className="relative w-full h-full  rounded-full object-cover"
@@ -57,7 +57,7 @@ export default function Profile() {
                                 <span className="text-slate-800 dark:text-slate-200">{user?.email}</span>
                             </div>
                             <div className='flex justify-start gap-1 xl:gap-4 text-nowrap'>
-                                <span className="flex justify-center items-center gap-1 text-sm font-semibold text-teal-500"><MdAdminPanelSettings className="size-6" />Email address :</span>
+                                <span className="flex justify-center items-center gap-1 text-sm font-semibold text-teal-500"><MdAdminPanelSettings className="size-6" />Role :</span>
                                 <span className="text-slate-800 dark:text-slate-200">
                                     {user?.role_id === 1 && "Admin"}
                                     {user?.role_id === 2 && "Team Member"}
@@ -71,7 +71,7 @@ export default function Profile() {
                 <div className="col-span-8 md:col-span-4 xl:col-span-5 bg-slate-200 dark:bg-slate-800 p-8 md:p-3 xl:p-8 rounded-2xl shadow-md">
                     <div className="text-xl font-bold text-center m-4">Change the Profile Information</div>
                     <FormProvider {...methods}>
-                        <form className="pt-6" onSubmit={methods.handleSubmit(onSubmit)} noValidate>
+                        <form className="pt-6" method="post" onSubmit={methods.handleSubmit(onSubmit)} noValidate>
                             <RHFInput name="full_name" label="Full Name" placeholder="Enter your full name. " />
                             <RHFInput name="email" label="Email" type="email" placeholder="user@gmail.com" />
                             <div className='flex justify-center items-center mt-2'>
@@ -88,8 +88,7 @@ export default function Profile() {
                 </div>
             </div>
 
-
-            <div className='mt-7'>
+            <div className='my-7'>
                 <div className="bg-slate-200 dark:bg-slate-800 p-8 md:p-4 xl:p-8 rounded-2xl shadow-md">
                     <div className='flex justify-between items-center mb-8'>
                         <div>
@@ -118,7 +117,7 @@ export default function Profile() {
                 </div>
             </div>
 
-            <div className='mt-7'>
+            <div className='my-7'>
                 <div className="bg-slate-200 dark:bg-slate-800 p-8 rounded-2xl shadow-md">
                     <div className="flex justify-start gap-2 text-left mb-2">
                         <IoImagesOutline className='size-6' />
@@ -148,7 +147,6 @@ export default function Profile() {
                     </form>
                 </div>
             </div>
-
 
         </div>
     )

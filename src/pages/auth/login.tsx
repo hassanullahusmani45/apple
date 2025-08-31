@@ -65,7 +65,7 @@ export default function login() {
             information="Create a new account"
         >
             <FormProvider {...methods}>
-                <form ref={loginBody} onSubmit={methods.handleSubmit(onSubmit)} noValidate>
+                <form ref={loginBody} method="post" onSubmit={methods.handleSubmit(onSubmit)} noValidate>
                     <RHFInput name="email" label="Email" type="email" placeholder="user@gmail.com" />
                     <div ref={eyeWrapper} className=" relative">
                         <RHFInput name="password" label="Password" type={isShow ? "text" : "password"} placeholder="************" />

@@ -79,7 +79,7 @@ export default function Register() {
             information="Already have an account"
         >
             <FormProvider {...methods}>
-                <form ref={regosterBody} onSubmit={methods.handleSubmit(onSubmit)} noValidate>
+                <form ref={regosterBody} method="post" onSubmit={methods.handleSubmit(onSubmit)} noValidate>
                     <RHFInput name="full_name" label="Full Name" placeholder="Enter your full name. " />
                     <RHFInput name="email" label="Email" type="email" placeholder="user@gmail.com" />
                     <div ref={eyeWrapper} className=" relative">
