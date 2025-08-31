@@ -47,16 +47,16 @@ export default function Profile() {
                                 alt="profile"
                             />
                         </div>
-                        <div className='flex flex-col gap-3 bg-slate-300/50 dark:bg-slate-900/30 shadow border border-slate-300 dark:border-slate-700 rounded-xl w-full px-8 md:px-1 lg:px-8 py-5 mt-4'>
-                            <div className='flex justify-start gap-4 md:gap-1 xl:gap-4 text-nowrap'>
+                        <div className='flex flex-col gap-3 bg-slate-300/50 dark:bg-slate-900/30 shadow border border-slate-300 dark:border-slate-700 rounded-xl w-full px-4 md:px-1 lg:px-5 py-5 mt-4'>
+                            <div className='flex justify-start gap-1 xl:gap-4 text-nowrap'>
                                 <span className="flex justify-center items-center gap-1 text-sm font-semibold text-teal-500"><BiUser className="size-6" />Full name :</span>
                                 <span className="text-slate-800 dark:text-slate-200">{user?.first_name}</span>
                             </div>
-                            <div className='flex justify-start gap-4 md:gap-1 xl:gap-4 text-nowrap'>
+                            <div className='flex justify-start gap-1 xl:gap-4 text-nowrap'>
                                 <span className="flex justify-center items-center gap-1 text-sm font-semibold text-teal-500"><MdMarkEmailRead className="size-6" />Email address :</span>
                                 <span className="text-slate-800 dark:text-slate-200">{user?.email}</span>
                             </div>
-                            <div className='flex justify-start gap-4 md:gap-1 xl:gap-4 text-nowrap'>
+                            <div className='flex justify-start gap-1 xl:gap-4 text-nowrap'>
                                 <span className="flex justify-center items-center gap-1 text-sm font-semibold text-teal-500"><MdAdminPanelSettings className="size-6" />Email address :</span>
                                 <span className="text-slate-800 dark:text-slate-200">
                                     {user?.role_id === 1 && "Admin"}
