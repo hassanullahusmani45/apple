@@ -1,17 +1,18 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react"
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   type?: "button" | "submit" | "reset";
   children?: ReactNode;
+  className?: string;
 }
 
-const Button = ({ type="button", children, ...props }: ButtonProps) => {
+const Button = ({ type = "button", children, className, ...props }: ButtonProps) => {
 
   return (
     <button
       type={type}
       {...props}
-      className="button-style"
+      className={`button-style ${className}`}
     >
       {children}
     </button>
