@@ -2,10 +2,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import statsReducer from './slices/statsSlice';
 import homeReducer from './slices/homeSlice';
 import articleCategoryCount from './slices/articleCategoryCount';
-import articleReducer from './slices/article/articleSlice'
-import teamMemberReducer from './slices/teamMember/teamMemberSlice'
-import contactUsReducer from './slices/contactUs/contactUsSlice'
-import authReducer from './slices/auth/authSlice'
+import articleReducer from './slices/article/articleSlice';
+import teamMemberReducer from './slices/teamMember/teamMemberSlice';
+import contactUsReducer from './slices/contactUs/contactUsSlice';
+import authReducer from './slices/auth/authSlice';
+import profileReducer from './slices/profile/profileSlice';
 
 
 export const store = configureStore({
@@ -17,6 +18,7 @@ export const store = configureStore({
         teamMember: teamMemberReducer, // this slice is used for show the TeamMember info and articles 
         contactUs: contactUsReducer, // this usde for stor and get the contact messages
         auth: authReducer, // that is used for Authantication
+        profile: profileReducer, // that is for editing of vistor profile data.
     }
 });
 

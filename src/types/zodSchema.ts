@@ -67,3 +67,18 @@ export const visitorSchema = z.object({
         .min(3, "Full Name must be at least 3 characters!")
         .max(20, "Full Name cannot exceed 20 characters!"),
 });
+
+
+export const nameSchema = z.object({
+    first_name: z
+        .string()
+        .nonempty("First Name is required!")
+        .min(3, "First Name must be at least 3 characters!")
+        .max(20, "First Name cannot exceed 20 characters!"),
+
+    last_name: z
+        .string()
+        .nonempty("Last Name is required!")
+        .min(3, "Last Name must be at least 3 characters!")
+        .max(20, "Last Name cannot exceed 20 characters!"),
+});

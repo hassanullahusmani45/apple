@@ -2,36 +2,75 @@ import { FormProvider, useForm } from "react-hook-form";
 import profileImg from "../../assets/hassan.jpeg";
 import RHFInput from "../../components/form/RHFInput";
 import Button from "../../components/ui/Button";
-import { useAppSelector } from "../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { visitorSchema } from "../../types/zodSchema";
+import { nameSchema } from "../../types/zodSchema";
 import z from "zod";
 import { TbPasswordFingerprint } from "react-icons/tb";
 import { BiCloud, BiUser } from "react-icons/bi";
 import { IoImagesOutline } from "react-icons/io5";
 import { MdAdminPanelSettings, MdMarkEmailRead } from "react-icons/md";
+import { updateAuthUserMetaData, updateFullName } from "../../redux/slices/profile/profileSlice";
+import { useEffect } from "react";
+import { toastSuccess } from "../../utils/toastSuccess";
+import { toastError } from "../../utils/toastError";
+import { setUser } from "../../redux/slices/auth/authSlice";
 
 
 export default function Profile() {
-
+    const dispatch = useAppDispatch();
     const { user } = useAppSelector(state => state.auth);
-    // console.log("USer Data :", user);
+    const { loading, error, updatedUser } = useAppSelector(state => state.profile);
 
-    type FormData = z.infer<typeof visitorSchema>
+    useEffect(() => {
+        if (updatedUser!!) {
+            toastSuccess("Your first or last name is successfuly updated.");
+        }
+        if (error!!) {
+            toastError("Something was wrong. please try agin later!")
+        }
+    }, [error, updatedUser])
+
+    type FormData = z.infer<typeof nameSchema>
 
     const defaultValues = {
-        email: '',
-        full_name: ''
+        first_name: user?.first_name || "",
+        last_name: user?.last_name || "",
     }
 
     const methods = useForm({
         defaultValues,
-        resolver: zodResolver(visitorSchema)
+        resolver: zodResolver(nameSchema)
     });
 
-    const onSubmit = (data: FormData) => {
-        console.info(data);
-    }
+    const onSubmit = async ({ first_name, last_name }: FormData) => {
+        const id = user?.id!;
+        const updateFormData = { first_name, last_name, id };
+
+        try {
+            const visitorPayload = await dispatch(updateFullName(updateFormData)).unwrap();
+             dispatch(updateAuthUserMetaData({ first_name, last_name }));
+
+            dispatch(setUser({
+                id: user!.id,
+                email: user!.email || "",
+                role_id: user!.role_id || 3,
+                first_name: visitorPayload.first_name || "",
+                last_name: visitorPayload.last_name || "",
+                profile: user?.profile || "",
+                created_at: user?.created_at || "",
+            }));
+
+            methods.reset({
+                first_name: visitorPayload.first_name,
+                last_name: visitorPayload.last_name,
+            });
+        } catch (err) {
+            console.error("Update failed:", err);
+        }
+    };
+
+
 
     return (
         <div className='mx-auto mb-14'>
@@ -50,7 +89,7 @@ export default function Profile() {
                         <div className='flex flex-col gap-3 bg-slate-300/50 dark:bg-slate-900/30 shadow border border-slate-300 dark:border-slate-700 rounded-xl w-full px-4 md:px-1 lg:px-5 py-5 mt-4'>
                             <div className='flex justify-start gap-1 xl:gap-4 text-nowrap'>
                                 <span className="flex justify-center items-center gap-1 text-sm font-semibold text-teal-500"><BiUser className="size-6" />Full name :</span>
-                                <span className="text-slate-800 dark:text-slate-200">{user?.first_name}</span>
+                                <span className="text-slate-800 dark:text-slate-200">{user?.first_name} {user?.last_name}</span>
                             </div>
                             <div className='flex justify-start gap-1 xl:gap-4 text-nowrap'>
                                 <span className="flex justify-center items-center gap-1 text-sm font-semibold text-teal-500"><MdMarkEmailRead className="size-6" />Email address :</span>
@@ -72,15 +111,15 @@ export default function Profile() {
                     <div className="text-xl font-bold text-center m-4">Change the Profile Information</div>
                     <FormProvider {...methods}>
                         <form className="pt-6" method="post" onSubmit={methods.handleSubmit(onSubmit)} noValidate>
-                            <RHFInput name="full_name" label="Full Name" placeholder="Enter your full name. " />
-                            <RHFInput name="email" label="Email" type="email" placeholder="user@gmail.com" />
+                            <RHFInput name="first_name" label="First Name" placeholder="Enter your first name. " />
+                            <RHFInput name="last_name" label="Last Name" placeholder="Enter your last name. " />
                             <div className='flex justify-center items-center mt-2'>
                                 <Button
                                     type="submit"
-                                    className={`button-style`}
-                                    disabled={false}
+                                    className={`button-style ${loading && "bg-gradient-to-r bg-slate-300 to-slate-500"}`}
+                                    disabled={loading}
                                 >
-                                    Seve Changes
+                                    {loading ? "Loading..." : "Seve Changes"}
                                 </Button>
                             </div>
                         </form>

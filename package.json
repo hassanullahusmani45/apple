@@ -16,7 +16,7 @@
     "@formkit/auto-animate": "^0.8.2",
     "@hookform/resolvers": "^5.2.1",
     "@reduxjs/toolkit": "^2.8.2",
-    "@supabase/supabase-js": "^2.55.0",
+    "@supabase/supabase-js": "^2.56.1",
     "@tailwindcss/vite": "^4.1.10",
     "framer-motion": "^12.23.12",
     "react": "^19.1.0",
