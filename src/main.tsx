@@ -31,8 +31,6 @@ function Root() {
         toastOptions={{
           classNames: {
             toast: "lg:min-w-[450px] lg:min-h-[120px]",
-            description: "font-semibold text-green-500",
-            title: "text-xl",
           }
         }}
         visibleToasts={5}
