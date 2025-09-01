@@ -82,3 +82,19 @@ export const nameSchema = z.object({
         .min(3, "Last Name must be at least 3 characters!")
         .max(20, "Last Name cannot exceed 20 characters!"),
 });
+
+export const userPasswordSchema = z.object({
+    new_password: z
+        .string()
+        .nonempty("new password is required!")
+        .min(8, "new password must be at least 8 characters!")
+        .max(200, "new password cannot exceed 20 characters!"),
+    confirm_password: z
+        .string()
+        .nonempty("confirm password is required!")
+        .min(8, "confirm password must be at least 8 characters!")
+        .max(200, "confirm password cannot exceed 20 characters!"),
+}).refine((data) => data.new_password === data.confirm_password, {
+    path: ["confirm_password"],
+    message: "pasword and confirm password is not equle",
+});

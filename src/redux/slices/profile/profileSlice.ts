@@ -5,12 +5,16 @@ import { supabase } from "../../../lib/SupabaseClient";
 interface updateFullNameType {
     id: string;
     first_name: string;
-    last_name: string
+    last_name: string;
 };
 
+
 interface ProfileState {
-    loading: boolean;
-    error: string | null;
+    nameloading: boolean;
+    passwordloading: boolean;
+    success: boolean;
+    nameError: string | null;
+    passwordError: string | null;
     updatedUser: {
         id?: string;
         first_name?: string;
@@ -19,8 +23,11 @@ interface ProfileState {
 }
 
 const initialState: ProfileState = {
-    loading: false,
-    error: null,
+    nameloading: false,
+    passwordloading: false,
+    success: false,
+    nameError: null,
+    passwordError: null,
     updatedUser: null,
 }
 
@@ -44,19 +51,18 @@ export const updateFullName = createAsyncThunk(
     }
 );
 
-export const updateAuthUserMetaData = createAsyncThunk(
-    'profile/updateAuthUserMetaData',
-    async ({ first_name, last_name }: { first_name: string, last_name: string }, { rejectWithValue }) => {
-        try {
-            const { error } = await supabase.auth.updateUser({
-                data: { first_name, last_name }
-            });
+export const updatePassword = createAsyncThunk(
+    'profile/updatePassword',
+    async (new_password: string, { rejectWithValue }) => {
 
-            if (error) return rejectWithValue(error.message);
-            return true;
-        } catch (err: any) {
-            return rejectWithValue(err.message || "Unexpected error");
+
+        const { data, error: updatePasswordError } = await supabase.auth.updateUser({
+            password: new_password,
+        });
+        if (updatePasswordError) {
+            return rejectWithValue(updatePasswordError.message);
         }
+        return data;
     }
 );
 
@@ -69,32 +75,35 @@ const profileSlice = createSlice({
         builder
             // visitors update names
             .addCase(updateFullName.pending, (state) => {
-                state.loading = true;
-                state.error = null;
+                state.nameloading = true;
+                state.nameError = null;
             })
             .addCase(updateFullName.fulfilled, (state, action) => {
-                state.loading = false;
-                state.error = null;
+                state.nameloading = false;
+                state.nameError = null;
                 state.updatedUser = action.payload;
             })
             .addCase(updateFullName.rejected, (state, action) => {
-                state.error = (action.payload as string) || action.error.message || null;
-                state.loading = false;
+                state.nameError = (action.payload as string) || action.error.message || null;
+                state.nameloading = false;
             })
 
-            // auth metadata
-            .addCase(updateAuthUserMetaData.pending, (state) => {
-                // state.loading = true;
-                state.error = null;
+            // update password
+            .addCase(updatePassword.pending, (state) => {
+                state.passwordloading = true;
+                state.passwordError = null;
+                state.success = false;
             })
-            .addCase(updateAuthUserMetaData.fulfilled, (state) => {
-                state.loading = false;
-                state.error = null;
+            .addCase(updatePassword.fulfilled, (state) => {
+                state.passwordloading = false;
+                state.success = true;
+                state.passwordError = null;
             })
-            .addCase(updateAuthUserMetaData.rejected, (state, action) => {
-                state.error = (action.payload as string) || action.error.message || null;
-                state.loading = false;
-            });
+            .addCase(updatePassword.rejected, (state, action) => {
+                state.success = false;
+                state.passwordloading = false;
+                state.passwordError = action.error.message || "";
+            })
     }
 });
 
