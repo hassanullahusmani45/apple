@@ -98,3 +98,24 @@ export const userPasswordSchema = z.object({
     path: ["confirm_password"],
     message: "pasword and confirm password is not equle",
 });
+
+
+
+
+export const profileImgSchema = z.object({
+    profile: z
+        .instanceof(FileList)
+        .refine((files) => files?.length === 1, {
+            message: "Please upload image file.",
+        })
+        .refine(
+            (files) =>
+                files && /\.(jpg|jpeg|png|webp)$/i.test(files[0]?.name),
+            {
+                message: "The profile image format must be JPG, JPEG, PNG or WEBP.",
+            }
+        ),
+});
+
+
+

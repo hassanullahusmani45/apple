@@ -4,17 +4,18 @@ import RHFInput from "../../components/form/RHFInput";
 import Button from "../../components/ui/Button";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { nameSchema, userPasswordSchema } from "../../types/zodSchema";
+import { nameSchema, profileImgSchema, userPasswordSchema } from "../../types/zodSchema";
 import z from "zod";
 import { TbPasswordFingerprint } from "react-icons/tb";
 import { BiCloud, BiUser } from "react-icons/bi";
 import { IoImagesOutline } from "react-icons/io5";
 import { MdAdminPanelSettings, MdMarkEmailRead } from "react-icons/md";
 import { updateFullName, updatePassword } from "../../redux/slices/profile/profileSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toastSuccess } from "../../utils/toastSuccess";
 import { toastError } from "../../utils/toastError";
 import { setUser } from "../../redux/slices/auth/authSlice";
+import RHFFileInput from "../../components/form/RHFFileInput";
 
 
 export default function Profile() {
@@ -39,11 +40,13 @@ export default function Profile() {
 
     type NameFormData = z.infer<typeof nameSchema>
     type PasswordFormData = z.infer<typeof userPasswordSchema>
+    type ProfileFormData = z.infer<typeof profileImgSchema>
 
     const nameDefaultValues = {
         first_name: user?.first_name || "",
         last_name: user?.last_name || "",
     }
+    const [preview, setPreview] = useState<string | null>(user?.profile || null);
 
 
     const nameMethods = useForm<NameFormData>({
@@ -54,6 +57,10 @@ export default function Profile() {
     const passwordMethods = useForm<PasswordFormData>({
         defaultValues: { new_password: "", confirm_password: "" },
         resolver: zodResolver(userPasswordSchema)
+    });
+    const profileMethods = useForm<ProfileFormData>({
+        defaultValues: { profile: undefined },
+        resolver: zodResolver(profileImgSchema)
     });
 
     const onSubmitUpdateFullName = async (formData: NameFormData) => {
@@ -91,6 +98,23 @@ export default function Profile() {
             toastError("Failed to update password. Try again.");
         }
     }
+
+    const onSubmitUpdateProfile = (profileImg: ProfileFormData) => {
+        console.log("DATA FILE 💖:", profileImg);
+
+    }
+
+    useEffect(() => {
+        const subscription = profileMethods.watch((value) => {
+            const fileList = value.profile as FileList;
+            if (fileList && fileList.length > 0) {
+                const file = fileList[0];
+                const url = URL.createObjectURL(file);
+                setPreview(url);
+            }
+        });
+        return () => subscription.unsubscribe();
+    }, [profileMethods]);
 
     return (
         <div className='mx-auto mb-14'>
@@ -189,30 +213,45 @@ export default function Profile() {
                         <div className="text-lg font-semibold">Uplode Profile Image</div>
                     </div>
                     <div className='w-1/4 mb-8 border-t-2 border-dotted border-sky-500 '></div>
+                    <FormProvider {...profileMethods}>
+                        <form onSubmit={profileMethods.handleSubmit(onSubmitUpdateProfile)} noValidate>
+                            <div className="grid grid-cols-5 gap-2 lg:gap-4 xl:gap-2 justify-end items-center">
+                                <div className="col-span-5 lg:col-span-4">
+                                    <label htmlFor="profile" className="block text-sm font-semibold m-3">Profile</label>
+                                    <label htmlFor="profile"
+                                        className="flex flex-col items-center justify-center bg-slate-300/60 dark:bg-slate-900 w-full h-32 border-2 border-slate-300 border-dashed hover:border-dotted rounded-xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700  mb-2">
+                                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                                            <BiCloud className='size-12 text-slate-600 dark:text-slate-400' />
+                                            <p className="mb-2 text-sm text-slate-500 font-semibold">Click and uplode the profile</p>
+                                            <p className="text-xs text-slate-500 dark:text-slate-400">JPG, JPEG, PNG or WEBP</p>
+                                        </div>
 
-                    <form onSubmit={() => { }}  >
-
-                        <div className=''>
-                            <label htmlFor="profile" className="block text-sm font-semibold m-3">Profile</label>
-                            <label htmlFor="profile"
-                                className="flex flex-col items-center justify-center bg-slate-300/60 dark:bg-slate-900 w-full h-32 border-2 border-slate-300 border-dashed hover:border-dotted rounded-xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700">
-                                <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <BiCloud className='size-12 text-slate-600 dark:text-slate-400' />
-                                    <p className="mb-2 text-sm text-slate-500"><span className="font-semibold">Click and uplode the profile</span> or drag and drop </p>
-                                    <p className="text-xs text-slate-500 dark:text-slate-400">WEB_B,SVG , JPG , IMG</p>
+                                    </label>
+                                    <RHFFileInput
+                                        name="profile"
+                                        id="profile"
+                                        className="hidden!"
+                                    />
                                 </div>
-                                <input id="profile" type="file" className="hidden" onChange={(event) => {
-                                    // setImage(event.target.files[0]);
-                                }} />
-                            </label>
-                        </div>
-                        <div className='flex justify-center items-center mt-6'>
-                            <Button type="submit">Save Profile</Button>
-                        </div>
-                    </form>
+                                <div className="col-span-5 lg:col-span-1 flex justify-center items-center mt-1.5  mb-4 lg:mb-0">
+                                    <div className="flex items-center justify-center size-33 border border-dashed  rounded-2xl overflow-hidden">
+                                        {preview ? (
+                                            <img src={preview} alt="Profile Preview" className="size-33 object-cover rounded-2xl" />
+                                        ) :
+                                            <div className="size-34 bg-slate-900 text-2xl flex justify-center items-center "><div className=""> Preview Image</div></div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className='flex justify-center items-center '>
+                                <Button type="submit">Save Profile</Button>
+                            </div>
+                        </form>
+                    </FormProvider>
                 </div>
             </div>
 
-        </div>
+        </div >
     )
 }
