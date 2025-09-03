@@ -12,9 +12,13 @@ interface updateFullNameType {
 interface ProfileState {
     nameloading: boolean;
     passwordloading: boolean;
-    success: boolean;
+    profileImgloading: boolean;
+    successProfileImg: boolean;
+    successPassword: boolean;
     nameError: string | null;
     passwordError: string | null;
+    profileImgError: string | null;
+    profileImage: string | null;
     updatedUser: {
         id?: string;
         first_name?: string;
@@ -25,7 +29,11 @@ interface ProfileState {
 const initialState: ProfileState = {
     nameloading: false,
     passwordloading: false,
-    success: false,
+    profileImgloading: false,
+    profileImgError: null,
+    profileImage: null,
+    successProfileImg: false,
+    successPassword: false,
     nameError: null,
     passwordError: null,
     updatedUser: null,
@@ -55,14 +63,58 @@ export const updatePassword = createAsyncThunk(
     'profile/updatePassword',
     async (new_password: string, { rejectWithValue }) => {
 
+        supabase.auth.updateUser({
+            password: new_password
+        })
+            .then(({ error }) => {
+                if (error) throw new Error(error.message);
+            })
+            .catch((err) => rejectWithValue(err.message));
+        return true;
+    }
+);
 
-        const { data, error: updatePasswordError } = await supabase.auth.updateUser({
-            password: new_password,
-        });
-        if (updatePasswordError) {
-            return rejectWithValue(updatePasswordError.message);
+
+export const updateProfileImge = createAsyncThunk(
+    'profile/updateProfileImge',
+    async ({ profile, id }: { profile: File, id: string }, { rejectWithValue }) => {
+
+        const ext = profile.name.split('.').pop()?.toLowerCase();
+        if (!ext) return rejectWithValue("Invalid file extension");
+
+        const sanitizedId = id.replace(/[^a-zA-Z0-9_-]/g, "_"); // فقط کاراکترهای مجاز
+        const profilePath = `profiles/${sanitizedId}_profile.${ext}`;
+
+        const { error: uploadError } = await supabase.storage
+            .from("avatars")
+            .upload(profilePath, profile, {
+                cacheControl: "3600",
+                upsert: true
+            });
+
+        if (uploadError) {
+            console.log("Some thin wase wrong!");
+
+            return rejectWithValue(uploadError || "مشکل بیش آمده هست");
         }
-        return data;
+
+
+        const { data: publicUrlData } = supabase.storage
+            .from("avatars")
+            .getPublicUrl(profilePath);
+
+        const publicURL = publicUrlData.publicUrl;
+
+        const { error: updateUserProfileError } = await supabase
+            .from("visitors")
+            .update({ "profile": publicURL })
+            .eq('id', id);
+
+        if (updateUserProfileError) {
+            return rejectWithValue(updateUserProfileError.message);
+        }
+
+        return publicURL;
     }
 );
 
@@ -92,17 +144,34 @@ const profileSlice = createSlice({
             .addCase(updatePassword.pending, (state) => {
                 state.passwordloading = true;
                 state.passwordError = null;
-                state.success = false;
+                state.successPassword = false;
             })
             .addCase(updatePassword.fulfilled, (state) => {
                 state.passwordloading = false;
-                state.success = true;
+                state.successPassword = true;
                 state.passwordError = null;
             })
             .addCase(updatePassword.rejected, (state, action) => {
-                state.success = false;
+                state.successPassword = false;
                 state.passwordloading = false;
                 state.passwordError = action.error.message || "";
+            })
+            // update profile Image
+            .addCase(updateProfileImge.pending, (state) => {
+                state.profileImgloading = true;
+                state.profileImgError = null;
+                state.successProfileImg = false;
+            })
+            .addCase(updateProfileImge.fulfilled, (state, action) => {
+                state.profileImgloading = false;
+                state.successProfileImg = true;
+                state.profileImgError = null;
+                state.profileImage = action.payload;
+            })
+            .addCase(updateProfileImge.rejected, (state, action) => {
+                state.successProfileImg = false;
+                state.profileImgloading = false;
+                state.profileImgError = action.error.message || "";
             })
     }
 });

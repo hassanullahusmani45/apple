@@ -10,7 +10,7 @@ import { TbPasswordFingerprint } from "react-icons/tb";
 import { BiCloud, BiUser } from "react-icons/bi";
 import { IoImagesOutline } from "react-icons/io5";
 import { MdAdminPanelSettings, MdMarkEmailRead } from "react-icons/md";
-import { updateFullName, updatePassword } from "../../redux/slices/profile/profileSlice";
+import { updateFullName, updatePassword, updateProfileImge } from "../../redux/slices/profile/profileSlice";
 import { useEffect, useState } from "react";
 import { toastSuccess } from "../../utils/toastSuccess";
 import { toastError } from "../../utils/toastError";
@@ -21,7 +21,7 @@ import RHFFileInput from "../../components/form/RHFFileInput";
 export default function Profile() {
     const dispatch = useAppDispatch();
     const { user } = useAppSelector(state => state.auth);
-    const { nameloading, passwordloading, nameError, passwordError, success, updatedUser } = useAppSelector(state => state.profile);
+    const { nameloading, passwordloading, nameError, passwordError, profileImgError, successProfileImg,successPassword, updatedUser } = useAppSelector(state => state.profile);
 
     useEffect(() => {
         if (updatedUser!!) {
@@ -34,9 +34,15 @@ export default function Profile() {
 
     // Toasts for Password Update
     useEffect(() => {
-        if (success) toastSuccess("Password updated successfully!");
+        if (successPassword) toastSuccess("Password updated successfully!");
         if (passwordError) toastError(passwordError);
-    }, [success, passwordError]);
+    }, [successPassword, passwordError]);
+
+    // Toasts for profile image Update.
+    useEffect(() => {
+        if (successProfileImg) toastSuccess("Your profile image updated successfully!");
+        if (profileImgError) toastError(profileImgError);
+    }, [successProfileImg, profileImgError]);
 
     type NameFormData = z.infer<typeof nameSchema>
     type PasswordFormData = z.infer<typeof userPasswordSchema>
@@ -99,11 +105,20 @@ export default function Profile() {
         }
     }
 
-    const onSubmitUpdateProfile = (profileImg: ProfileFormData) => {
-        console.log("DATA FILE 💖:", profileImg);
+    const onSubmitUpdateProfile = (data: ProfileFormData) => {
+        const profile = data.profile?.[0];
+        console.log("DATA FILE 💖:", profile);
 
+        if (!profile) {
+            toastError("Please select a profile image before uploading!");
+            return;
+        }
+
+        dispatch(updateProfileImge({ profile, id: user!.id }))
     }
 
+
+    // that is used for show the image preview.
     useEffect(() => {
         const subscription = profileMethods.watch((value) => {
             const fileList = value.profile as FileList;
@@ -214,7 +229,7 @@ export default function Profile() {
                     </div>
                     <div className='w-1/4 mb-8 border-t-2 border-dotted border-sky-500 '></div>
                     <FormProvider {...profileMethods}>
-                        <form onSubmit={profileMethods.handleSubmit(onSubmitUpdateProfile)} noValidate>
+                        <form method="post" onSubmit={profileMethods.handleSubmit(onSubmitUpdateProfile)} noValidate>
                             <div className="grid grid-cols-5 gap-2 lg:gap-4 xl:gap-2 justify-end items-center">
                                 <div className="col-span-5 lg:col-span-4">
                                     <label htmlFor="profile" className="block text-sm font-semibold m-3">Profile</label>
@@ -238,7 +253,7 @@ export default function Profile() {
                                         {preview ? (
                                             <img src={preview} alt="Profile Preview" className="size-33 object-cover rounded-2xl" />
                                         ) :
-                                            <div className="size-34 bg-slate-900 text-2xl flex justify-center items-center "><div className=""> Preview Image</div></div>
+                                            <div className="size-34 bg-slate-900 text-sm font-semibold flex justify-center items-center "><div className=""> Preview Image</div></div>
                                         }
                                     </div>
                                 </div>
