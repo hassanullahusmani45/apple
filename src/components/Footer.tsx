@@ -17,9 +17,9 @@ export default function Footer() {
   return (
     <footer>
 
-      <div className="grid grid-cols-4 gap-8 rounded-xl shadow-md p-5 bg-slate-200 text-slate-950 shadow-slate-400 dark:bg-slate-800 dark:text-white dark:shadow-slate-950">
+      <div className="grid grid-cols-8 gap-3  md:gap-y-4 xl:gap-y-8 rounded-xl shadow-md p-3 md:p-4 lg:p-6 bg-slate-200 text-slate-950 shadow-slate-400 dark:bg-slate-800 dark:text-white dark:shadow-slate-950">
         {/* Logo and Description part*/}
-        <div className="col-span-2 text-left">
+        <div className="col-span-8 md:col-span-3 lg:col-span-4 text-left">
           <Link to={"/"}>
             <img src={theme === 'dark' ? LogoLight : LogoDark} className="w-10 h-12 rounded-full hover:opacity-80 dark:hover:opacity-70" alt="logo" />
           </Link>
@@ -28,10 +28,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Links part */}
-        <div className="col-span-1 text-left">
+        {/*PAGES Links part */}
+        <div className="col-span-8 md:col-span-2 lg:col-span-2 text-left">
           <div className="flex items-center gap-1 my-5 font-semibold">PAGES</div>
-          <div className="text-sm leading-[2rem] dark:text-slate-300 text-slate-800">
+          <div className="flex justify-evenly items-center md:block text-sm leading-[2rem] dark:text-slate-300 text-slate-800">
             <Link to={"/articles"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><HiOutlineClipboardDocumentList className="size-5 dark:text-white text-slate-950" />Article</Link>
             <Link to={"/about"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><BiMessageError className="size-5 dark:text-white text-slate-950" />About</Link>
             <Link to={"/contact-us"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><MdConnectWithoutContact className="size-5 dark:text-white text-slate-950" />Contact Us</Link>
@@ -39,7 +39,7 @@ export default function Footer() {
         </div>
 
         {/* Suport part */}
-        <div className="col-span-1 text-left">
+        <div className="col-span-8 md:col-span-3 lg:col-span-2 text-left">
           <div className="flex gap-1 my-5 font-semibold">SUPPORT</div>
           <div className="text-sm leading-[2rem] dark:text-slate-300 text-slate-800">
             <div className="flex items-center gap-1"><MdMarkEmailUnread className="size-5 dark:text-white text-slate-950" /> hassanullahusmani45@gmail.com</div>
@@ -48,7 +48,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="col-span-4 text-center mt-6">
+        <div className="col-span-8 text-center mt-6">
           <div className="text-md font-semibold text-green-500 dark:text-orange-500 my-2">Follow Me on Social Media</div>
           <div className="flex justify-center items-center gap-4 md:gap-6">
             <a
@@ -73,7 +73,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <div className="col-span-4 text-center border-t border-slate-600 py-4 font-semibold">
+        <div className="col-span-8 text-center border-t border-slate-600 py-4 font-semibold">
           Copyright &copy; {currentYear} Hassanullah Usmani
         </div>
       </div>

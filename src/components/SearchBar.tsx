@@ -90,7 +90,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
                         <div
                             onClick={() => searchHandler(article.title)}
                             key={article.id}
-                            className={`block px-8 py-3 cursor-pointer hover:bg-slate-300 dark:hover:bg-slate-600 pointer-events-auto ${index === activeIndex ? 'bg-slate-300 dark:bg-slate-600' : ''
+                            className={`block text-sm font-normal px-8 py-3 cursor-pointer hover:bg-slate-300 dark:hover:bg-slate-600 pointer-events-auto ${index === activeIndex ? 'bg-slate-300 dark:bg-slate-600' : ''
                                 }`}
                         >
                             {article.title}
