@@ -77,46 +77,47 @@ export const updatePassword = createAsyncThunk(
 
 export const updateProfileImge = createAsyncThunk(
     'profile/updateProfileImge',
-    async ({ profile, id }: { profile: File, id: string }, { rejectWithValue }) => {
+    async ({ profile, id }: { profile: File; id: string }, { rejectWithValue }) => {
 
         const ext = profile.name.split('.').pop()?.toLowerCase();
         if (!ext) return rejectWithValue("Invalid file extension");
 
-        const sanitizedId = id.replace(/[^a-zA-Z0-9_-]/g, "_"); // فقط کاراکترهای مجاز
+        const sanitizedId = id.replace(/[^a-zA-Z0-9_-]/g, "_");
         const profilePath = `profiles/${sanitizedId}_profile.${ext}`;
 
         const { error: uploadError } = await supabase.storage
             .from("avatars")
             .upload(profilePath, profile, {
                 cacheControl: "3600",
-                upsert: true
+                upsert: true,
             });
 
         if (uploadError) {
-            console.log("Some thin wase wrong!");
-
-            return rejectWithValue(uploadError || "مشکل بیش آمده هست");
+            console.log("Some thing went wrong!");
+            return rejectWithValue(uploadError.message || "مشکل بیش آمده هست");
         }
 
-
-        const { data: publicUrlData } = supabase.storage
+        const { data: signedURLData, error: signedUrlError } = await supabase.storage
             .from("avatars")
-            .getPublicUrl(profilePath);
+            .createSignedUrl(profilePath, 31622400);
+        // one year after this image URL is expired
 
-        const publicURL = publicUrlData.publicUrl;
+        if (signedUrlError) return rejectWithValue(signedUrlError.message);
 
+        const signedURL = signedURLData.signedUrl;
+
+        // ذخیره لینک در جدول visitors
         const { error: updateUserProfileError } = await supabase
             .from("visitors")
-            .update({ "profile": publicURL })
-            .eq('id', id);
+            .update({ profile: signedURL })
+            .eq("id", id);
 
-        if (updateUserProfileError) {
-            return rejectWithValue(updateUserProfileError.message);
-        }
+        if (updateUserProfileError) return rejectWithValue(updateUserProfileError.message);
 
-        return publicURL;
+        return signedURL;
     }
 );
+
 
 
 const profileSlice = createSlice({

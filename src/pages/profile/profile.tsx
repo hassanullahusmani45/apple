@@ -21,8 +21,9 @@ import RHFFileInput from "../../components/form/RHFFileInput";
 export default function Profile() {
     const dispatch = useAppDispatch();
     const { user } = useAppSelector(state => state.auth);
-    const { nameloading, passwordloading, nameError, passwordError, profileImgError, successProfileImg,successPassword, updatedUser } = useAppSelector(state => state.profile);
+    const { nameloading, passwordloading, profileImgloading, nameError, passwordError, profileImgError, successProfileImg, successPassword, updatedUser } = useAppSelector(state => state.profile);
 
+    // Toasts for name Update
     useEffect(() => {
         if (updatedUser!!) {
             toastSuccess("Your first or last name is successfuly updated.");
@@ -105,17 +106,17 @@ export default function Profile() {
         }
     }
 
-    const onSubmitUpdateProfile = (data: ProfileFormData) => {
+
+
+    const onSubmitUpdateProfile = async (data: ProfileFormData) => {
+
         const profile = data.profile?.[0];
-        console.log("DATA FILE 💖:", profile);
 
-        if (!profile) {
-            toastError("Please select a profile image before uploading!");
-            return;
-        }
+        const publicUrl = await dispatch(updateProfileImge({ profile, id: user!.id })).unwrap();
+        setPreview(publicUrl);
+        dispatch(setUser({ ...user!, profile: publicUrl }));
 
-        dispatch(updateProfileImge({ profile, id: user!.id }))
-    }
+    };
 
 
     // that is used for show the image preview.
@@ -140,12 +141,12 @@ export default function Profile() {
                         <div className="relative w-40 h-40 mx-auto rounded-full bg-inherit p-[3px]">
                             <div className="absolute inset-0  rounded-full custom-gradient animate-spin-slow"></div>
                             <img
-                                className="relative w-full h-full  rounded-full object-cover"
-                                src={profileImg}
+                                className="relative w-full h-full  rounded-full object-cover bg-slate-50 dark:bg-slate-900"
+                                src={user?.profile || profileImg}
                                 alt="profile"
                             />
                         </div>
-                        <div className='flex flex-col gap-3 bg-slate-300/50 dark:bg-slate-900/30 shadow border border-slate-300 dark:border-slate-700 rounded-xl w-full px-4 md:px-1 lg:px-5 py-5 mt-4'>
+                        <div className='flex flex-col gap-3 bg-slate-300/50 dark:bg-slate-900/30 shadow border border-slate-300 dark:border-slate-700 rounded-xl w-full px-1 md:px-1 lg:px-5 py-5 mt-4'>
                             <div className='flex justify-start gap-1 xl:gap-4 text-nowrap'>
                                 <span className="flex justify-center items-center gap-1 text-sm font-semibold text-teal-500"><BiUser className="size-6" />Full name :</span>
                                 <span className="text-slate-800 dark:text-slate-200">{user?.first_name}{" "}{user?.last_name}</span>
@@ -260,7 +261,12 @@ export default function Profile() {
                             </div>
 
                             <div className='flex justify-center items-center '>
-                                <Button type="submit">Save Profile</Button>
+                                <Button
+                                    type="submit"
+                                    disabled={profileImgloading}
+                                >
+                                    {profileImgloading ? "Loading..." : "Changes Profile"}
+                                </Button>
                             </div>
                         </form>
                     </FormProvider>
