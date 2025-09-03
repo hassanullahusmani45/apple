@@ -138,8 +138,8 @@ export default function Profile() {
             <div className=" grid grid-cols-8 gap-8 md:gap-4 xl:gap-8">
                 <div className='col-span-8 md:col-span-4 xl:col-span-3 bg-slate-200 dark:bg-slate-800 p-3 xl:p-8 rounded-2xl shadow-md'>
                     <div className="flex flex-col justify-center items-center">
-                        <div className="relative w-40 h-40 mx-auto rounded-full bg-inherit p-[3px]">
-                            <div className="absolute inset-0  rounded-full custom-gradient animate-spin-slow"></div>
+                        <div className="relative w-30 sm:w-34 md:w-36 lg:w-40 h-30 sm:h-34 md:h-36 lg:h-40 mx-auto rounded-full bg-inherit p-[3px]">
+                            <div className="absolute inset-0 rounded-full custom-gradient animate-spin-slow"></div>
                             <img
                                 className="relative w-full h-full  rounded-full object-cover bg-slate-50 dark:bg-slate-900"
                                 src={user?.profile || profileImg}
