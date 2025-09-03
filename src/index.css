@@ -8,7 +8,7 @@ html {
 }
 
 .linkClass {
-    @apply leading-16 font-semibold text-sm dark:hover:text-orange-400 hover:text-green-500 hover:-translate-y-1 transition-all duration-200 ease-linear;
+    @apply leading-16 font-semibold text-xs sm:text-sm dark:hover:text-orange-400 hover:text-green-500 hover:-translate-y-1 transition-all duration-200 ease-linear;
 }
 
 .input-style {
@@ -28,11 +28,11 @@ html {
 }
 
 .auth-link-style {
-    @apply flex justify-start items-center gap-x-2 dark:hover:text-orange-400 hover:text-green-500 cursor-pointer;
+    @apply flex justify-start items-center gap-x-2 text-sm dark:hover:text-orange-400 hover:text-green-500 cursor-pointer;
 }
 
 .them-button-style {
-    @apply flex justify-center items-center p-2.5 rounded-full text-black dark:text-white bg-slate-300 dark:bg-slate-700 dark:hover:text-orange-400 hover:text-green-500;
+    @apply flex justify-center items-center p-1.5 sm:p-2 md:p-2.5 rounded-full text-black dark:text-white bg-slate-300 dark:bg-slate-700 dark:hover:text-orange-400 hover:text-green-500;
 }
 
 @layer utilities {

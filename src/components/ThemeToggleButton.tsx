@@ -10,7 +10,7 @@ const ThemeToggleButton: React.FC = () => {
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       className="them-button-style"
     >
-      {theme === 'dark' ? <MdLightMode className="size-5" /> : <BsMoonStars className="size-[1rem]" />}
+      {theme === 'dark' ? <MdLightMode className="size-3.5 sm:size-5" /> : <BsMoonStars className="size-3 sm:size-[1rem]" />}
     </button>
   );
 };

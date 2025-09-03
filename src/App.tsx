@@ -30,10 +30,10 @@ function App() {
   return (
     <div className="container mx-auto overflow-x-hidden overflow-y-auto">
       <Header />
-      <div className='w-full px-6 pt-32'>
+      <div className='w-full px-2 sm:px-6 pt-32'>
         <Outlet />
       </div>
-      <div className="mx-6 my-5">
+      <div className="mx-2 sm:mx-6 my-5">
         <Footer />
       </div>
 
