@@ -51,7 +51,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
     };
 
     return (
-        <div className={`relative bg-slate-800 ${onFocus ? 'rounded-t-2xl' : 'rounded-full'} m-20 w-4/6`}>
+        <div className={`relative bg-slate-800 ${onFocus ? 'rounded-t-2xl' : 'rounded-full'} m-20 w-[95%] md:w-[90%]  lg:w-[70%]`}>
             <input
                 onFocus={() => setOnFocus(true)}
                 onBlur={() => {
@@ -65,7 +65,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
                 value={searchInputValue}
                 type="text"
                 placeholder="Search articles here..."
-                className={`block border-none outline-none bg-slate-600 dark:bg-slate-800 text-white dark:text-slate-100 w-full py-3 ps-8 pe-10 text-base placeholder:text-slate-100 dark:placeholder:text-slate-300 placeholder:text-sm placeholder:italic ${onFocus ? 'rounded-t-2xl' : 'rounded-full'}`}
+                className={`block border-none outline-none bg-slate-600 dark:bg-slate-800 text-white dark:text-slate-100 w-full py-3 ps-4 md:ps-8 pe-10 text-base font-semibold placeholder:text-slate-100 dark:placeholder:text-slate-300 placeholder:text-sm placeholder:italic placeholder:font-normal ${onFocus ? 'rounded-t-2xl' : 'rounded-full'}`}
                 autoComplete='off'
             />
             <button
@@ -76,12 +76,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
                     }, 300); // Delay to allow click on suggestions
                 }}
                 type="submit"
-                className="absolute end-1.5 bottom-1 bg-green-600 hover:bg-green-500 dark:bg-orange-500 dark:hover:bg-orange-400 text-white font-medium rounded-full text-sm p-2"
+                className="absolute end-1.5 bottom-1 bg-green-600 hover:bg-green-500 dark:bg-orange-500 dark:hover:bg-orange-400 text-white text-sm sm:font-medium rounded-full p-2"
             >
                 <HiMiniMagnifyingGlass className='size-6' />
             </button>
 
-            <div ref={searchBody} className={`absolute right-0 left-0 top-12.5 max-h-64 w-full bg-slate-200 dark:bg-slate-700/95 rounded-b-2xl py-1 overflow-hidden transition-all ${onFocus ? 'opacity-100 shadow-md dark:shadow-sm dark:shadow-slate-500 pointer-events-auto' : 'hidden'}`}>
+            <div ref={searchBody} className={`absolute right-0 left-0 top-12.5 max-h-52 md:max-h-62 w-full bg-slate-200 dark:bg-slate-700/95 rounded-b-xl lg:rounded-b-2xl py-1 overflow-hidden transition-all ${onFocus ? 'opacity-100 pointer-events-auto' : 'hidden'}`}>
                 {searchArticle.length === 0 ?
                     <div className="text-center font-bold text-lg text-green-600 dark:text-orange-400 py-8">
                         🙈 No articles found !!!
@@ -90,7 +90,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
                         <div
                             onClick={() => searchHandler(article.title)}
                             key={article.id}
-                            className={`block text-sm font-normal px-8 py-3 cursor-pointer hover:bg-slate-300 dark:hover:bg-slate-600 pointer-events-auto ${index === activeIndex ? 'bg-slate-300 dark:bg-slate-600' : ''
+                            className={`block text-xs md:text-xs font-normal px-6 md:px-8 lg:px-12 py-2 md:py-3 cursor-pointer hover:bg-slate-300 dark:hover:bg-slate-600 pointer-events-auto ${index === activeIndex ? 'bg-slate-300 dark:bg-slate-600' : ''
                                 }`}
                         >
                             {article.title}
