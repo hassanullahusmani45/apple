@@ -58,27 +58,36 @@ export default function ContactUs() {
     return (
 
         <div className="grid grid-cols-8 gap-y-8 gap-5 xl:gap-10 2xl:gap-20 lg:my-10">
-            <div className="col-span-8 lg:col-span-3 h-fit bg-slate-200 dark:bg-slate-800 p-4 sm:px-15 md:px-20 lg:p-3 xl:p-8 lg:my-8 rounded-2xl shadow-md">
+            <div className="col-span-8 lg:col-span-3 h-fit bg-slate-200 dark:bg-slate-800 p-4 xl:p-8 lg:my-8 rounded-2xl shadow-md">
                 <div className="text-2xl font-bold text-center mb-4 text-green-600 dark:text-orange-400">Contact Us</div>
                 <FormProvider {...methods}>
-                    <form ref={contacFormBody} className="pt-6" onSubmit={methods.handleSubmit(onSubmit)} noValidate>
-                        <RHFInput name="name" label="Name" placeholder='Enter your name' />
-                        <RHFInput name="email" label="Email" type="email" placeholder='example@gmail.com' />
-                        <RHFInput name="subject" label="Subject" placeholder='Write your subject' />
-                        <RHFTextarea
-                            name='message'
-                            label='Message'
-                            placeholder='Enter your contact message'
-                            rows={5}
-                        />
-                        <div className="flex justify-center items-center mt-5">
+                    <form ref={contacFormBody} className="grid grid-cols-2 gap-x-4 pt-2 lg:pt-4" onSubmit={methods.handleSubmit(onSubmit)} noValidate>
+                        <div className="col-span-2 md:col-span-1 lg:col-span-2">
+                            <RHFInput name="name" label="Name" placeholder='Enter your name' />
+                        </div>
+                        <div className="col-span-2 md:col-span-1 lg:col-span-2">
+                            <RHFInput name="email" label="Email" type="email" placeholder='example@gmail.com' />
+                        </div>
+                        <div className="col-span-2">
+                            <RHFInput name="subject" label="Subject" placeholder='Write your subject' />
+                        </div>
+                        <div className="col-span-2">
+                            <RHFTextarea
+                                name='message'
+                                label='Message'
+                                placeholder='Enter your contact message'
+                                rows={5}
+                            />
+                        </div>
+
+                        <div className="col-span-2 flex justify-center items-center mt-5">
                             <Button
                                 type="submit"
                                 disabled={loading}
                             >
                                 {loading ? <div>Loading ...</div> :
                                     (<>
-                                        <GrSend className="size-6" />
+                                        <GrSend className="size-5" />
                                         Send
                                     </>)
                                 }

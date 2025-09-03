@@ -250,11 +250,13 @@ export default function Profile() {
                                     />
                                 </div>
                                 <div className="col-span-5 lg:col-span-1 flex justify-center items-center mt-1.5  mb-4 lg:mb-0">
-                                    <div className="flex items-center justify-center size-33 border border-dashed  rounded-2xl overflow-hidden">
+                                    <div className="flex items-center justify-center size-33 border border-dashed  rounded-xl overflow-hidden">
                                         {preview ? (
-                                            <img src={preview} alt="Profile Preview" className="size-33 object-cover rounded-2xl" />
+                                            <img src={preview} alt="Profile Preview" className="size-33 object-cover" />
                                         ) :
-                                            <div className="size-34 bg-slate-900 text-sm font-semibold flex justify-center items-center "><div className=""> Preview Image</div></div>
+                                            <div className="size-34 bg-slate-900 text-sm font-semibold flex justify-center items-center ">
+                                                Preview Image
+                                            </div>
                                         }
                                     </div>
                                 </div>
