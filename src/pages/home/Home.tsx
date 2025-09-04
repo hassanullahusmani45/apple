@@ -71,7 +71,7 @@ export default function Home() {
           <>
             <div className='mt-28 text-start font-semibold text-base md:text-xl text-teal-500'><HiSparkles className='inline size-6 md:size-8 text-green-500' /> Our Experienced Team</div>
             <div className='w-[300px] mt-1 border-t-2 border-dotted border-teal-300'></div>
-            <div className='w-[75%] sm:w-full mx-auto py-8'>
+            <div className='w-[85%] sm:w-full mx-auto py-8'>
               <Swiper
                 modules={[Autoplay]}
                 // slidesPerView={4}
@@ -118,13 +118,13 @@ export default function Home() {
         {/* start all articles */}
         {loading ? <div></div> : (
           <>
-            <div className='mt-28 text-start font-semibold text-xl text-fuchsia-500'><HiInboxStack className='inline size-8 me-2 text-violet-500' />All Articles</div>
-            <div className='w-1/4 mt-2 border-t-2 border-dotted border-fuchsia-300 '></div>
+            <div className='mt-28 text-start font-semibold text-base md:text-xl text-fuchsia-500'><HiInboxStack className='inline size-6 md:size-8 text-violet-500' />All Articles</div>
+            <div className='w-[150px] mt-1 border-t-2 border-dotted border-fuchsia-300 '></div>
 
-            <div className='grid grid-cols-4 gap-4 my-10'>
+            <div className='w-[85%] sm:w-full mx-auto grid grid-cols-12 gap-2 md:gap-4 lg:gap-6 2xl:gap-8 my-10'>
 
               {articles.map(({ id, cover_image, team_members, created_at, title, summary, view_count }) => (
-                <div key={id} className='col-span-1'>
+                <div key={id} className='col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 my-3 sm:my-0'>
                   <ArticleCard
                     src={cover_image || articleImage}
                     author={`${team_members.first_name} ${team_members.last_name}`}
@@ -151,8 +151,8 @@ export default function Home() {
         {/* start category part  */}
         {categoryLoading ? <div></div> : (
           <>
-            <div className='mt-28 text-start font-semibold text-xl text-sky-500'><HiMiniSquare3Stack3D className='inline size-8 me-2 text-blue-500' />Numbers of the categories articles</div>
-            <div className='w-1/3 mt-2 border-t-2 border-dotted border-sky-300'></div>
+            <div className='mt-28 text-start font-semibold text-base md:text-xl text-sky-500'><HiMiniSquare3Stack3D className='inline size-6 md:size-8 text-blue-500' />Numbers of the categories articles</div>
+            <div className='w-[350px] mt-1 border-t-2 border-dotted border-sky-300'></div>
             <CategoryCount />
           </>
         )}
@@ -167,23 +167,31 @@ export default function Home() {
           <>
             <div className=' flex justify-between items-center mt-28'>
               <div className='w-full'>
-                <div className='text-start font-semibold text-xl text-emerald-500'><MdOutlineWhatshot className='inline size-8 me-2 text-green-500' /> New Articles</div>
-                <div className='w-1/4 mt-2 border-t-2 border-dotted border-emerald-300 '></div>
+                <div className='text-start font-semibold text-base md:text-xl text-emerald-500'><MdOutlineWhatshot className='inline size-6 md:size-8 text-green-500' />New Articles</div>
+                <div className='w-[170px] mt-1 border-t-2 border-dotted border-emerald-300 '></div>
               </div>
 
               <div className='flex justify-center items-center gap-2'>
-                <span className='p-2 bg-green-500 rounded-full hover:bg-green-700 transition-colors cursor-pointer' onClick={handlePrev}><FiChevronLeft className='size-7 font-bold text-white' /></span>
-                <span className='p-2 bg-green-500 rounded-full hover:bg-green-700 transition-colors cursor-pointer' onClick={handleNext}><FiChevronRight className='size-7 text-white' /></span>
+                <span className='p-1 md:p-2 bg-green-500 rounded-full hover:bg-green-700 transition-colors cursor-pointer' onClick={handlePrev}><FiChevronLeft className='size-6 md:size-7 text-white' /></span>
+                <span className='p-1 md:p-2 bg-green-500 rounded-full hover:bg-green-700 transition-colors cursor-pointer' onClick={handleNext}><FiChevronRight className='size-6 md:size-7 text-white' /></span>
               </div>
             </div>
 
-            <div className='py-8'>
+            <div className='w-[85%] sm:w-full mx-auto py-8'>
               <Swiper
                 slidesPerView={4}
                 spaceBetween={20}
                 loop={newArticles.length >= 4}
                 className="mySwiper"
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
+                breakpoints={{
+                  320: { slidesPerView: 1, spaceBetween: 10 },
+                  640: { slidesPerView: 2, spaceBetween: 10 },
+                  768: { slidesPerView: 2, spaceBetween: 40 },
+                  1024: { slidesPerView: 3, spaceBetween: 30 },
+                  1280: { slidesPerView: 4, spaceBetween: 20 },
+                  1536: { slidesPerView: 4, spaceBetween: 40 },
+                }}
               >
                 {newArticles.map(({ id, cover_image, team_members, created_at, title, summary, view_count }) => (
                   <SwiperSlide key={id}>

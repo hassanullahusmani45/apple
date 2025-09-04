@@ -33,10 +33,10 @@ export default function About() {
                     <div className='mt-20 md:mt-25 lg:mt-40 text-center font-semibold text-xl'>Our Experienced Team</div>
                     <div className='w-2/3 sm:1/2 md:w-1/3 lg:w-1/4 mx-auto mt-2 md:mt-3 border-t-2 border-dotted border-teal-300 ' ></div>
 
-                    <div className='grid grid-cols-12 sm:gap-6 xl:gap-x-12 my-16'>
+                    <div className='grid grid-cols-12 sm:gap-6 xl:gap-x-3 2xl:gap-x-12 my-16'>
 
                         {teamMembers.map(({ id, profile, emaillink, linkedinlink, weblink, first_name, last_name, position, info }) => (
-                            <div key={id} className='col-span-12 sm:col-span-6 lg:col-span-4 2xl:col-span-3 mx-10 sm:m-0'>
+                            <div key={id} className='col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 mx-10 sm:m-0'>
                                 <TeamMemmberCard
                                     id={id}
                                     profile={profile}
