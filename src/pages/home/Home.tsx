@@ -71,17 +71,24 @@ export default function Home() {
           <>
             <div className='mt-28 text-start font-semibold text-base md:text-xl text-teal-500'><HiSparkles className='inline size-6 md:size-8 text-green-500' /> Our Experienced Team</div>
             <div className='w-[300px] mt-1 border-t-2 border-dotted border-teal-300'></div>
-            <div className='w-[95%] mx-auto py-8'>
+            <div className='w-[75%] sm:w-full mx-auto py-8'>
               <Swiper
                 modules={[Autoplay]}
-                slidesPerView={4}
-                spaceBetween={40}
+                // slidesPerView={4}
                 loop={teamMembers.length >= 4}
                 autoplay={{
                   delay: 3000,
                   disableOnInteraction: false,
                 }}
                 className="mySwiper"
+                breakpoints={{
+                  320: { slidesPerView: 1, spaceBetween: 10 },
+                  640: { slidesPerView: 2, spaceBetween: 10 },
+                  768: { slidesPerView: 2, spaceBetween: 40 },
+                  1024: { slidesPerView: 3, spaceBetween: 30 },
+                  1280: { slidesPerView: 4, spaceBetween: 20 },
+                  1536: { slidesPerView: 4, spaceBetween: 40 },
+                }}
               >
                 {teamMembers.map(({ id, profile, emaillink, linkedinlink, weblink, first_name, last_name, position, info }) => (
                   <SwiperSlide key={id}>
