@@ -51,7 +51,7 @@ export default function Home() {
         <SearchBar articles={articles} />
 
 
-        <div className='grid grid-cols-3 w-1/2'>
+        <div className='grid grid-cols-3 gap-x-6 md:w-1/2'>
           <LandingCounterSection
             teamMembers={countTeamMembers}
             articles={countArticles}
@@ -62,16 +62,16 @@ export default function Home() {
       </div>
       {/* end heading part  */}
 
-      <main className='w-[95%] mx-auto'>
+      <main className=''>
 
         {/* start SwiperJs part  */}
 
 
         {loading ? <div></div> : (
           <>
-            <div className='mt-28 text-start font-semibold text-xl text-teal-500'><HiSparkles className='inline size-8 me-2 text-green-500' /> Our Experienced Team</div>
-            <div className='w-1/4 mt-2 border-t-2 border-dotted border-teal-300 '></div>
-            <div className='py-8'>
+            <div className='mt-28 text-start font-semibold text-base md:text-xl text-teal-500'><HiSparkles className='inline size-6 md:size-8 text-green-500' /> Our Experienced Team</div>
+            <div className='w-[300px] mt-1 border-t-2 border-dotted border-teal-300'></div>
+            <div className='w-[95%] mx-auto py-8'>
               <Swiper
                 modules={[Autoplay]}
                 slidesPerView={4}

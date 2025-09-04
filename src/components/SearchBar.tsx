@@ -51,7 +51,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
     };
 
     return (
-        <div className={`relative bg-slate-800 ${onFocus ? 'rounded-t-2xl' : 'rounded-full'} m-20 w-[95%] md:w-[90%]  lg:w-[70%]`}>
+        <div className={`relative bg-slate-800 ${onFocus ? 'rounded-t-2xl' : 'rounded-full'} m-15 md:m-20 w-[95%] md:w-[90%]  lg:w-[70%]`}>
             <input
                 onFocus={() => setOnFocus(true)}
                 onBlur={() => {
@@ -81,7 +81,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
                 <HiMiniMagnifyingGlass className='size-6' />
             </button>
 
-            <div ref={searchBody} className={`absolute right-0 left-0 top-12.5 max-h-52 md:max-h-62 w-full bg-slate-200 dark:bg-slate-700/95 rounded-b-xl lg:rounded-b-2xl py-1 overflow-hidden transition-all ${onFocus ? 'opacity-100 pointer-events-auto' : 'hidden'}`}>
+            <div ref={searchBody} className={`absolute right-0 left-0 top-12.5 max-h-50 md:max-h-62 w-full bg-slate-200 dark:bg-slate-700/95 rounded-b-xl lg:rounded-b-2xl py-1 overflow-hidden transition-all ${onFocus ? 'opacity-100 pointer-events-auto' : 'hidden'}`}>
                 {searchArticle.length === 0 ?
                     <div className="text-center font-bold text-lg text-green-600 dark:text-orange-400 py-8">
                         🙈 No articles found !!!
