@@ -64,6 +64,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
                 onKeyDown={handleKeyDown}
                 value={searchInputValue}
                 type="text"
+                name="search"
                 placeholder="Search articles here..."
                 className={`block border-none outline-none bg-slate-600 dark:bg-slate-800 text-white dark:text-slate-100 w-full py-3 ps-4 md:ps-8 pe-10 text-base font-semibold placeholder:text-slate-100 dark:placeholder:text-slate-300 placeholder:text-sm placeholder:italic placeholder:font-normal ${onFocus ? 'rounded-t-2xl' : 'rounded-full'}`}
                 autoComplete='off'

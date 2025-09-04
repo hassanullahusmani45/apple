@@ -61,10 +61,10 @@ function LandingCounter({ count }: { count: number }) {
 
   return (
     <div className="flex justify-center items-center gap-1">
-      <div className="text-xl font-medium text-center text-gray-600 dark:text-slate-300">
+      <div className="text-sm font-semibold md:text-xl md:font-medium text-center text-gray-600 dark:text-slate-300">
         {counter.toLocaleString()}
       </div>
-      <TiPlusOutline className="size-6 text-gray-600 dark:text-slate-200" />
+      <TiPlusOutline className="size-4 md:size-6 text-gray-600 dark:text-slate-200" />
     </div>
   );
 }
