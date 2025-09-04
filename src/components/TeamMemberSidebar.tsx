@@ -15,14 +15,14 @@ export default function TeamMemberSidebar({ author }: TeamMemberSidebarProps) {
     const [teamMemberSection] = useAutoAnimate<HTMLDivElement>();
 
     return (
-        <div ref={teamMemberSection} className='col-span-2 p-8 rounded-xl bg-slate-200 dark:bg-slate-800 h-fit'>
+        <div ref={teamMemberSection} className='p-8 rounded-xl bg-slate-200 dark:bg-slate-800 h-fit'>
 
             <span className='flex justify-center'>
                 <span className='relative  hover:scale-95  transition-all  ease-linear duration-200'>
                     <Link to={`/author-profile/${author?.id}`}>
-                        <img className=" w-56 h-56 rounded-full p-1.5 border-2 border-green-500 dark:border-orange-300 border-dotted hover:border-dotted" src={author?.profile} />
+                        <img className="w-40 md:w-44 lg:w-50 h-40 md:h-44 lg:h-50 rounded-full p-1.5 border-2 border-green-500 dark:border-orange-300 border-dotted hover:border-dotted" src={author?.profile} />
                     </Link>
-                    <div className='absolute -right-1 bottom-7 p-1.5 bg-white dark:bg-slate-900 rounded-full border border-green-500 dark:border-orange-300'>🎯</div>
+                    <div className='absolute -right-1 bottom-4 lg:bottom-6 p-1 lg:p-1.5 bg-white dark:bg-slate-900 rounded-full border border-green-500 dark:border-orange-300'>🎯</div>
                 </span>
             </span>
             <div className='space-y-2 text-slate-700 dark:text-slate-300'>
