@@ -69,7 +69,7 @@ export default function Home() {
 
         {loading ? <div></div> : (
           <>
-            <div className='mt-28 text-start font-semibold text-base md:text-xl text-teal-500'><HiSparkles className='inline size-6 md:size-8 text-green-500' /> Our Experienced Team</div>
+            <div className='mt-20 md:mt-28 text-start font-semibold text-base md:text-xl text-teal-500'><HiSparkles className='inline size-6 md:size-8 text-green-500' /> Our Experienced Team</div>
             <div className='w-[300px] mt-1 border-t-2 border-dotted border-teal-300'></div>
             <div className='w-[85%] sm:w-full mx-auto py-8'>
               <Swiper
@@ -118,7 +118,7 @@ export default function Home() {
         {/* start all articles */}
         {loading ? <div></div> : (
           <>
-            <div className='mt-28 text-start font-semibold text-base md:text-xl text-fuchsia-500'><HiInboxStack className='inline size-6 md:size-8 text-violet-500' />All Articles</div>
+            <div className='mt-10 md:mt-20 text-start font-semibold text-base md:text-xl text-fuchsia-500'><HiInboxStack className='inline size-6 md:size-8 text-violet-500' />All Articles</div>
             <div className='w-[150px] mt-1 border-t-2 border-dotted border-fuchsia-300 '></div>
 
             <div className='w-[85%] sm:w-full mx-auto grid grid-cols-12 gap-2 md:gap-4 lg:gap-6 2xl:gap-8 my-10'>
@@ -151,7 +151,7 @@ export default function Home() {
         {/* start category part  */}
         {categoryLoading ? <div></div> : (
           <>
-            <div className='mt-28 text-start font-semibold text-base md:text-xl text-sky-500'><HiMiniSquare3Stack3D className='inline size-6 md:size-8 text-blue-500' />Numbers of the categories articles</div>
+            <div className='mt-16 md:mt-28 text-start font-semibold text-base md:text-xl text-sky-500'><HiMiniSquare3Stack3D className='inline size-6 md:size-8 text-blue-500' />Numbers of the categories articles</div>
             <div className='w-[350px] mt-1 border-t-2 border-dotted border-sky-300'></div>
             <CategoryCount />
           </>
@@ -165,7 +165,7 @@ export default function Home() {
         {/* start new articles part  */}
         {loading ? <div></div> : (
           <>
-            <div className=' flex justify-between items-center mt-28'>
+            <div className='mt-10 md:mt-20 flex justify-between items-center'>
               <div className='w-full'>
                 <div className='text-start font-semibold text-base md:text-xl text-emerald-500'><MdOutlineWhatshot className='inline size-6 md:size-8 text-green-500' />New Articles</div>
                 <div className='w-[170px] mt-1 border-t-2 border-dotted border-emerald-300 '></div>
@@ -221,10 +221,10 @@ export default function Home() {
         {/* start Discription abute site articles */}
         {loading ? <div></div> : (
           <>
-            <div className='mt-28 text-center font-semibold text-2xl text-teal-400'>Why we chose Apple web sit</div>
-            <div className=' w-1/3 mx-auto mt-2 border-t-2 border-dotted border-teal-500 ' ></div>
+            <div className='mt-10 md:mt-20 text-center font-semibold text-base md:text-2xl text-teal-400'>Why we chose Apple web sit</div>
+            <div className=' w-[350px] mx-auto mt-1 border-t-2 border-dotted border-teal-500' ></div>
 
-            <div className='py-8 leading-8 text-justify text-slate-600 dark:text-slate-300 text-base font-semibold'>
+            <div className='py-8 px-5 md:px-10 leading-8 text-justify text-slate-600 dark:text-slate-300 text-sm md:text-base font-semibold'>
               In today is digital age, having a reliable and user-friendly platform is essential for achieving goals efficiently. Apple website has emerged as a top choice for individuals and organizations, offering exceptional features and unmatched performance. Here is why Apple stands out:
 
               Modern Design: Apple boasts a sleek, intuitive design that ensures easy navigation for all users.
