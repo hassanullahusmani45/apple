@@ -233,12 +233,12 @@ export default function Profile() {
                         <form method="post" onSubmit={profileMethods.handleSubmit(onSubmitUpdateProfile)} noValidate>
                             <div className="grid grid-cols-5 gap-2 lg:gap-4 xl:gap-2 justify-end items-center">
                                 <div className="col-span-5 lg:col-span-4">
-                                    <label htmlFor="profile" className="block text-sm font-semibold m-3">Profile</label>
+                                    <label htmlFor="profile" className="block text-sm font-semibold m-1 md:m-3">Profile</label>
                                     <label htmlFor="profile"
-                                        className="flex flex-col items-center justify-center bg-slate-300/60 dark:bg-slate-900 w-full h-32 border-2 border-slate-300 border-dashed hover:border-dotted rounded-xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700  mb-2">
-                                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                            <BiCloud className='size-12 text-slate-600 dark:text-slate-400' />
-                                            <p className="mb-2 text-sm text-slate-500 font-semibold">Click and uplode the profile</p>
+                                        className="flex flex-col items-center justify-center bg-slate-300/60 dark:bg-slate-900 w-full h-24 md:h-32 border-2 border-slate-300 border-dashed hover:border-dotted rounded-xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700 mb-2">
+                                        <div className="flex flex-col items-center justify-center md:pt-5 md:pb-6">
+                                            <BiCloud className='size-8 md:size-12 text-slate-600 dark:text-slate-400' />
+                                            <p className="mb-2 text-xs md:text-sm text-slate-500 font-semibold">Click and uplode the profile</p>
                                             <p className="text-xs text-slate-500 dark:text-slate-400">JPG, JPEG, PNG or WEBP</p>
                                         </div>
 
@@ -249,12 +249,12 @@ export default function Profile() {
                                         className="hidden!"
                                     />
                                 </div>
-                                <div className="col-span-5 lg:col-span-1 flex justify-center items-center mt-1.5  mb-4 lg:mb-0">
-                                    <div className="flex items-center justify-center size-33 border border-dashed  rounded-xl overflow-hidden">
+                                <div className="col-span-5 lg:col-span-1 flex justify-center items-center md:mt-1.5  mb-4 lg:mb-0">
+                                    <div className="flex items-center justify-center size-22 md:size-33 border border-dashed  rounded-xl overflow-hidden">
                                         {preview ? (
-                                            <img src={preview} alt="Profile Preview" className="size-33 object-cover" />
+                                            <img src={preview} alt="Profile Preview" className="size-22 md:size-33 object-cover" />
                                         ) :
-                                            <div className="size-34 bg-slate-900 text-sm font-semibold flex justify-center items-center ">
+                                            <div className="size-22 md:size-33 bg-slate-900 text-sm font-semibold flex justify-center items-center ">
                                                 Preview Image
                                             </div>
                                         }
