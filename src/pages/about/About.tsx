@@ -31,7 +31,7 @@ export default function About() {
                 {loading || countLoading ? (<AboutSkeleton />) :
                     <>
                         <div className='mt-15 md:mt-20 lg:mt-40 text-center font-semibold text-xl'>Our Experienced Team</div>
-                        <div className='w-2/3 sm:1/2 md:w-1/3 lg:w-1/4 mx-auto mt-2 md:mt-3 border-t-2 border-dotted border-teal-300 ' ></div>
+                        <div className='w-2/3 sm:w-1/2 md:w-1/3  xl:w-1/5 mx-auto mt-1 border-t-2 border-dotted border-teal-300 ' ></div>
 
                         <div className='grid grid-cols-12 sm:gap-6 xl:gap-x-3 2xl:gap-x-12 my-8 xl:my-16'>
 
@@ -54,7 +54,7 @@ export default function About() {
 
 
                         <div className='mt-15 xl:mt-20 text-center font-semibold text-xl text-nowrap'>Surprise Information About Our Web Site</div>
-                        <div className='w-10/11 md:w-4/6 lg:w-1/2 xl:w-1/3 mx-auto mt-2 md:mt-3 border-t-2 border-dotted border-teal-300 ' ></div>
+                        <div className='w-10/11 md:w-4/6 lg:w-1/2 xl:w-1/3 mx-auto mt-1 border-t-2 border-dotted border-teal-300 ' ></div>
 
                         <div className=' grid grid-cols-3 my-12 '>
                             <LandingCounterSection
