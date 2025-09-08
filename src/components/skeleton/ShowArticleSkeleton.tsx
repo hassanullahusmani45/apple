@@ -8,7 +8,7 @@ export default function ShowArticleSkeleton() {
             </div>
 
             <div className='col-span-12 lg:col-span-8 order-1 lg:order-2 rounded-xl p-4 md:p-8 bg-slate-200 dark:bg-slate-800'>
-                <div className="h-6 w-[10rem] lg:w-[20rem] rounded-lg bg-slate-300 dark:bg-slate-700"></div>
+                <div className="h-8 w-[10rem] lg:w-[20rem] rounded-full bg-slate-300 dark:bg-slate-700"></div>
                 <div className="h-0.5  rounded-lg bg-slate-300 dark:bg-slate-700 my-3"></div>
 
                 <div className="flex justify-between md:justify-start items-center md:gap-x-16">
