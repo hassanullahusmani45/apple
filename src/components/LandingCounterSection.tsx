@@ -10,7 +10,7 @@ export default function LandingCounterSection({ teamMembers, articles, subscribe
             <div className='flex flex-col justify-center items-center'>
                 <HiOutlineUsers className='size-9 md:size-12 mb-1 md:mb-3' />
                 <LandingCounter count={teamMembers} />
-                <div className='text-sm md:text-base font-semibold'>Team Mammbers</div>
+                <div className='text-sm md:text-base font-semibold'>Team Members</div>
             </div>
             <div className='flex flex-col justify-center items-center'>
                 <HiOutlineClipboardDocumentList className='size-9 md:size-12 mb-1 md:mb-3' />
