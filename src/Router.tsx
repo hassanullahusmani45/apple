@@ -5,13 +5,13 @@ import Articles from './pages/article/Articles'
 
 import Home from './pages/home/Home';
 import ShowArticle from './pages/article/ShowArticle';
-import TeamMember from './pages/teamMember/TeamMember';
 import About from './pages/about/About';
 import ContactUs from './pages/contact/ContactUs';
 import Login from './pages/auth/login';
 import Register from './pages/auth/register';
 import { ProtectedRout } from './routes/AuthRoutes';
 import Profile from './pages/profile/profile';
+import TeamMember from './pages/teamMember/TeamMember';
 
 const router = createBrowserRouter([
     {
