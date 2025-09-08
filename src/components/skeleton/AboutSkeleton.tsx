@@ -4,8 +4,9 @@ import TeamMemberCardSkeleton from "./TeamMemberCardSkeleton";
 export default function AboutSkeleton() {
     return (
         <div className="animate-pulse">
-            <div className="flex justify-center items-center mt-15 md:mt-25 lg:mt-40">
-                <div className="h-10 w-[10rem] lg:w-[20rem] bg-slate-200 dark:bg-slate-700 rounded-lg"></div>
+            <div className="flex flex-col justify-center items-center gap-3 mt-15 md:mt-25 lg:mt-40">
+                <div className="h-6 w-[8rem] lg:w-[18rem] bg-slate-200 dark:bg-slate-700 rounded-lg"></div>
+                <div className="h-1 w-[12rem] lg:w-[22rem] rounded-lg bg-slate-300 dark:bg-slate-700"></div>
             </div>
             <div className="grid grid-cols-12 gap-6 xl:gap-x-3 2xl:gap-x-12  my-10 xl:my-20">
                 {Array.from({ length: 8 }).map((_, index) => (
@@ -16,11 +17,13 @@ export default function AboutSkeleton() {
             </div>
 
             <div className="">
-                <div className="mt-15 xl:mt-25">
-                    <div className="h-8 rounded-xl bg-slate-300/40 dark:bg-slate-700 w-[13rem] md:w-4/6 lg:w-1/2 xl:w-1/3 mx-auto"></div>
+                <div className="flex flex-col justify-center items-center gap-3 mt-15 xl:mt-25">
+                    <div className="h-6 w-[10rem] lg:w-[20rem] rounded-xl bg-slate-300/40 dark:bg-slate-700"></div>
+                    <div className="h-1 w-[12rem] lg:w-[22rem] rounded-lg bg-slate-300 dark:bg-slate-700"></div>
                 </div>
                 <LandingCounterSkeleton />
             </div>
+
         </div>
     )
 }
