@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { fetchArticleData } from "../../redux/slices/article/articleSlice";
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import TeamMemberSidebar from '../../components/TeamMemberSidebar';
+import ShowArticleSkeleton from '../../components/skeleton/ShowArticleSkeleton';
 
 export default function ShowArticle() {
     const { title } = useParams<{ title: string }>();
@@ -44,7 +45,7 @@ export default function ShowArticle() {
 
     return (
         <div>
-            {loading ? <div className='w-full h-[40vh] flex justify-center items-center text-4xl font-extrabold'>loading ...</div> : (
+            {loading ? (<ShowArticleSkeleton />) : (
                 <div className='grid grid-cols-12 gap-8 sm:gap-x-2 mb-16' ref={articleBody}>
 
                     {/* the autor or this article */}
@@ -63,7 +64,7 @@ export default function ShowArticle() {
 
                         {/* show the articl cover_img */}
                         <div className=' w-full my-8'>
-                            <img className=' bg-cover w-full max-h-[400px]  rounded-xl' src={article?.cover_image}></img>
+                            <img className='object-cover w-full aspect-[16/9] max-h-[400px] rounded-xl' src={article?.cover_image}></img>
                         </div>
 
                         {/* show the Article Siction titles */}
@@ -99,7 +100,7 @@ export default function ShowArticle() {
                                 <div className='text-slate-700 dark:text-slate-300/90 text-base font-medium '>{articleSection.section_topic}</div>
                                 {articleSection.section_img &&
                                     <div className='flex justify-center items-center w-full my-8'>
-                                        <img className='object-cover md:w-[80%] xl:w-[70%] rounded-xl' src={articleSection?.section_img}></img>
+                                        <img className='object-cover md:w-[80%] xl:w-[70%] aspect-[16/9] rounded-xl' src={articleSection?.section_img}></img>
                                     </div>
                                 }
                             </div>

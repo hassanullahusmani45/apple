@@ -18,7 +18,7 @@ export default function AboutSkeleton() {
 
             <div className="">
                 <div className="flex flex-col justify-center items-center gap-3 mt-15 xl:mt-25">
-                    <div className="h-6 w-[10rem] lg:w-[20rem] rounded-xl bg-slate-300/40 dark:bg-slate-700"></div>
+                    <div className="h-6 w-[10rem] lg:w-[20rem] rounded-xl bg-slate-300 dark:bg-slate-700"></div>
                     <div className="h-1 w-[12rem] lg:w-[22rem] rounded-lg bg-slate-300 dark:bg-slate-700"></div>
                 </div>
                 <LandingCounterSkeleton />
