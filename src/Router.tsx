@@ -5,7 +5,7 @@ import Articles from './pages/article/Articles'
 
 import Home from './pages/home/Home';
 import ShowArticle from './pages/article/ShowArticle';
-import TeamMemmber from './pages/teamMember/TeamMember';
+import TeamMember from './pages/teamMember/TeamMember';
 import About from './pages/about/About';
 import ContactUs from './pages/contact/ContactUs';
 import Login from './pages/auth/login';
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/author-profile/:id',
-                element: <TeamMemmber />
+                element: <TeamMember />
             },
             {
                 path: '/about',

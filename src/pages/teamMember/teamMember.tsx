@@ -9,7 +9,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { MdWavingHand } from 'react-icons/md';
 import TeamMemberSkeleton from '../../components/skeleton/TeamMemberSkeleton';
 
-export default function TeamMemmber() {
+export default function TeamMember() {
   const { id } = useParams();
   const [fetchDone, setFetchDone] = useState(false);
   const navigate = useNavigate();
