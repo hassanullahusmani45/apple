@@ -3,7 +3,7 @@ import TeamMemberSidebarSkeleton from "./TeamMemberSidebarSkeleton";
 
 export default function TeamMemberSkeleton() {
     return (
-        <div className="grid grid-cols-12 gap-8 sm:gap-x-2 mb-16">
+        <div className="grid grid-cols-12 gap-8 sm:gap-x-2 mb-16 animate-pulse">
             <div className="col-span-12 md:col-span-5 lg:col-span-4 lg:mx-0 2xl:mx-10 ">
                 <TeamMemberSidebarSkeleton />
             </div>

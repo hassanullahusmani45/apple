@@ -3,7 +3,7 @@ type props = {
 }
 export default function ArticleCardSkeleton({ className }: props) {
     return (
-        <div className={`bg-slate-200 dark:bg-slate-800 rounded-xl shadow-md ${className}`}>
+        <div className={`bg-slate-200 dark:bg-slate-800 rounded-xl shadow-md animate-pulse ${className}`}>
             <div className="relative flex justify-center items-center">
                 <span className="absolute right-2 top-2 w-10 h-10 flex rounded-full bg-slate-200 dark:bg-slate-700"></span>
                 <div className="w-full h-46 rounded-t-xl bg-slate-300 dark:bg-slate-600"></div>

@@ -1,6 +1,6 @@
 export default function TeamMemberSidebarSkeleton() {
     return (
-        <div className='h-fit p-8 rounded-xl bg-slate-200 dark:bg-slate-800 shadow-md px-4 py-6'>
+        <div className='animate-pulse h-fit p-8 rounded-xl bg-slate-200 dark:bg-slate-800 shadow-md px-4 py-6'>
             <div className="flex justify-center items-center">
                 <div className="w-40 md:w-44 lg:w-50 h-40 md:h-44 lg:h-50 rounded-full p-1.5 bg-slate-300 dark:bg-slate-700"></div>
             </div>

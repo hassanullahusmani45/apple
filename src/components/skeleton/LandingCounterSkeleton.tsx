@@ -3,7 +3,7 @@ export default function LandingCounterSkeleton() {
         <div className=''>
 
 
-            <div className="grid grid-cols-3 my-12">
+            <div className="grid grid-cols-3 my-12 animate-pulse">
                 {Array.from({ length: 3 }).map((_, index) => (
                     <div key={index} className="flex flex-col justify-center items-center gap-2">
                         <div className="w-14 h-14 mx-auto rounded-full bg-slate-200 dark:bg-slate-800"></div>
