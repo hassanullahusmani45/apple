@@ -103,7 +103,7 @@ export default function ContactUs() {
                     <div className="relative w-30 sm:w-34 md:w-36 lg:w-40 h-30 sm:h-34 md:h-36 lg:h-40 mx-auto rounded-full bg-inherit p-1 dark:p-[3px]">
                         <div className="absolute inset-0 custom-gradient rounded-full animate-spin-slow"></div>
                         <img
-                            className="relative w-full h-full  rounded-full object-cover"
+                            className="relative w-full h-full  rounded-full object-cover bg-slate-50 dark:bg-slate-900"
                             src={hassanProfile}
                             alt="profile"
                         />
