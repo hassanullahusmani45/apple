@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, createContext, useLayoutEffect } from "react";
+import { useContext, useState, createContext, useLayoutEffect } from "react";
 import { setItem, getItem } from "../../utils/LocalStorage";
 
 type Theme = "dark" | "light";
