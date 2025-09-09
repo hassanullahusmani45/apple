@@ -29,7 +29,8 @@ export const fetchCategoryCount = createAsyncThunk(
         };
 
         data?.forEach((row) => {
-            const cat = row.categories?.name?.toLowerCase(); // آرایه اول
+            const category = Array.isArray(row.categories) ? row.categories[0] : row.categories;
+            const cat = category?.name?.toLowerCase(); // آرایه اول
             if (cat === "security") counts.security += 1;
             else if (cat === "frontend") counts.frontend += 1;
             else if (cat === "backend") counts.backend += 1;
