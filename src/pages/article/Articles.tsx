@@ -103,7 +103,7 @@ export default function Articles() {
                                     <HiMiniMagnifyingGlass className='size-6' />
                                 </div>
                                 <input type="text" id="search" placeholder="Search articles ..."
-                                    className="block border-none outline-none bg-slate-200 dark:bg-slate-800 w-full py-3.5 md:py-4 ps-10 pe-24 text-xs md:text-sm placeholder:italic dark:placeholder:text-slate-300 placeholder:text-sm"
+                                    className="block border-none outline-none bg-slate-200 dark:bg-slate-800 w-full py-3.5 md:py-4 ps-10 pe-24 text-xs md:text-sm placeholder:italic placeholder:text-slate-700 dark:placeholder:text-slate-300 placeholder:text-sm"
                                     required autoComplete='off' onChange={(event) => { setSearchValue(event.target.value.toLowerCase()) }} value={searchValue} />
                                 <button type="button" onClick={searchHandler}
                                     className="absolute bottom-1.5 end-1.5 md:end-2.5 md:bottom-2.5 text-white bg-teal-600 dark:bg-teal-700 hover:bg-teal-500 dark:hover:bg-teal-900 font-medium rounded-full text-sm px-4 py-1.5 md:py-2">Search</button>
@@ -172,10 +172,10 @@ export default function Articles() {
                                         </div>
                                     ))
                                 ) : (
-                                    <div className='col-span-3 bg-yellow-500 dark:bg-yellow-400/80 rounded-xl'>
-                                        <div className='flex justify-evenly items-center w-full h-56'>
-                                            <HiOutlineShieldExclamation className='size-24' />
-                                            <div className='font-bold font-serif text-2xl text-gray-800 dark:text-slate-200'>This Category Article Is Not Found !</div>
+                                    <div className='col-span-12 bg-yellow-500 dark:bg-yellow-400/80 rounded-xl'>
+                                        <div className='flex justify-evenly items-center w-full h-40 sm:h-56 p-4 gap-3'>
+                                            <HiOutlineShieldExclamation className='size-18 lg:size-24' />
+                                            <div className='font-bold font-serif text-lg lg:text-2xl text-gray-800 dark:text-slate-200'>This Category Article Is Not Found !</div>
                                         </div>
                                     </div>
                                 )}
