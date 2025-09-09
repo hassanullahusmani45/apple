@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/autoplay';
-import { Swiper as SwiperType } from "swiper/types";
+import type { Swiper as SwiperType } from "swiper/types";
 
 import { MdOutlineWhatshot } from 'react-icons/md';
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
