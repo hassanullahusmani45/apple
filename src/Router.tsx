@@ -11,6 +11,7 @@ import Login from './pages/auth/login';
 import Register from './pages/auth/register';
 import { ProtectedRout } from './routes/AuthRoutes';
 import Profile from './pages/profile/profile';
+import TeamMember from './pages/teamMember/TeamMember';
 
 const router = createBrowserRouter([
     {
