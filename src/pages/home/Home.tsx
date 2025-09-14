@@ -17,12 +17,13 @@ import ArticleCard from '../../components/ArticleCard';
 import SearchBar from '../../components/SearchBar';
 import CategoryCount from '../../components/CategoryCount';
 import LandingCounterSection from '../../components/LandingCounterSection';
+import LandingCounterSkeleton from '../../components/skeleton/LandingCounterSkeleton';
 
 
 export default function Home() {
   const { teamMembers, articles, newArticles, loading } = useAppSelector((state) => state.home);
 
-  const { teamMembers: countTeamMembers, articles: countArticles, subscribers: countSubscribers } = useAppSelector(state => state.stats)
+  const { teamMembers: countTeamMembers, articles: countArticles, subscribers: countSubscribers, loading: countLoading } = useAppSelector(state => state.stats)
 
   const { loading: categoryLoading } = useAppSelector(state => state.categoryCount);
 
@@ -50,14 +51,22 @@ export default function Home() {
         </div>
         <SearchBar articles={articles} />
 
-
-        <div className='grid grid-cols-3 gap-x-6 md:w-1/2'>
-          <LandingCounterSection
-            teamMembers={countTeamMembers}
-            articles={countArticles}
-            subscribers={countSubscribers}
-          />
+        <div className='grid grid-cols-3 gap-x-6 lg:w-1/2'>
+          {countLoading ?
+            (
+              Array.from({ length: 3 }).map((_, index) => (
+                <LandingCounterSkeleton key={index} />
+              ))
+            )
+            :
+            <LandingCounterSection
+              teamMembers={countTeamMembers}
+              articles={countArticles}
+              subscribers={countSubscribers}
+            />
+          }
         </div>
+
 
       </div>
       {/* end heading part  */}

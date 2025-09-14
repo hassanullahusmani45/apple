@@ -21,7 +21,11 @@ export default function AboutSkeleton() {
                     <div className="h-6 w-[10rem] lg:w-[20rem] rounded-xl bg-slate-300 dark:bg-slate-700"></div>
                     <div className="h-1 w-[12rem] lg:w-[22rem] rounded-lg bg-slate-300 dark:bg-slate-700"></div>
                 </div>
-                <LandingCounterSkeleton />
+                <div className="flex justify-around items-center lg:w-1/2 my-12 lg:mx-auto">
+                    {Array.from({ length: 3 }).map((_, index) => (
+                        <LandingCounterSkeleton key={index} />
+                    ))}
+                </div>
             </div>
 
         </div>

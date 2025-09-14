@@ -56,7 +56,7 @@ export default function About() {
                         <div className='mt-15 xl:mt-20 text-center font-semibold text-xl text-nowrap'>Surprise Information About Our Web Site</div>
                         <div className='w-10/11 md:w-4/6 lg:w-1/2 xl:w-1/3 mx-auto mt-1 border-t-2 border-dotted border-teal-300 ' ></div>
 
-                        <div className=' grid grid-cols-3 my-12 '>
+                        <div className='flex justify-around items-center lg:w-1/2 my-12 lg:mx-auto'>
                             <LandingCounterSection
                                 teamMembers={countTeamMembers}
                                 articles={articles}
@@ -65,12 +65,6 @@ export default function About() {
                         </div>
                     </>
                 }
-
-
-
-
-
-
 
             </div>
         </>
