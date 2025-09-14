@@ -18,6 +18,7 @@ import LandingCounterSection from '../../components/LandingCounterSection';
 import LandingCounterSkeleton from '../../components/skeleton/LandingCounterSkeleton';
 import CategoryCountSkeleton from '../../components/skeleton/CategoryCountSkeleton';
 import TeamMembersSkeleton from '../../components/skeleton/homepage/TeamMembersSkeleton';
+import AllArticlesSkeleton from '../../components/skeleton/homepage/AllArticlesSkeleton';
 
 
 export default function Home() {
@@ -123,7 +124,7 @@ export default function Home() {
 
 
         {/* start all articles */}
-        {loading ? <div></div> : (
+        {loading ? <AllArticlesSkeleton /> : (
           <>
             <div className='mt-10 md:mt-20 text-start font-semibold text-base md:text-xl text-fuchsia-500'><HiInboxStack className='inline size-6 md:size-8 text-violet-500' />All Articles</div>
             <div className='w-[150px] mt-1 border-t-2 border-dotted border-fuchsia-300 '></div>
