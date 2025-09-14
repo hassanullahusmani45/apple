@@ -2,8 +2,6 @@ import { useRef } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/autoplay';
 import type { Swiper as SwiperType } from "swiper/types";
 
 import { MdOutlineWhatshot } from 'react-icons/md';
@@ -18,7 +16,8 @@ import SearchBar from '../../components/SearchBar';
 import CategoryCount from '../../components/CategoryCount';
 import LandingCounterSection from '../../components/LandingCounterSection';
 import LandingCounterSkeleton from '../../components/skeleton/LandingCounterSkeleton';
-import CategorySkeleton from '../../components/skeleton/CategoryCountSkeleton';
+import CategoryCountSkeleton from '../../components/skeleton/CategoryCountSkeleton';
+import TeamMembersSkeleton from '../../components/skeleton/homepage/TeamMembersSkeleton';
 
 
 export default function Home() {
@@ -74,23 +73,21 @@ export default function Home() {
 
       <main className=''>
 
-        {/* start SwiperJs part  */}
+        {/* start team members part  */}
 
 
-        {loading ? <div></div> : (
+        {loading ? <TeamMembersSkeleton /> : (
           <>
             <div className='mt-20 md:mt-28 text-start font-semibold text-base md:text-xl text-teal-500'><HiSparkles className='inline size-6 md:size-8 text-green-500' /> Our Experienced Team</div>
             <div className='w-[300px] mt-1 border-t-2 border-dotted border-teal-300'></div>
             <div className='w-[85%] sm:w-full mx-auto py-8'>
               <Swiper
                 modules={[Autoplay]}
-                // slidesPerView={4}
                 loop={teamMembers.length >= 4}
                 autoplay={{
                   delay: 3000,
                   disableOnInteraction: false,
                 }}
-                className="mySwiper"
                 breakpoints={{
                   320: { slidesPerView: 1, spaceBetween: 10 },
                   640: { slidesPerView: 2, spaceBetween: 10 },
@@ -119,7 +116,7 @@ export default function Home() {
             </div>
           </>
         )}
-        {/* end SwiperJs part  */}
+        {/* end team members part  */}
 
 
 
@@ -159,7 +156,7 @@ export default function Home() {
 
 
         {/* start category part  */}
-        {!categoryLoading ? <CategorySkeleton/> : (
+        {categoryLoading ? <CategoryCountSkeleton /> : (
           <>
             <div className='mt-16 md:mt-28 text-start font-semibold text-base md:text-xl text-sky-500'><HiMiniSquare3Stack3D className='inline size-6 md:size-8 text-blue-500' />Numbers of the categories articles</div>
             <div className='w-[350px] mt-1 border-t-2 border-dotted border-sky-300'></div>
