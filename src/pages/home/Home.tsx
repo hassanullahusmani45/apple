@@ -19,6 +19,7 @@ import LandingCounterSkeleton from '../../components/skeleton/LandingCounterSkel
 import CategoryCountSkeleton from '../../components/skeleton/CategoryCountSkeleton';
 import TeamMembersSkeleton from '../../components/skeleton/homepage/TeamMembersSkeleton';
 import AllArticlesSkeleton from '../../components/skeleton/homepage/AllArticlesSkeleton';
+import NewArticlesSkeleton from '../../components/skeleton/homepage/NewArticlesSkeleton';
 
 
 export default function Home() {
@@ -171,7 +172,7 @@ export default function Home() {
 
 
         {/* start new articles part  */}
-        {loading ? <div></div> : (
+        {!loading ? <NewArticlesSkeleton /> : (
           <>
             <div className='mt-10 md:mt-20 flex justify-between items-center'>
               <div className='w-full'>
@@ -227,28 +228,26 @@ export default function Home() {
 
 
         {/* start Discription abute site articles */}
-        {loading ? <div></div> : (
-          <>
-            <div className='mt-10 md:mt-20 text-center font-semibold text-base md:text-2xl text-teal-400'>Why we chose Apple web sit</div>
-            <div className=' w-[350px] mx-auto mt-1 border-t-2 border-dotted border-teal-500' ></div>
 
-            <div className='py-8 px-5 md:px-10 leading-8 text-justify text-slate-600 dark:text-slate-300 text-sm md:text-base font-semibold'>
-              In today is digital age, having a reliable and user-friendly platform is essential for achieving goals efficiently. Apple website has emerged as a top choice for individuals and organizations, offering exceptional features and unmatched performance. Here is why Apple stands out:
+        <div className='mt-10 md:mt-20 text-center font-semibold text-base md:text-2xl text-teal-400'>Why we chose Apple web sit</div>
+        <div className=' w-[350px] mx-auto mt-1 border-t-2 border-dotted border-teal-500' ></div>
 
-              Modern Design: Apple boasts a sleek, intuitive design that ensures easy navigation for all users.
-              Speed and Reliability: The site is optimized for fast loading times, ensuring a seamless user experience.
-              Mobile Responsiveness: Apple is fully compatible with all devices, from desktops to smartphones.
-              Comprehensive Features: It offers tools and resources tailored to diverse needs, be it for education, business, or personal use.
-              Security First: Advanced security measures protect user data and provide a safe browsing experience.
-              User-Centered Experience: With feedback-driven updates, Apple always prioritizes user satisfaction.
-              Offline Support: Innovative offline functionalities make it accessible anytime, anywhere.
-              Customizability: Users can personalize their experience to suit their unique preferences.
-              Expert Support Team: A responsive and professional team is always ready to assist with any issues.
-              Community Engagement: Apple fosters a vibrant community, enabling users to connect, collaborate, and grow together.
-              Apple is more than just a website; it is a gateway to achieving your objectives with ease. Its innovative approach and dedication to quality make it the perfect partner for modern digital needs. Whether you are a student, developer, or entrepreneur, Apple is designed to empower you every step of the way.
-            </div>
-          </>
-        )}
+        <div className='py-8 px-5 md:px-10 leading-8 text-justify text-slate-600 dark:text-slate-300 text-sm md:text-base font-semibold'>
+          In today is digital age, having a reliable and user-friendly platform is essential for achieving goals efficiently. Apple website has emerged as a top choice for individuals and organizations, offering exceptional features and unmatched performance. Here is why Apple stands out:
+
+          Modern Design: Apple boasts a sleek, intuitive design that ensures easy navigation for all users.
+          Speed and Reliability: The site is optimized for fast loading times, ensuring a seamless user experience.
+          Mobile Responsiveness: Apple is fully compatible with all devices, from desktops to smartphones.
+          Comprehensive Features: It offers tools and resources tailored to diverse needs, be it for education, business, or personal use.
+          Security First: Advanced security measures protect user data and provide a safe browsing experience.
+          User-Centered Experience: With feedback-driven updates, Apple always prioritizes user satisfaction.
+          Offline Support: Innovative offline functionalities make it accessible anytime, anywhere.
+          Customizability: Users can personalize their experience to suit their unique preferences.
+          Expert Support Team: A responsive and professional team is always ready to assist with any issues.
+          Community Engagement: Apple fosters a vibrant community, enabling users to connect, collaborate, and grow together.
+          Apple is more than just a website; it is a gateway to achieving your objectives with ease. Its innovative approach and dedication to quality make it the perfect partner for modern digital needs. Whether you are a student, developer, or entrepreneur, Apple is designed to empower you every step of the way.
+        </div>
+
         {/* end Discription abute site articeles */}
 
 
