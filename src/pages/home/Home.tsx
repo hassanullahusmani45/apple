@@ -172,7 +172,7 @@ export default function Home() {
 
 
         {/* start new articles part  */}
-        {!loading ? <NewArticlesSkeleton /> : (
+        {loading ? <NewArticlesSkeleton /> : (
           <>
             <div className='mt-10 md:mt-20 flex justify-between items-center'>
               <div className='w-full'>
