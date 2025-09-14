@@ -18,6 +18,7 @@ import SearchBar from '../../components/SearchBar';
 import CategoryCount from '../../components/CategoryCount';
 import LandingCounterSection from '../../components/LandingCounterSection';
 import LandingCounterSkeleton from '../../components/skeleton/LandingCounterSkeleton';
+import CategorySkeleton from '../../components/skeleton/CategoryCountSkeleton';
 
 
 export default function Home() {
@@ -158,7 +159,7 @@ export default function Home() {
 
 
         {/* start category part  */}
-        {categoryLoading ? <div></div> : (
+        {!categoryLoading ? <CategorySkeleton/> : (
           <>
             <div className='mt-16 md:mt-28 text-start font-semibold text-base md:text-xl text-sky-500'><HiMiniSquare3Stack3D className='inline size-6 md:size-8 text-blue-500' />Numbers of the categories articles</div>
             <div className='w-[350px] mt-1 border-t-2 border-dotted border-sky-300'></div>
