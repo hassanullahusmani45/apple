@@ -13,7 +13,7 @@ import { toastError } from "../utils/toastError";
 import { toastSuccess } from "../utils/toastSuccess";
 import { useEffect } from "react";
 import { useOnlineStatus } from "../hooks/useOnlineStatus";
-import { GiEarthAmerica } from "react-icons/gi";
+// import { GiEarthAmerica } from "react-icons/gi";
 
 export default function Header() {
 
