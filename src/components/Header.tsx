@@ -74,9 +74,9 @@ export default function Header() {
           {
             <div  className="flex justify-center items-center gap-x-0.5 sm:gap-1 md:gap-2 lg:gap-3">
               <ThemeToggleButton />
-              <div className="them-button-style">
+              {/* <div className="them-button-style">
                 <GiEarthAmerica className="size-3 sm:size-5" />
-              </div>
+              </div> */}
               {user!! ?
                 (
                   <HeaderDropdownMenu>
