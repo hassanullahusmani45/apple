@@ -3,10 +3,11 @@ import { TiThMenu } from 'react-icons/ti'
 
 
 interface HeaderDropdownMenuType {
-    children: ReactNode
+    children: ReactNode,
+    icon: ReactNode
 };
 
-export default function HeaderDropdownMenu({ children }: HeaderDropdownMenuType) {
+export default function HeaderDropdownMenu({ children,icon }: HeaderDropdownMenuType) {
 
     const [open, setOpen] = useState(false);
 
@@ -18,11 +19,11 @@ export default function HeaderDropdownMenu({ children }: HeaderDropdownMenuType)
             onMouseLeave={() => setOpen(false)}
         >
             <div className="them-button-style hover:-rotate-90 transition-all">
-                <TiThMenu className="size-3 sm:size-4" />
+                {icon}
             </div>
 
             {open && (
-                <div className="absolute right-0 bg-slate-200 dark:bg-gray-900 border-x rounded-lg px-2 py-3 lg:px-6 lg:py-4 space-y-2 md:space-y-3 shadow-lg">
+                <div className="absolute end-0 bg-slate-200 dark:bg-gray-900 border-x rounded-lg px-2 py-3 lg:px-6 lg:py-4 space-y-2 md:space-y-3 shadow-lg">
                     {children}
                 </div>
             )}

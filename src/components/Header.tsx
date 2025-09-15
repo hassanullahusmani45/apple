@@ -13,7 +13,8 @@ import { toastError } from "../utils/toastError";
 import { toastSuccess } from "../utils/toastSuccess";
 import { useEffect } from "react";
 import { useOnlineStatus } from "../hooks/useOnlineStatus";
-// import { GiEarthAmerica } from "react-icons/gi";
+import { GiEarthAmerica } from "react-icons/gi";
+import { TiThMenu } from "react-icons/ti";
 
 export default function Header() {
 
@@ -72,14 +73,17 @@ export default function Header() {
 
         <div>
           {
-            <div  className="flex justify-center items-center gap-x-0.5 sm:gap-1 md:gap-2 lg:gap-3">
+            <div className="flex justify-center items-center gap-x-0.5 sm:gap-1 md:gap-2 lg:gap-3">
               <ThemeToggleButton />
-              {/* <div className="them-button-style">
-                <GiEarthAmerica className="size-3 sm:size-5" />
-              </div> */}
+
+              <HeaderDropdownMenu icon={<GiEarthAmerica className="size-3 sm:size-5" />}>
+                <div className="auth-link-style" onClick={() => { }}>English</div>
+                <div dir="rtl" className="auth-link-style" onClick={() => { }}>دری</div>
+              </HeaderDropdownMenu>
+
               {user!! ?
                 (
-                  <HeaderDropdownMenu>
+                  <HeaderDropdownMenu icon={<TiThMenu className="size-3 sm:size-4" />}>
                     <Link to={"/profile"} className="auth-link-style">
                       <FaRegUser className="size-3 sm:size-4" />Profile
                     </Link>
@@ -88,7 +92,7 @@ export default function Header() {
                     </div>
                   </HeaderDropdownMenu>
                 ) : (
-                  <HeaderDropdownMenu>
+                  <HeaderDropdownMenu icon={<TiThMenu className="size-3 sm:size-4" />}>
                     <Link to={"/register"} className="auth-link-style">
                       <HiOutlineSquaresPlus className="size-4 sm:size-5" />Register
                     </Link>
