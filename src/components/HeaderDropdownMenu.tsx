@@ -1,5 +1,4 @@
 import { useState, type ReactNode } from 'react'
-import { TiThMenu } from 'react-icons/ti'
 
 
 interface HeaderDropdownMenuType {
