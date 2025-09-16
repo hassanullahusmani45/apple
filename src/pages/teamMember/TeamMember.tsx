@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { fetcheTeamMemberData } from '../../redux/slices/teamMember/teamMemberSlice';
 import ArticleCard from '../../components/ArticleCard';
-import articleImage from '../../assets/post1.webp';
+import articleImage from '../../../public/assets/post1.webp';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { MdWavingHand } from 'react-icons/md';
 import TeamMemberSkeleton from '../../components/skeleton/TeamMemberSkeleton';

@@ -1,5 +1,5 @@
 import { FormProvider, useForm } from "react-hook-form";
-import profileImg from "../../assets/hassan.jpeg";
+import profileImg from "../../../public/assets/hassan.jpeg";
 import RHFInput from "../../components/form/RHFInput";
 import Button from "../../components/ui/Button";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";

@@ -1,0 +1,20 @@
+{
+    "Contact Us": "Contact Us",
+    "Name": "Name",
+    "Enter your name": "Enter your name",
+    "Email": "Email",
+    "Subject": "Subject",
+    "Write your subject": "Write your subject",
+    "Message": "Message",
+    "Enter your contact message": "Enter your contact message",
+    "Send": "Send",
+    "About Me": "About Me",
+    "about_P1": "My name is Hasssanullah usmani I’m a Full-Stack Developer with over tow years of experience in web development.",
+    "about_P2": "I have worked as a back-end developer at Entire Thinkers Technology and am currently working as a frontend developer at the Ministry of Finence of Afghanistan.",
+    "My Skiles": "My Skiles",
+    "my_skilles_info": "React, Redux, Zod, React-Hooks-Form, Supabase, JavaScript, TypeScript, Tailwind CSS, Laravel, PHP, Bootstrap, HTML, CSS, Flex-box, CssGrid, MySQL, MongoDB, Git, GitHub, GitLup and more.",
+    "Contect Me": "Contect Me",
+    "address": "Kabul Tarafick square 3 street Afghanistan",
+    "phone": "+93 767 233 172",
+    "website": "https://hassanullahusmani-portfolio.netlify.app"
+}

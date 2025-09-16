@@ -28,7 +28,7 @@ html {
 }
 
 .auth-link-style {
-    @apply flex justify-start items-center gap-x-2 text-xs sm:text-sm dark:hover:text-orange-400 hover:text-green-500 cursor-pointer;
+    @apply flex justify-start items-center gap-x-2 text-xs sm:text-sm dark:hover:text-orange-400 hover:text-green-500 cursor-pointer text-nowrap;
 }
 
 .them-button-style {

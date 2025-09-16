@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import articleImage from "../../assets/post1.webp"
+import articleImage from "../../../public/assets/post1.webp"
 import { HiMiniMagnifyingGlass, HiOutlineShieldExclamation } from 'react-icons/hi2';
 import { IoFolderOpen } from "react-icons/io5";
 import ArticleCard from '../../components/ArticleCard';

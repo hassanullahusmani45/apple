@@ -16,6 +16,7 @@ import { toastSuccess } from "../../utils/toastSuccess";
 import { toastError } from "../../utils/toastError";
 import { useNavigate } from "react-router-dom";
 import { splitFullName } from "../../utils/splitFullName";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -25,7 +26,7 @@ export default function Register() {
     const [isShow, setIsShow] = useState<boolean>(false);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-
+    const { t } = useTranslation("authantication")
 
     const { success, loading, error } = useAppSelector((state) => state.auth);
 
@@ -76,21 +77,21 @@ export default function Register() {
     return (
         <AuthLayout
             page="Register"
-            information="Already have an account"
+            information={t("Already have an account")}
         >
             <FormProvider {...methods}>
                 <form ref={regosterBody} method="post" onSubmit={methods.handleSubmit(onSubmit)} noValidate>
-                    <RHFInput name="full_name" label="Full Name" placeholder="Enter your full name. " />
-                    <RHFInput name="email" label="Email" type="email" placeholder="user@gmail.com" />
+                    <RHFInput name="full_name" label={t("Full Name")} placeholder={t("Enter your full name.")} />
+                    <RHFInput name="email" label={t("Email")} type="email" placeholder="user@gmail.com" />
                     <div ref={eyeWrapper} className=" relative">
-                        <RHFInput name="password" label="Password" type={isShow ? "text" : "password"} placeholder="************" />
+                        <RHFInput name="password" label={t("Password")} type={isShow ? "text" : "password"} placeholder="************" />
                         <span className="absolute flex justify-center items-center  w-10 h-10 2xl:h-11 end-2 top-6 cursor-pointer" onMouseOver={() => setIsShow(true)} onMouseLeave={() => setIsShow(false)}>
                             {isShow ? <IoMdEyeOff className="size-6 text-green-600 dark:text-orange-500" /> : <IoIosEye className="size-6" />}
                         </span>
                     </div>
                     <div onClick={() => setIsShow(prev => !prev)} className="flex justify-start items-center w-fit gap-1.5 text-slate-500 dark:text-slate-400 text-sm my-3 hover:cursor-pointer">
                         {isShow ? <FaSquareCheck className="size-5 text-green-600 dark:text-orange-500" /> : <FiSquare className="size-5 text-green-600 dark:text-orange-500" />}
-                        show the password.
+                        {t("show the password.")}
                     </div>
 
                     <div className="flex justify-center items-center">
@@ -98,7 +99,7 @@ export default function Register() {
                             type="submit"
                             disabled={loading}
                         >
-                            {loading ? "Loading ..." : "Register"}
+                            {loading ? "Loading ..." : t("Register")}
 
                         </Button>
                     </div>

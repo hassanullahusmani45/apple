@@ -1,5 +1,5 @@
-import LogoLight from "../assets/Apple_Logo_light.png";
-import LogoDark from "../assets/Apple_Logo_dark.png";
+import LogoLight from "../../public/assets/Apple_Logo_light.png";
+import LogoDark from "../../public/assets/Apple_Logo_dark.png";
 import { Link, useNavigate } from "react-router-dom";
 import ThemeToggleButton from '../components/ThemeToggleButton';
 import { HiOutlineSquaresPlus } from "react-icons/hi2";
@@ -15,9 +15,12 @@ import { useEffect } from "react";
 import { useOnlineStatus } from "../hooks/useOnlineStatus";
 import { GiEarthAmerica } from "react-icons/gi";
 import { TiThMenu } from "react-icons/ti";
+import i18n from "../i18n";
+import { useTranslation } from "react-i18next";
 
 export default function Header() {
-
+  const { t } = useTranslation("header_and_footer");
+  const currentLang = i18n.language;
   const navigate = useNavigate()
   const dispatch = useAppDispatch();
   const { theme } = useTheme();
@@ -44,6 +47,14 @@ export default function Header() {
     }
   }, [success, error, isOnline, navigate, dispatch]);
 
+  useEffect(() => {
+    if (currentLang === 'dr') {
+      document.documentElement.setAttribute('dir', 'rtl');
+    } else {
+      document.documentElement.setAttribute('dir', 'ltr');
+    }
+  }, [currentLang]);
+
   const logout = async () => {
     try {
       if (!isOnline) {
@@ -65,10 +76,10 @@ export default function Header() {
         </Link>
 
         <div className="flex justify-center items-center gap-x-3 sm:gap-x-4 md:gap-6 lg:gap-x-8">
-          <Link to={"/"} className="linkClass">HOME</Link>
-          <Link to={"/articles"} className="linkClass">ARTICLES</Link>
-          <Link to={"/about"} className="linkClass">ABOUT</Link>
-          <Link to={"/contact-us"} className="linkClass">CONTACT US</Link>
+          <Link to={"/"} className="linkClass">{t("HOME")}</Link>
+          <Link to={"/articles"} className="linkClass">{t("ARTICLES")}</Link>
+          <Link to={"/about"} className="linkClass">{t("ABOUT")}</Link>
+          <Link to={"/contact-us"} className="linkClass">{t("CONTACT US")}</Link>
         </div>
 
         <div>
@@ -77,27 +88,27 @@ export default function Header() {
               <ThemeToggleButton />
 
               <HeaderDropdownMenu icon={<GiEarthAmerica className="size-3 sm:size-5" />}>
-                <div className="auth-link-style" onClick={() => { }}>English</div>
-                <div dir="rtl" className="auth-link-style" onClick={() => { }}>دری</div>
+                <div className="auth-link-style" onClick={() => { i18n.changeLanguage('en') }}>{t("English")}</div>
+                <div className="auth-link-style" onClick={() => { i18n.changeLanguage('dr') }}>{t("Dari")}</div>
               </HeaderDropdownMenu>
 
               {user!! ?
                 (
                   <HeaderDropdownMenu icon={<TiThMenu className="size-3 sm:size-4" />}>
                     <Link to={"/profile"} className="auth-link-style">
-                      <FaRegUser className="size-3 sm:size-4" />Profile
+                      <FaRegUser className="size-3 sm:size-4" />{t("Profile")}
                     </Link>
                     <div className="auth-link-style" onClick={logout}>
-                      <FaPowerOff className="size-3 sm:size-4" />Logout
+                      <FaPowerOff className="size-3 sm:size-4" />{t("Logout")}
                     </div>
                   </HeaderDropdownMenu>
                 ) : (
                   <HeaderDropdownMenu icon={<TiThMenu className="size-3 sm:size-4" />}>
                     <Link to={"/register"} className="auth-link-style">
-                      <HiOutlineSquaresPlus className="size-4 sm:size-5" />Register
+                      <HiOutlineSquaresPlus className="size-4 sm:size-5" />{t("Register")}
                     </Link>
                     <Link to={"/login"} className="auth-link-style">
-                      <IoMdLogIn className="size-4 sm:size-5" />Login
+                      <IoMdLogIn className="size-4 sm:size-5" />{t("Login")}
                     </Link>
                   </HeaderDropdownMenu>
                 )}

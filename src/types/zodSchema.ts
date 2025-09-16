@@ -7,7 +7,7 @@ export const ContactUsSchema = z.object({
 
     email: z
         .string()
-        .nonempty("Email is required !")
+        .nonempty("Email is required!")
         .email({ message: "Invalid email!" }),
 
     message: z
@@ -96,7 +96,7 @@ export const userPasswordSchema = z.object({
         .max(200, "confirm password cannot exceed 20 characters!"),
 }).refine((data) => data.new_password === data.confirm_password, {
     path: ["confirm_password"],
-    message: "pasword and confirm password is not equle",
+    message: "new pasword and confirm password is not equle!",
 });
 
 
@@ -104,15 +104,16 @@ export const userPasswordSchema = z.object({
 
 export const profileImgSchema = z.object({
     profile: z
-        .instanceof(FileList)
-        .refine((files) => files?.length === 1, {
-            message: "Please upload image file.",
-        })
+        .custom<FileList>(
+            (val) => val instanceof FileList && val.length > 0,
+            { message: "Please upload image file!" }
+        )
+        
         .refine(
             (files) =>
                 files && /\.(jpg|jpeg|png|webp)$/i.test(files[0]?.name),
             {
-                message: "The profile image format must be JPG, JPEG, PNG or WEBP.",
+                message: "The profile image format must be JPG, JPEG, PNG or WEBP!",
             }
         ),
 });

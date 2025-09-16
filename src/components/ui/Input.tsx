@@ -1,4 +1,5 @@
 import { forwardRef, type InputHTMLAttributes } from "react";
+import { useTranslation } from "react-i18next";
 import { TiWarningOutline } from "react-icons/ti";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -10,7 +11,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input = forwardRef<HTMLInputElement, InputProps>(({ label, error, id, className, ...props }, ref) => {
   const inputId = id || props.name;
-
+  const { t } = useTranslation('zod_error_messages');
   return (
     <div className="flex flex-col gap-0.5">
       {label && <label htmlFor={inputId} className="text-sm font-semibold ms-4">{label} :</label>}
@@ -21,7 +22,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ label, error, id, clas
         autoComplete="off"
         className={`input-style ${className}`}
       />
-      {error ? <span className="flex justify-start items-center gap-1 text-sm font-semibold text-red-500 ms-4 min-h-[1.3rem]"><TiWarningOutline className="size-5" />{error}</span> : <div className="min-h-[1.3rem]"></div>}
+      {error ? <span className="flex justify-start items-center gap-1 text-sm font-semibold text-red-500 ms-4 min-h-[1.3rem]"><TiWarningOutline className="size-5" />{t(error)}</span> : <div className="min-h-[1.3rem]"></div>}
     </div>
   );
 });

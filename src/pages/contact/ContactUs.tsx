@@ -3,7 +3,7 @@ import { LuMapPinned } from 'react-icons/lu';
 import { BsEnvelopeAt } from 'react-icons/bs';
 import { HiOutlineDevicePhoneMobile, HiOutlineGlobeAlt } from 'react-icons/hi2';
 import { GrSend } from "react-icons/gr";
-import hassanProfile from '../../assets/hassan.jpeg';
+import hassanProfile from '../../../public/assets/hassan.jpeg';
 import z from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
 import RHFInput from '../../components/form/RHFInput';
@@ -16,9 +16,11 @@ import { createContact, resetStatus } from '../../redux/slices/contactUs/contact
 import { toastSuccess } from '../../utils/toastSuccess';
 import { toastError } from '../../utils/toastError';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { useTranslation } from 'react-i18next';
 
 
 export default function ContactUs() {
+    const { t } = useTranslation("contect_us")
     const dispatch = useAppDispatch();
     const { success, error, loading } = useAppSelector(state => state.contactUs);
     const [contacFormBody] = useAutoAnimate<HTMLFormElement>();
@@ -59,23 +61,23 @@ export default function ContactUs() {
 
         <div className="grid grid-cols-8 gap-y-8 gap-5 xl:gap-10 2xl:gap-20 lg:my-10">
             <div className="col-span-8 lg:col-span-3 h-fit bg-slate-200 dark:bg-slate-800 p-4 xl:p-8 lg:my-8 rounded-2xl shadow-md">
-                <div className="text-2xl font-bold text-center mb-4 text-green-600 dark:text-orange-400">Contact Us</div>
+                <div className="text-2xl font-bold text-center mb-4 text-green-600 dark:text-orange-400">{t("Contact Us")}</div>
                 <FormProvider {...methods}>
                     <form ref={contacFormBody} className="grid grid-cols-2 gap-x-4 pt-2 lg:pt-4" onSubmit={methods.handleSubmit(onSubmit)} noValidate>
                         <div className="col-span-2 md:col-span-1 lg:col-span-2">
-                            <RHFInput name="name" label="Name" placeholder='Enter your name' />
+                            <RHFInput name="name" label={t("Name")} placeholder={t('Enter your name')} />
                         </div>
                         <div className="col-span-2 md:col-span-1 lg:col-span-2">
-                            <RHFInput name="email" label="Email" type="email" placeholder='example@gmail.com' />
+                            <RHFInput name="email" label={t("Email")} type="email" placeholder='example@gmail.com' />
                         </div>
                         <div className="col-span-2">
-                            <RHFInput name="subject" label="Subject" placeholder='Write your subject' />
+                            <RHFInput name="subject" label={t("Subject")} placeholder={t('Write your subject')} />
                         </div>
                         <div className="col-span-2">
                             <RHFTextarea
                                 name='message'
-                                label='Message'
-                                placeholder='Enter your contact message'
+                                label={t('Message')}
+                                placeholder={t('Enter your contact message')}
                                 rows={5}
                             />
                         </div>
@@ -88,7 +90,7 @@ export default function ContactUs() {
                                 {loading ? <div>Loading ...</div> :
                                     (<>
                                         <GrSend className="size-5" />
-                                        Send
+                                        {t("Send")}
                                     </>)
                                 }
                             </Button>
@@ -112,32 +114,31 @@ export default function ContactUs() {
 
 
 
-                <div className="text-base font-bold mt-8">Abute Me</div>
+                <div className="text-base font-bold mt-8">{t("About Me")}</div>
                 <p className="text-slate-800 dark:text-gray-300 text-justify pt-4 leading-7">
-                    My name is Hasssanullah usmani I’m a Full-Stack Developer with over three years of experience in web development.
+                    {t("about_P1")}
                     <br />
-                    I have worked as a back-end developer at Entire Thinkers Technology and am currently working as a Full-Stack Developer at the Ministry of Transport and Aviation in Afghanistan contry.
+                    {t("about_P2")}
                 </p>
 
-                <div className="text-base font-semibold mt-8">My Skiles</div>
+                <div className="text-base font-semibold mt-8">{t("My Skiles")}</div>
                 <p className="text-slate-800 dark:text-gray-300 text-justify pt-4 leading-7">
-                    React, JavaScript, Vue, Tailwind CSS, Laravel, PHP, Bootstrap, HTML, CSS, Flex-box, CssGrid, MySQL, MongoDB, Git, GitHub, and more.
+                    {t("my_skilles_info")}
                 </p>
-                <div className="text-base font-semibold mt-8">Contect Me</div>
+                <div className="text-base font-semibold mt-8">{t("Contect Me")}</div>
                 <div className="text-slate-800 dark:text-gray-300 text-justify pt-4 leading-7">
                     <div className="flex items-start md:items-center gap-2 ">
                         <LuMapPinned className="size-5 text-slate-950 dark:text-white" />
-                        <span className="break-all">
-                            Kabul Tarafick square 3 street Afghanistan
-                        </span>
+                        <span className="break-all">{t("address")}</span>
                     </div>
                     <div className="flex items-center gap-2"><BsEnvelopeAt className="size-5 text-slate-950 dark:text-white" />hassanullahusmani45@gmail.com</div>
-                    <div className="flex items-center gap-2"><HiOutlineDevicePhoneMobile className="size-5 text-slate-950 dark:text-white" />+93 767 233 172</div>
+                    <div className="flex items-center gap-2">
+                        <HiOutlineDevicePhoneMobile className="size-5 text-slate-950 dark:text-white" />
+                        <span dir='ltr'>{t("phone")}</span>
+                    </div>
                     <a href='https://hassanullahusmani-portfolio.netlify.app' target='_blank' className="flex items-start md:items-center gap-2">
                         <HiOutlineGlobeAlt className="size-6 text-slate-950 dark:text-white" />
-                        <span className="break-all">
-                            https://hassanullahusmani-portfolio.netlify.app
-                        </span>
+                        <span className="break-all">{t("website")}</span>
                     </a>
                 </div>
             </div>

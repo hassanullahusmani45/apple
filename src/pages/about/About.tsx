@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import aboutImage from '../../assets/about.png'
+import aboutImage from '../../../public/assets/about.png'
 import { useAppSelector } from '../../hooks/reduxHooks'
 import LandingCounterSection from '../../components/LandingCounterSection'
 import TeamMemmberCard from '../../components/TeamMemmberCard';

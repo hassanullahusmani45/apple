@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import type { TextareaHTMLAttributes } from "react";
+import { useTranslation } from "react-i18next";
 import { TiWarningOutline } from "react-icons/ti";
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -12,6 +13,7 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({ name, label, error, id, ...props }, ref) => {
 
     const elementId = id || name;
+    const { t } = useTranslation('zod_error_messages');
 
 
     return (
@@ -25,7 +27,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({ name, label, 
                 {...props}
                 className="textarea-style"
             ></textarea>
-            {error ? <span className="flex justify-start items-center gap-1 text-sm font-semibold text-red-500 ms-4"><TiWarningOutline className="size-6" />{error}</span> : <div className="min-h-[1.5rem]"></div>}
+            {error ? <span className="flex justify-start items-center gap-1 text-sm font-semibold text-red-500 ms-4"><TiWarningOutline className="size-6" />{t(error)}</span> : <div className="min-h-[1.5rem]"></div>}
         </div>
     );
 });
