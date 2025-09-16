@@ -8,11 +8,12 @@ import { FaFilter } from "react-icons/fa6";
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import type { Article } from '../../types/type';
 import ArticlesSkeleton from '../../components/skeleton/ArticlesSkeleton';
+import { useTranslation } from 'react-i18next';
 
 export default function Articles() {
     const { articles, loading } = useAppSelector((state) => state.home);
     const [articlesBody] = useAutoAnimate<HTMLDivElement>();
-
+    const { t } = useTranslation("main")
 
 
     const [filterArticles, setFilterArticles] = useState<Article[]>([]);
@@ -88,8 +89,8 @@ export default function Articles() {
         <div>
 
             <div className='flex justify-between items-center mb-3 px-4'>
-                <div className='text-xl md:text-2xl font-semibold'>Total Articles</div>
-                <div className='font-bold text-sm md:text-lg text-green-500'> <span className='bg-slate-200 dark:bg-slate-700 px-3 py-1 rounded-md'>{filterArticles.length}</span> <span className='text-slate-700 dark:text-slate-200 text-sm md:text-base font-semibold'>Filtered Articles</span></div>
+                <div className='text-xl md:text-2xl font-semibold'>{t("Total Articles")}</div>
+                <div className='font-bold text-sm md:text-lg text-green-500'> <span className='bg-slate-200 dark:bg-slate-700 px-3 py-1 rounded-md'>{filterArticles.length}</span> <span className='text-slate-700 dark:text-slate-200 text-sm md:text-base font-semibold'>{t("Filtered Articles")}</span></div>
             </div>
 
 
@@ -102,32 +103,32 @@ export default function Articles() {
                                 <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                     <HiMiniMagnifyingGlass className='size-6' />
                                 </div>
-                                <input type="text" id="search" placeholder="Search articles ..."
+                                <input type="text" id="search" placeholder={t("Search articles ...")}
                                     className="block border-none outline-none bg-slate-200 dark:bg-slate-800 w-full py-3.5 md:py-4 ps-10 pe-24 text-xs md:text-sm placeholder:italic placeholder:text-slate-700 dark:placeholder:text-slate-300 placeholder:text-sm"
                                     required autoComplete='off' onChange={(event) => { setSearchValue(event.target.value.toLowerCase()) }} value={searchValue} />
                                 <button type="button" onClick={searchHandler}
-                                    className="absolute bottom-1.5 end-1.5 md:end-2.5 md:bottom-2.5 text-white bg-teal-600 dark:bg-teal-700 hover:bg-teal-500 dark:hover:bg-teal-900 font-medium rounded-full text-sm px-4 py-1.5 md:py-2">Search</button>
+                                    className="absolute bottom-1.5 end-1.5 md:end-2.5 md:bottom-2.5 text-white bg-teal-600 dark:bg-teal-700 hover:bg-teal-500 dark:hover:bg-teal-900 font-medium rounded-full text-sm px-4 py-1.5 md:py-2">{t("Search")}</button>
                             </div>
                         </div>
 
                         <div className='col-span-12  md:col-span-6 lg:col-span-12 md:order-1 lg:order-2 bg-slate-200 dark:bg-slate-800 p-4 rounded-xl'>
-                            <div className='flex justify-start items-center gap-2 font-semibold text-sm md:text-lg'><IoFolderOpen className='size-5.5 md:size-7' /> Article categories</div>
+                            <div className='flex justify-start items-center gap-2 font-semibold text-sm md:text-lg'><IoFolderOpen className='size-5.5 md:size-7' />{t("Article categories")}</div>
                             <div className='mt-4 md:mt-6 ms-3 space-y-2 md:space-y-5'>
                                 <div className="flex items-center">
                                     <input checked={filterStatus === "frontend"} id="frontend" type="checkbox" className="w-3 h-3" onChange={() => setFilterStatus("frontend")} />
-                                    <label htmlFor="frontend" className={`ms-2 text-sm font-medium md:font-semibold ${filterStatus == "frontend" ? "text-teal-400" : "text-slate-700 dark:text-white/50"}`}>Frontend</label>
+                                    <label htmlFor="frontend" className={`ms-2 text-sm font-medium md:font-semibold ${filterStatus == "frontend" ? "text-teal-400" : "text-slate-700 dark:text-white/50"}`}>{t("Frontend")}</label>
                                 </div>
                                 <div className="flex items-center">
                                     <input checked={filterStatus === "backend"} id="backend" type="checkbox" className="w-3 h-3" onChange={() => setFilterStatus("backend")} />
-                                    <label htmlFor="backend" className={`ms-2 text-sm font-medium md:font-semibold ${filterStatus == "backend" ? "text-teal-400" : "text-slate-700 dark:text-white/50"}`}>Backend</label>
+                                    <label htmlFor="backend" className={`ms-2 text-sm font-medium md:font-semibold ${filterStatus == "backend" ? "text-teal-400" : "text-slate-700 dark:text-white/50"}`}>{t("Backend")}</label>
                                 </div>
                                 <div className="flex items-center">
                                     <input checked={filterStatus === "artificialIntelligence"} id="artificialIntelligence" type="checkbox" className="w-3 h-3" onChange={() => setFilterStatus("artificialIntelligence")} />
-                                    <label htmlFor="artificialIntelligence" className={`ms-2 text-sm font-medium md:font-semibold ${filterStatus == "artificialIntelligence" ? "text-teal-400" : "text-slate-700 dark:text-white/50"}`}>Artificial intelligence</label>
+                                    <label htmlFor="artificialIntelligence" className={`ms-2 text-sm font-medium md:font-semibold ${filterStatus == "artificialIntelligence" ? "text-teal-400" : "text-slate-700 dark:text-white/50"}`}>{t("Artificial intelligence")}</label>
                                 </div>
                                 <div className="flex items-center">
                                     <input checked={filterStatus === "security"} id="security" type="checkbox" className="w-3 h-3" onChange={() => setFilterStatus("security")} />
-                                    <label htmlFor="security" className={`ms-2 text-sm font-medium md:font-semibold ${filterStatus == "security" ? "text-teal-400" : "text-slate-700 dark:text-white/50"}`}>Security</label>
+                                    <label htmlFor="security" className={`ms-2 text-sm font-medium md:font-semibold ${filterStatus == "security" ? "text-teal-400" : "text-slate-700 dark:text-white/50"}`}>{t("Security")}</label>
                                 </div>
                             </div>
 
@@ -142,13 +143,13 @@ export default function Articles() {
                     <div className='flex justify-between sm:justify-start items-center rounded-xl bg-slate-200 dark:bg-slate-800 px-2 md:px-4 sm:gap-8'>
                         <div className='flex justify-start items-center sm:me-8 py-2.5 md:py-3 gap-x-1'>
                             <FaFilter className='size-5 md:size-6' />
-                            <div className='text-lg font-semibold hidden md:block'>Filter Articles By :</div>
-                            <div className='text-base font-semibold block md:hidden'>Filter By:</div>
+                            <div className='text-lg font-semibold hidden md:block'>{t("Filter Articles By")} :</div>
+                            <div className='text-base font-semibold block md:hidden'>{t("Filter By")}:</div>
                         </div>
-                        <div onClick={() => { setFilterStatus("all") }} className={`text-sm md:text-base cursor-pointer font-semibold px-1.5 ${filterStatus == "all" ? "text-teal-500 border-y-2 border-teal-600 py-2.5 md:py-3" : "text-slate-600 dark:text-slate-400"}`}>All</div>
-                        <div onClick={() => { setFilterStatus("mostPopular") }} className={`text-sm md:text-base cursor-pointer font-semibold px-1.5 ${filterStatus == "mostPopular" ? "text-teal-500 border-y-2 border-teal-600 py-2.5 md:py-3" : "text-slate-600 dark:text-slate-400"}`}>Most popular</div>
-                        <div onClick={() => { setFilterStatus("new") }} className={`text-sm md:text-base cursor-pointer font-semibold px-1.5 ${filterStatus == "new" ? "text-teal-500 border-y-2 border-teal-600 py-2.5 md:py-3" : "text-slate-600 dark:text-slate-400"}`}>Newest</div>
-                        <div onClick={() => { setFilterStatus("old") }} className={`text-sm md:text-base cursor-pointer font-semibold px-1.5 ${filterStatus == "old" ? "text-teal-500 border-y-2 border-teal-600 py-2.5 md:py-3" : "text-slate-600 dark:text-slate-400"}`}>Oldest</div>
+                        <div onClick={() => { setFilterStatus("all") }} className={`text-sm md:text-base cursor-pointer font-semibold px-1.5 ${filterStatus == "all" ? "text-teal-500 border-y-2 border-teal-600 py-2.5 md:py-3" : "text-slate-600 dark:text-slate-400"}`}>{t("All")}</div>
+                        <div onClick={() => { setFilterStatus("mostPopular") }} className={`text-sm md:text-base cursor-pointer font-semibold px-1.5 ${filterStatus == "mostPopular" ? "text-teal-500 border-y-2 border-teal-600 py-2.5 md:py-3" : "text-slate-600 dark:text-slate-400"}`}>{t("Most popular")}</div>
+                        <div onClick={() => { setFilterStatus("new") }} className={`text-sm md:text-base cursor-pointer font-semibold px-1.5 ${filterStatus == "new" ? "text-teal-500 border-y-2 border-teal-600 py-2.5 md:py-3" : "text-slate-600 dark:text-slate-400"}`}>{t("Newest")}</div>
+                        <div onClick={() => { setFilterStatus("old") }} className={`text-sm md:text-base cursor-pointer font-semibold px-1.5 ${filterStatus == "old" ? "text-teal-500 border-y-2 border-teal-600 py-2.5 md:py-3" : "text-slate-600 dark:text-slate-400"}`}>{t("Oldest")}</div>
                     </div>
 
                     {loading ? (<ArticlesSkeleton />) :

@@ -3,6 +3,7 @@ import { FaEye } from "react-icons/fa";
 import { FiArrowRightCircle } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import type { ArticleCardType } from "../types/type";
+import { useTranslation } from "react-i18next";
 
 export default function ArticleCard({
   src,
@@ -16,10 +17,11 @@ export default function ArticleCard({
   className,
 }: ArticleCardType) {
 
+  const { t } = useTranslation("main");
   return (
     <div className={`relative flex flex-col justify-between rounded-xl text-black dark:text-white ${!className && "bg-slate-800"} ${className}`}>
       <span className="absolute right-2 top-2 w-8 h-10 flex flex-col justify-center items-center text-slate-200 bg-green-500 rounded text-sm font-light shadow shadow-white"><FaEye className="size-4 text-white" />{viewCount}</span>
-      
+
       <Link to={link}><img className="w-full h-46 rounded-t-xl overflow-hidden" src={src} /></Link>
 
       <div className="px-4 py-8 flex flex-col justify-between h-[295px]">
@@ -31,8 +33,8 @@ export default function ArticleCard({
           <div className="text-nowrap">{date}</div>
         </div>
         <Link to={link} className="flex justify-center items-center gap-1 text-sm hover:text-green-500 dark:hover:text-orange-400 hover:scale-105 transition-all">
-          Study the article
-          <FiArrowRightCircle className="size-6 text-green-500 dark:text-orange-400" />
+          {t("Study the article")}
+          <FiArrowRightCircle className="size-6 text-green-500 dark:text-orange-400 rtl:rotate-180" />
         </Link>
       </div>
 
