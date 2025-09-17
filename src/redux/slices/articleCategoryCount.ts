@@ -18,7 +18,6 @@ export const fetchCategoryCount = createAsyncThunk(
             .from("articles")
             .select("id, categories(name)");
 
-        console.log("Articles with categories:", data);
 
         // we will count the articles in each category
         const counts: Record<string, number> = {
@@ -57,7 +56,6 @@ const articleCategoryCount = createSlice({
             state.backend = action.payload.backend;
             state.artificialIntelligence = action.payload.artificialIntelligence;
             state.fetched = true;
-            console.log("ArticlesCategory Count:", action.payload);
             state.loading = false;
         });
     },

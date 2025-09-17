@@ -31,7 +31,6 @@ export default function Register() {
     const { success, loading, error } = useAppSelector((state) => state.auth);
 
     type FormData = z.infer<typeof RegisterSchema>
-    console.log("Success:", success);
 
     const defaultValues = {
         full_name: '',

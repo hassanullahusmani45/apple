@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
@@ -20,6 +20,7 @@ import CategoryCountSkeleton from '../../components/skeleton/CategoryCountSkelet
 import TeamMembersSkeleton from '../../components/skeleton/homepage/TeamMembersSkeleton';
 import AllArticlesSkeleton from '../../components/skeleton/homepage/AllArticlesSkeleton';
 import NewArticlesSkeleton from '../../components/skeleton/homepage/NewArticlesSkeleton';
+import { useTranslation } from "react-i18next";
 
 
 export default function Home() {
@@ -28,6 +29,9 @@ export default function Home() {
   const { teamMembers: countTeamMembers, articles: countArticles, subscribers: countSubscribers, loading: countLoading } = useAppSelector(state => state.stats)
 
   const { loading: categoryLoading } = useAppSelector(state => state.categoryCount);
+
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
 
   const swiperRef = useRef<SwiperType | null>(null);
 
@@ -84,6 +88,8 @@ export default function Home() {
             <div className='w-[300px] mt-1 border-t-2 border-dotted border-teal-300'></div>
             <div className='w-[85%] sm:w-full mx-auto py-8'>
               <Swiper
+                key={lang}
+                dir={lang == "dr" ? "rtl" : 'ltr'}
                 modules={[Autoplay]}
                 loop={teamMembers.length >= 4}
                 autoplay={{
@@ -181,13 +187,15 @@ export default function Home() {
               </div>
 
               <div className='flex justify-center items-center gap-2'>
-                <span className='p-1 md:p-2 bg-green-500 rounded-full hover:bg-green-700 transition-colors cursor-pointer' onClick={handlePrev}><FiChevronLeft className='size-6 md:size-7 text-white' /></span>
-                <span className='p-1 md:p-2 bg-green-500 rounded-full hover:bg-green-700 transition-colors cursor-pointer' onClick={handleNext}><FiChevronRight className='size-6 md:size-7 text-white' /></span>
+                <span className='p-1 md:p-2 bg-green-500 rounded-full hover:bg-green-700 transition-colors cursor-pointer order-1 rtl:order-2' onClick={handlePrev}><FiChevronLeft className='size-6 md:size-7 text-white' /></span>
+                <span className='p-1 md:p-2 bg-green-500 rounded-full hover:bg-green-700 transition-colors cursor-pointer order-2 rtl:order-1' onClick={handleNext}><FiChevronRight className='size-6 md:size-7 text-white' /></span>
               </div>
             </div>
 
             <div className='w-[85%] sm:w-full mx-auto py-8'>
               <Swiper
+                key={lang}
+                dir={lang == "dr" ? "rtl" : 'ltr'}
                 slidesPerView={4}
                 spaceBetween={20}
                 loop={newArticles.length >= 4}

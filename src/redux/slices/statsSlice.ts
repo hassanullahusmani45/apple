@@ -43,9 +43,6 @@ export const fetchStats = createAsyncThunk(
             .from('visitors')
             .select('id', { count: "exact", head: true });
 
-            console.log(`Team Members: ${teamMembers}, Articles: ${articles}, Comments: ${comments}, Subscribers: ${subscribers}`);
-            
-
         return { teamMembers, articles, comments, subscribers };
     }
 )

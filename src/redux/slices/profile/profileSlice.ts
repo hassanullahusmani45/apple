@@ -93,7 +93,6 @@ export const updateProfileImge = createAsyncThunk(
             });
 
         if (uploadError) {
-            console.log("Some thing went wrong!");
             return rejectWithValue(uploadError.message || "مشکل بیش آمده هست");
         }
 

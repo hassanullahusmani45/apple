@@ -42,7 +42,6 @@ const articleSlice = createSlice({
                 state.loading = false;
                 state.error = null;
                 state.article = action.payload;
-                console.log(state.article);
             })
             .addCase(fetchArticleData.rejected, (state, action) => {
                 state.loading = false;

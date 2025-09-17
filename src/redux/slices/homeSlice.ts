@@ -54,8 +54,6 @@ const homeSlice = createSlice({
                 state.articles = action.payload.articles ?? [];
                 
                 state.newArticles = state.articles.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).slice(0, 6);
-                console.log("Fetched articles:", state.articles);
-
             })
             .addCase(fetchHomeData.rejected, (state, action) => {
                 state.loading = false;

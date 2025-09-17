@@ -39,7 +39,6 @@ export default function ContactUs() {
     });
 
     const onSubmit = (data: FormData) => {
-        console.log("Data", data);
         dispatch(createContact(data));
     }
 
