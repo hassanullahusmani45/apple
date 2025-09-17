@@ -30,7 +30,7 @@ export default function Home() {
 
   const { loading: categoryLoading } = useAppSelector(state => state.categoryCount);
 
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('main');
   const lang = i18n.language;
 
   const swiperRef = useRef<SwiperType | null>(null);
@@ -52,8 +52,8 @@ export default function Home() {
       <div className='flex flex-col justify-center items-center pt-10 md:pt-16 lg:pt-20'>
 
         <div className='text-2xl md:text-3xl font-bold font-serif text-center bg-gradient-to-r from-green-600 dark:from-orange-500 to-orange-500 dark:to-green-500 bg-clip-text text-transparent'>
-          <div className=" mb-2 md:mb-4"> Apple Tecnology</div>
-          <div className="">The Best Place For Lernig Articles</div>
+          <div className=" mb-2 md:mb-4">{t("Apple Tecnology")}</div>
+          <div className="">{t("The Best Place For Learning Modren Articles")}</div>
         </div>
         <SearchBar articles={articles} />
 
@@ -84,8 +84,8 @@ export default function Home() {
 
         {loading ? <TeamMembersSkeleton /> : (
           <>
-            <div className='mt-20 md:mt-28 text-start font-semibold text-base md:text-xl text-teal-500'><HiSparkles className='inline size-6 md:size-8 text-green-500' /> Our Experienced Team</div>
-            <div className='w-[300px] mt-1 border-t-2 border-dotted border-teal-300'></div>
+            <div className='mt-20 md:mt-28 text-start font-semibold text-base md:text-xl text-teal-500'><HiSparkles className='inline size-6 md:size-8 text-green-500' /> {t("Our Experienced Team")}</div>
+            <div className='w-[16rem] rtl:w-[10rem] mt-1 border-t-2 border-dotted border-teal-300'></div>
             <div className='w-[85%] sm:w-full mx-auto py-8'>
               <Swiper
                 key={lang}
@@ -133,8 +133,8 @@ export default function Home() {
         {/* start all articles */}
         {loading ? <AllArticlesSkeleton /> : (
           <>
-            <div className='mt-10 md:mt-20 text-start font-semibold text-base md:text-xl text-fuchsia-500'><HiInboxStack className='inline size-6 md:size-8 text-violet-500' />All Articles</div>
-            <div className='w-[150px] mt-1 border-t-2 border-dotted border-fuchsia-300 '></div>
+            <div className='mt-10 md:mt-20 text-start font-semibold text-base md:text-xl text-fuchsia-500'><HiInboxStack className='inline size-6 md:size-8 text-violet-500' /> {t("All Articles")}</div>
+            <div className='w-[10rem] rtl:w-[8rem] mt-1 border-t-2 border-dotted border-fuchsia-300 '></div>
 
             <div className='w-[85%] sm:w-full mx-auto grid grid-cols-12 gap-2 md:gap-4 lg:gap-6 2xl:gap-8 my-10'>
 
@@ -166,8 +166,8 @@ export default function Home() {
         {/* start category part  */}
         {categoryLoading ? <CategoryCountSkeleton /> : (
           <>
-            <div className='mt-16 md:mt-28 text-start font-semibold text-base md:text-xl text-sky-500'><HiMiniSquare3Stack3D className='inline size-6 md:size-8 text-blue-500' />Numbers of the categories articles</div>
-            <div className='w-[350px] mt-1 border-t-2 border-dotted border-sky-300'></div>
+            <div className='mt-16 md:mt-28 text-start font-semibold text-base md:text-xl text-sky-500'><HiMiniSquare3Stack3D className='inline size-6 md:size-8 text-blue-500' /> {t("Numbers of the categories articles")}</div>
+            <div className='w-[23rem] rtl:w-[13rem] mt-1 border-t-2 border-dotted border-sky-300'></div>
             <CategoryCount />
           </>
         )}
@@ -182,7 +182,7 @@ export default function Home() {
           <>
             <div className='mt-10 md:mt-20 flex justify-between items-center'>
               <div className='w-full'>
-                <div className='text-start font-semibold text-base md:text-xl text-emerald-500'><MdOutlineWhatshot className='inline size-6 md:size-8 text-green-500' />New Articles</div>
+                <div className='text-start font-semibold text-base md:text-xl text-emerald-500'><MdOutlineWhatshot className='inline size-6 md:size-8 text-green-500' /> {t("New Articles")}</div>
                 <div className='w-[170px] mt-1 border-t-2 border-dotted border-emerald-300 '></div>
               </div>
 
@@ -237,24 +237,12 @@ export default function Home() {
 
         {/* start Discription abute site articles */}
 
-        <div className='mt-10 md:mt-20 text-center font-semibold text-base md:text-2xl text-teal-400'>Why we chose Apple web sit</div>
+        <div className='mt-10 md:mt-20 text-center font-semibold text-base md:text-2xl text-teal-400'>{t("WhyApple")}</div>
         <div className=' w-[350px] mx-auto mt-1 border-t-2 border-dotted border-teal-500' ></div>
 
         <div className='py-8 px-5 md:px-10 leading-8 text-justify text-slate-600 dark:text-slate-300 text-sm md:text-base font-semibold'>
-          In today is digital age, having a reliable and user-friendly platform is essential for achieving goals efficiently. Apple website has emerged as a top choice for individuals and organizations, offering exceptional features and unmatched performance. Here is why Apple stands out:
-
-          Modern Design: Apple boasts a sleek, intuitive design that ensures easy navigation for all users.
-          Speed and Reliability: The site is optimized for fast loading times, ensuring a seamless user experience.
-          Mobile Responsiveness: Apple is fully compatible with all devices, from desktops to smartphones.
-          Comprehensive Features: It offers tools and resources tailored to diverse needs, be it for education, business, or personal use.
-          Security First: Advanced security measures protect user data and provide a safe browsing experience.
-          User-Centered Experience: With feedback-driven updates, Apple always prioritizes user satisfaction.
-          Offline Support: Innovative offline functionalities make it accessible anytime, anywhere.
-          Customizability: Users can personalize their experience to suit their unique preferences.
-          Expert Support Team: A responsive and professional team is always ready to assist with any issues.
-          Community Engagement: Apple fosters a vibrant community, enabling users to connect, collaborate, and grow together.
-          Apple is more than just a website; it is a gateway to achieving your objectives with ease. Its innovative approach and dedication to quality make it the perfect partner for modern digital needs. Whether you are a student, developer, or entrepreneur, Apple is designed to empower you every step of the way.
-        </div>
+          {t("WhyChoseAppleInfo")}
+         </div>
 
         {/* end Discription abute site articeles */}
 

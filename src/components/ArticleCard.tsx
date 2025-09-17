@@ -4,6 +4,7 @@ import { FiArrowRightCircle } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import type { ArticleCardType } from "../types/type";
 import { useTranslation } from "react-i18next";
+import { localizedNumber } from "../utils/localizedNumber";
 
 export default function ArticleCard({
   src,
@@ -22,7 +23,7 @@ export default function ArticleCard({
 
   return (
     <div className={`relative flex flex-col justify-between rounded-xl text-black dark:text-white ${!className && "bg-slate-800"} ${className}`}>
-      <span className="absolute right-2 top-2 w-8 h-10 flex flex-col justify-center items-center text-slate-200 bg-green-500 rounded text-sm font-light shadow shadow-white"><FaEye className="size-4 text-white" />{viewCount}</span>
+      <span className="absolute right-2 top-2 w-8 h-10 flex flex-col justify-center items-center text-slate-200 bg-green-500 rounded text-sm font-light shadow shadow-white"><FaEye className="size-4 text-white" />{localizedNumber(viewCount)}</span>
 
       <Link to={link}><img className="w-full h-46 rounded-t-xl overflow-hidden" src={src} /></Link>
 

@@ -1,5 +1,6 @@
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +14,7 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
+    const { t } = useTranslation("main");
     const navigate = useNavigate();
     const [searchArticle, setSearchArticle] = useState<Article[]>([]);
     const [onFocus, setOnFocus] = useState(false);
@@ -65,7 +67,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
                 value={searchInputValue}
                 type="text"
                 name="search"
-                placeholder="Search articles here..."
+                placeholder={t("search articles")}
                 className={`block border-none outline-none bg-slate-600 dark:bg-slate-800 text-white dark:text-slate-100 w-full py-3 ps-4 md:ps-8 pe-10 text-base font-semibold placeholder:text-slate-100 dark:placeholder:text-slate-300 placeholder:text-sm placeholder:italic placeholder:font-normal ${onFocus ? 'rounded-t-2xl' : 'rounded-full'}`}
                 autoComplete='off'
             />
@@ -85,7 +87,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
             <div ref={searchBody} className={`absolute right-0 left-0 top-12.5 max-h-50 md:max-h-62 w-full bg-slate-200 dark:bg-slate-700/95 rounded-b-xl lg:rounded-b-2xl py-1 overflow-hidden transition-all ${onFocus ? 'opacity-100 pointer-events-auto' : 'hidden'}`}>
                 {searchArticle.length === 0 ?
                     <div className="text-center font-bold text-lg text-green-600 dark:text-orange-400 py-8">
-                        🙈 No articles found !!!
+                        {t("No article found")}
                     </div> :
                     searchArticle.map((article, index) => (
                         <div

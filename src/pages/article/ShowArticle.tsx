@@ -10,8 +10,11 @@ import { fetchArticleData } from "../../redux/slices/article/articleSlice";
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import TeamMemberSidebar from '../../components/TeamMemberSidebar';
 import ShowArticleSkeleton from '../../components/skeleton/ShowArticleSkeleton';
+import { useTranslation } from 'react-i18next';
+import { localizedNumber } from '../../utils/localizedNumber';
 
 export default function ShowArticle() {
+    const { t, i18n } = useTranslation("main");
     const { title } = useParams<{ title: string }>();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -54,12 +57,12 @@ export default function ShowArticle() {
                     </div>
 
                     <div className='col-span-12 lg:col-span-8 order-1 lg:order-2 rounded-xl p-4 md:p-8 bg-slate-200 dark:bg-slate-800'>
-                        <div className='text-2xl font-bold text-black dark:text-white'>{article?.title}</div>
+                        <div className='text-xl lg:text-2xl font-bold text-black dark:text-white'>{article?.title}</div>
                         <hr className='border-slate-400 dark:border-slate-600 my-3' />
                         <div className='flex justify-between md:justify-start items-center md:gap-x-16 text-sm text-slate-700 dark:text-slate-400'>
                             <div className='flex justify-center gap-1 md:gap-x-2' ><FaUser className='size-4.5' />{author?.first_name} {author?.last_name}</div>
-                            <div className='flex justify-center gap-1 md:gap-x-2' ><IoCalendarSharp className='size-4.5' />{article?.created_at.slice(0, 10)}</div>
-                            <div className='flex justify-center gap-1 md:gap-x-2' ><FaEye className='size-4.5' />{article?.view_count}</div>
+                            <div className='flex justify-center gap-1 md:gap-x-2' ><IoCalendarSharp className='size-4.5' />{new Date(article?.created_at!).toLocaleDateString(i18n.language == 'dr' ? "fa-AF" : "en-US")}</div>
+                            <div className='flex justify-center gap-1 md:gap-x-2' ><FaEye className='size-4.5' />{localizedNumber(article?.view_count || 0)}</div>
                         </div>
 
                         {/* show the articl cover_img */}
@@ -70,7 +73,7 @@ export default function ShowArticle() {
                         {/* show the Article Siction titles */}
                         <div className=' w-full bg-white dark:bg-slate-900/70 my-8 p-5 rounded-2xl !rounded-tl-none border border-slate-300 dark:border-slate-700/60'>
                             <div className=' flex justify-between items-center'>
-                                <div className='flex items-center gap-x-2 text-lg font-semibold text-slate-700 dark:text-slate-100' ><HiBars4 className='size-6 text-black dark:text-white' />Headlines of this article:</div>
+                                <div className='flex items-center gap-x-2 text-lg font-semibold text-slate-700 dark:text-slate-100' ><HiBars4 className='size-6 text-black dark:text-white' />{t("Headlines of this article:")}</div>
                                 <div onClick={() => setIsTitleOpen(prev => !prev)} className=' p-1 lg:p-1.5 bg-green-500 rounded-full hover:bg-green-600 cursor-pointer transition-all'>
                                     {isTitleOpen ? (<HiChevronDown className='size-5 md:size-6' />) : (<HiChevronUp className='size-5 md:size-6' />)}
                                 </div>

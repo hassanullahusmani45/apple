@@ -9,6 +9,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import type { Article } from '../../types/type';
 import ArticlesSkeleton from '../../components/skeleton/ArticlesSkeleton';
 import { useTranslation } from 'react-i18next';
+import { localizedNumber } from '../../utils/localizedNumber';
 
 export default function Articles() {
     const { articles, loading } = useAppSelector((state) => state.home);
@@ -90,7 +91,7 @@ export default function Articles() {
 
             <div className='flex justify-between items-center mb-3 px-4'>
                 <div className='text-xl md:text-2xl font-semibold'>{t("Total Articles")}</div>
-                <div className='font-bold text-sm md:text-lg text-green-500'> <span className='bg-slate-200 dark:bg-slate-700 px-3 py-1 rounded-md'>{filterArticles.length}</span> <span className='text-slate-700 dark:text-slate-200 text-sm md:text-base font-semibold'>{t("Filtered Articles")}</span></div>
+                <div className='font-bold text-sm md:text-lg text-green-500'> <span className='bg-slate-200 dark:bg-slate-700 px-3 py-1 rounded-md'>{localizedNumber(filterArticles.length)}</span> <span className='text-slate-700 dark:text-slate-200 text-sm md:text-base font-semibold'>{t("Filtered Articles")}</span></div>
             </div>
 
 

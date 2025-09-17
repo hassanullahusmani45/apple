@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
 import { fetchCategoryCount } from '../redux/slices/articleCategoryCount'
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { localizedNumber } from '../utils/localizedNumber';
 
 export default function CategoryCount() {
-
+    const { t } = useTranslation('main')
     const dispatch = useAppDispatch();
     const { security, frontend, backend, artificialIntelligence, fetched } = useAppSelector((state) => state.categoryCount);
 
@@ -24,24 +26,24 @@ export default function CategoryCount() {
 
             <Link to={"/articles"} className='col-span-4 sm:col-span-2 lg:col-span-1 flex flex-col justify-center items-center py-5 bg-gradient-to-r from-[#3564ff] to-[#62f229] overflow-hidden rounded-xl shadow-md shadow-slate-400'>
                 <HiOutlineShieldCheck className='size-12 mb-3' />
-                <div className=' font-medium'>{security}</div>
-                <div className='text-base font-semibold'>Security</div>
+                <div className=' font-bold text-lg md:text-xl'>{localizedNumber(security)}</div>
+                <div className='text-base font-semibold'>{t("Security")}</div>
             </Link>
             <Link to={"/articles"} className='col-span-4 sm:col-span-2 lg:col-span-1 flex flex-col justify-center items-center py-5 bg-gradient-to-r from-[#f1ce59] to-[#f04d75] overflow-hidden rounded-xl  shadow-md shadow-slate-400'>
                 <FaBrain className='size-12 mb-3' />
-                <div className='font-medium'>{artificialIntelligence}</div>
-                <div className='text-base font-semibold'>Artificial intelligence</div>
+                <div className='font-bold text-lg md:text-xl'>{localizedNumber(artificialIntelligence)}</div>
+                <div className='text-base font-semibold'>{t("Artificial intelligence")}</div>
             </Link>
             <Link to={"/articles"} className='col-span-4 sm:col-span-2 lg:col-span-1 flex flex-col justify-center items-center py-5 bg-gradient-to-r from-[#5bf0ca] to-[#0b75ee] overflow-hidden rounded-xl shadow-md shadow-slate-400'>
                 <RiComputerLine className='size-12 mb-3' />
-                <div className=' font-medium'>{frontend}</div>
-                <div className='text-base font-semibold'>Frontend</div>
+                <div className=' font-bold text-lg md:text-xl'>{localizedNumber(frontend)}</div>
+                <div className='text-base font-semibold'>{t("Frontend")}</div>
             </Link>
 
             <Link to={"/articles"} className='col-span-4 sm:col-span-2 lg:col-span-1 flex flex-col justify-center items-center py-5 bg-gradient-to-r from-[#9e4bc5] to-[#60d6f3] overflow-hidden rounded-xl shadow-md shadow-slate-400'>
                 <HiOutlineCircleStack className='size-12 mb-3' />
-                <div className=' font-medium'>{backend}</div>
-                <div className='text-base font-semibold'>Backend</div>
+                <div className=' font-bold text-lg md:text-xl'>{localizedNumber(backend)}</div>
+                <div className='text-base font-semibold'>{t("Backend")}</div>
             </Link>
 
         </div>
