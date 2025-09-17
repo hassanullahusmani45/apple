@@ -13,10 +13,10 @@ import { toastError } from "../utils/toastError";
 import { toastSuccess } from "../utils/toastSuccess";
 import { useEffect } from "react";
 import { useOnlineStatus } from "../hooks/useOnlineStatus";
-import { GiEarthAmerica } from "react-icons/gi";
 import { TiThMenu } from "react-icons/ti";
 import i18n from "../i18n";
 import { useTranslation } from "react-i18next";
+import { LuLanguages } from "react-icons/lu";
 
 export default function Header() {
   const { t } = useTranslation("header_and_footer");
@@ -87,14 +87,14 @@ export default function Header() {
             <div className="flex justify-center items-center gap-x-0.5 sm:gap-1 md:gap-2 lg:gap-3">
               <ThemeToggleButton />
 
-              <HeaderDropdownMenu icon={<GiEarthAmerica className="size-3 sm:size-5" />}>
+              <HeaderDropdownMenu icon={<LuLanguages className="size-3 sm:size-4.5" />}>
                 <div className="auth-link-style" onClick={() => { i18n.changeLanguage('en') }}>{t("English")}</div>
                 <div className="auth-link-style" onClick={() => { i18n.changeLanguage('dr') }}>{t("Dari")}</div>
               </HeaderDropdownMenu>
 
               {user!! ?
                 (
-                  <HeaderDropdownMenu icon={<TiThMenu className="size-3 sm:size-4" />}>
+                  <HeaderDropdownMenu icon={<TiThMenu className="size-3 sm:size-4 group-hover:rotate-90 rtl:group-hover:-rotate-90 transition-all" />}>
                     <Link to={"/profile"} className="auth-link-style">
                       <FaRegUser className="size-3 sm:size-4" />{t("Profile")}
                     </Link>

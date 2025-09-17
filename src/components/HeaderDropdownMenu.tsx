@@ -12,12 +12,12 @@ export default function HeaderDropdownMenu({ children,icon }: HeaderDropdownMenu
 
     return (
         <div
-            className="relative"
+            className="relative group"
             onClick={() => setOpen(!open)}
             onMouseEnter={() => setOpen(true)}
             onMouseLeave={() => setOpen(false)}
         >
-            <div className="them-button-style hover:-rotate-90 transition-all">
+            <div className="them-button-style">
                 {icon}
             </div>
 
