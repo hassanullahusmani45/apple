@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-import LogoLight from "../../public/assets/Apple_Logo_light.png";
-import LogoDark from "../../public/assets/Apple_Logo_dark.png";
+import LogoLight from "../assets/Apple_Logo_light.png";
+import LogoDark from "..//assets/Apple_Logo_dark.png";
 import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
 import { BiMessageError } from "react-icons/bi";
 import { MdConnectWithoutContact, MdMarkEmailUnread } from "react-icons/md";

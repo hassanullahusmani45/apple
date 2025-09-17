@@ -3,7 +3,7 @@ import { LuMapPinned } from 'react-icons/lu';
 import { BsEnvelopeAt } from 'react-icons/bs';
 import { HiOutlineDevicePhoneMobile, HiOutlineGlobeAlt } from 'react-icons/hi2';
 import { GrSend } from "react-icons/gr";
-import hassanProfile from '../../../public/assets/hassan.jpeg';
+import hassanProfile from '../../assets/hassan.jpeg';
 import z from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
 import RHFInput from '../../components/form/RHFInput';

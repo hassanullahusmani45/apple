@@ -1,5 +1,5 @@
-import LogoLight from "../../public/assets/Apple_Logo_light.png";
-import LogoDark from "../../public/assets/Apple_Logo_dark.png";
+import LogoLight from "../assets/Apple_Logo_light.png";
+import LogoDark from "../assets/Apple_Logo_dark.png";
 import { Link, useNavigate } from "react-router-dom";
 import ThemeToggleButton from '../components/ThemeToggleButton';
 import { HiOutlineSquaresPlus } from "react-icons/hi2";

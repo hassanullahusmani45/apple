@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import LogoLight from "../../public/assets/Apple_Logo_light.png";
-import LogoDark from "../../public/assets/Apple_Logo_dark.png";
+import LogoLight from "../assets/Apple_Logo_light.png";
+import LogoDark from "../assets/Apple_Logo_dark.png";
 import { useTheme } from '../services/provider/ThemeContextProvider';
 import { useTranslation } from 'react-i18next';
 
