@@ -17,7 +17,9 @@ export default function ArticleCard({
   className,
 }: ArticleCardType) {
 
-  const { t } = useTranslation("main");
+  const { t, i18n } = useTranslation("main");
+  const lang = i18n.language;
+
   return (
     <div className={`relative flex flex-col justify-between rounded-xl text-black dark:text-white ${!className && "bg-slate-800"} ${className}`}>
       <span className="absolute right-2 top-2 w-8 h-10 flex flex-col justify-center items-center text-slate-200 bg-green-500 rounded text-sm font-light shadow shadow-white"><FaEye className="size-4 text-white" />{viewCount}</span>
@@ -30,7 +32,7 @@ export default function ArticleCard({
 
         <div className="flex justify-between items-center text-sm text-slate-800 dark:text-slate-300 pb-4 border-b border-b-slate-500">
           <Link to={`/author-profile/${authorID}`} className="line-clamp-1 flex justify-start items-center gap-1 text-sm hover:text-green-500 dark:hover:text-orange-400"><CiUser className="size-6 text-slate-900 dark:text-slate-50" />{author}</Link>
-          <div className="text-nowrap">{date}</div>
+          <div className="text-nowrap">{new Date(date).toLocaleDateString(lang == 'dr' ? "fa-AF" : "en-US")}</div>
         </div>
         <Link to={link} className="flex justify-center items-center gap-1 text-sm hover:text-green-500 dark:hover:text-orange-400 hover:scale-105 transition-all">
           {t("Study the article")}

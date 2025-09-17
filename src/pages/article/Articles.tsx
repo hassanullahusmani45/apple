@@ -174,9 +174,9 @@ export default function Articles() {
                                     ))
                                 ) : (
                                     <div className='col-span-12 bg-yellow-500 dark:bg-yellow-400/80 rounded-xl'>
-                                        <div className='flex justify-evenly items-center w-full h-40 sm:h-56 p-4 gap-3'>
-                                            <HiOutlineShieldExclamation className='size-18 lg:size-24' />
-                                            <div className='font-bold font-serif text-lg lg:text-2xl text-gray-800 dark:text-slate-200'>This Category Article Is Not Found !</div>
+                                        <div className='flex justify-center items-center w-full h-40 sm:h-56 p-4 gap-3'>
+                                            <HiOutlineShieldExclamation className='size-14 lg:size-20' />
+                                            <div className='font-bold font-serif text-xl lg:text-2xl text-gray-800 dark:text-slate-100'>{t("ArticleNotFound")}</div>
                                         </div>
                                     </div>
                                 )}
