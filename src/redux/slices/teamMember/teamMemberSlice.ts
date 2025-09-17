@@ -31,7 +31,8 @@ export const fetcheTeamMemberData = createAsyncThunk(
         const { data: teamMemberArticles } = await supabase
             .from('articles')
             .select(`*,team_members (id , first_name , last_name)`)
-            .eq("author_id", id);
+            .eq("author_id", id)
+            .order("created_at", { ascending: false });
 
         return { author, teamMemberArticles };
     }
@@ -52,7 +53,7 @@ const teamMemberSlice = createSlice({
                 state.error = null;
                 state.author = action.payload.author;
                 state.teamMemberArticles = action.payload.teamMemberArticles ?? [];
-                state.savedID=action.meta.arg;
+                state.savedID = action.meta.arg;
             })
             .addCase(fetcheTeamMemberData.rejected, (state, action) => {
                 state.loading = false;
