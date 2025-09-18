@@ -12,7 +12,7 @@ html {
 }
 
 .input-style {
-    @apply font-normal rounded-full shadow-md block w-full py-2 px-4 2xl:py-2.5 lg:px-6 text-gray-800 dark:text-slate-200 bg-slate-300/50 dark:bg-slate-900/50 placeholder:text-gray-500 dark:placeholder:text-gray-500 placeholder:text-sm placeholder:font-normal placeholder:italic focus:outline-2 focus:outline-slate-600 border-2 border-slate-400 dark:focus:outline-slate-200 dark:border-slate-600;
+    @apply font-normal rounded-full shadow-md block w-full py-2 px-4 2xl:py-2.5 lg:px-6 text-gray-800 dark:text-slate-300 bg-slate-300/50 dark:bg-slate-900/50 placeholder:text-gray-500 dark:placeholder:text-gray-500 placeholder:text-sm placeholder:font-normal placeholder:italic focus:outline-2 focus:outline-slate-600 border-2 border-slate-400 dark:focus:outline-slate-200 dark:border-slate-600;
 }
 
 .textarea-style {
@@ -39,4 +39,19 @@ html {
     .animate-spin-slow {
         animation: spin 6s linear infinite;
     }
+}
+
+
+@font-face {
+    font-family: vazirmatn;
+    src: url(/public/fonts/vazirmatn/Vazirmatn-Medium.woff2);
+}
+@font-face {
+    font-family: GeomerricArabic;
+    src: url(/public/fonts/URWGeometricArabic-Bold.ttf);
+}
+
+@theme {
+    --font-vazirmatn: vazirmatn, 'mono';
+    --font-GeomerricArabic: GeomerricArabic, 'mono';
 }

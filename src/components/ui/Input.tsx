@@ -14,7 +14,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ label, error, id, clas
   const { t } = useTranslation('zod_error_messages');
   return (
     <div className="flex flex-col gap-0.5">
-      {label && <label htmlFor={inputId} className="text-sm font-semibold ms-4">{label} :</label>}
+      {label && <label htmlFor={inputId} className="ms-4">{label} :</label>}
       <input
         id={inputId}
         ref={ref}

@@ -51,8 +51,8 @@ export default function Home() {
       {/*start heading part  */}
       <div className='flex flex-col justify-center items-center pt-10 md:pt-16 lg:pt-20'>
 
-        <div className='text-2xl md:text-3xl font-bold font-serif text-center bg-gradient-to-r from-green-600 dark:from-orange-500 to-orange-500 dark:to-green-500 bg-clip-text text-transparent'>
-          <div className=" mb-2 md:mb-4">{t("Apple Tecnology")}</div>
+        <div className='text-2xl md:text-3xl font-bold font-serif rtl:md:text-4xl rtl:font-GeomerricArabic py-2 text-center bg-gradient-to-r from-green-600 dark:from-orange-500 to-orange-500 dark:to-green-500 bg-clip-text text-transparent'>
+          <div className="mb-2 md:mb-4">{t("Apple Tecnology")}</div>
           <div className="">{t("The Best Place For Learning Modren Articles")}</div>
         </div>
         <SearchBar articles={articles} />
