@@ -100,7 +100,7 @@ export default function ContactUs() {
                 </FormProvider>
             </div>
 
-            <div className="relative col-span-8 lg:col-span-5 bg-slate-200 dark:bg-slate-800 p-4 sm:p-6 lg:p-8 my-20 lg:my-8 rounded-2xl shadow-md">
+            <div className="relative col-span-8 lg:col-span-5 h-fit bg-slate-200 dark:bg-slate-800 p-4 sm:p-6 lg:p-8 my-20 lg:my-8 rounded-2xl shadow-md">
 
                 <div className="flex bg-slate-100 dark:bg-slate-900 justify-center items-center w-34 sm:w-38 md:w-40 lg:w-45 h-34 sm:h-38 md:h-40 lg:h-45 rounded-full border-0 absolute mx-auto right-0 left-0 -inset-y-18 sm:-inset-y-20 md:-inset-y-22 lg:-inset-y-26 ">
                     <div className="relative w-30 sm:w-34 md:w-36 lg:w-40 h-30 sm:h-34 md:h-36 lg:h-40 mx-auto rounded-full bg-inherit p-1 dark:p-[3px]">

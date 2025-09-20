@@ -155,7 +155,7 @@ export default function Articles() {
 
                     {loading ? (<ArticlesSkeleton />) :
                         (
-                            <div className='grid grid-cols-12 gap-4 my-10 overflow-hidden w-[85%] sm:w-full mx-auto' ref={articlesBody}>
+                            <div className='grid grid-cols-12 gap-4 my-10 w-[85%] sm:w-full mx-auto' ref={articlesBody}>
 
                                 {filterArticles.length > 0 ? (
                                     filterArticles.map(({ id, cover_image, team_members, created_at, title, summary, view_count }) => (
