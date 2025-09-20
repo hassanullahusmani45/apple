@@ -145,25 +145,25 @@ export default function ContactUs() {
                 <div className="my-10">
                     <div className="flex justify-center items-center gap-4 md:gap-6">
                         <a
-                            className='p-2.5 rounded-full hover:bg-slate-300 dark:hover:bg-slate-700 hover:-translate-y-2 duration-150 transition-all'
+                            className='contactSocialMedia'
                             href="https://www.linkedin.com/in/hassanullahusmani" target="_blank"
                             rel="noopener noreferrer" >
                             <LuLinkedin className="size-6" />
                         </a>
                         <a
-                            className='p-2.5 rounded-full hover:bg-slate-300 dark:hover:bg-slate-700 hover:-translate-y-2 duration-150 transition-all'
+                            className='contactSocialMedia'
                             href="https://github.com/hassanullahusmani45" target="_blank"
                             rel="noopener noreferrer" >
                             <FiGithub className="size-6" />
                         </a>
                         <a
-                            className='p-2.5 rounded-full hover:bg-slate-300 dark:hover:bg-slate-700 hover:-translate-y-2 duration-150 transition-all'
+                            className='contactSocialMedia'
                             href="https://www.facebook.com/profile.php?id=61579164404688" target="_blank"
                             rel="noopener noreferrer" >
                             <FiFacebook className="size-6" />
                         </a>
                         <a
-                            className='p-2.5 rounded-full hover:bg-slate-300 dark:hover:bg-slate-700 hover:-translate-y-2 duration-150 transition-all'
+                            className='contactSocialMedia'
                             href="https://www.instagram.com/hassanullahusmani45" target="_blank"
                             rel="noopener noreferrer" >
                             <FaInstagram className="size-6" />
