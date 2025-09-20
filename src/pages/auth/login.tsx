@@ -48,8 +48,8 @@ export default function login() {
 
     useEffect(() => {
         if (success) {
-            toastSuccess("You are successfully Login 🤣.");
             methods.reset();
+            toastSuccess("You are successfully Login 🤣.");
             navigate('/');
             dispatch(resetStatus());
 

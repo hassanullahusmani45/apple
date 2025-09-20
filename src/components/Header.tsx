@@ -1,6 +1,6 @@
 import LogoLight from "../assets/Apple_Logo_light.png";
 import LogoDark from "../assets/Apple_Logo_dark.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import ThemeToggleButton from '../components/ThemeToggleButton';
 import { HiOutlineSquaresPlus } from "react-icons/hi2";
 import { useTheme } from "../services/provider/ThemeContextProvider";
@@ -76,10 +76,18 @@ export default function Header() {
         </Link>
 
         <div className="flex justify-center items-center gap-x-3 sm:gap-x-4 md:gap-6 lg:gap-x-8">
-          <Link to={"/"} className="linkClass">{t("HOME")}</Link>
-          <Link to={"/articles"} className="linkClass">{t("ARTICLES")}</Link>
-          <Link to={"/about"} className="linkClass">{t("ABOUT")}</Link>
-          <Link to={"/contact-us"} className="linkClass">{t("CONTACT US")}</Link>
+          <NavLink to={"/"}
+            className={({ isActive }) => isActive ? "linkClass dark:text-orange-400 text-green-500" : "linkClass"}
+          >{t("HOME")}</NavLink>
+          <NavLink to={"/articles"}
+            className={({ isActive }) => isActive ? "linkClass dark:text-orange-400 text-green-500" : "linkClass"}
+          >{t("ARTICLES")}</NavLink>
+          <NavLink to={"/about"}
+            className={({ isActive }) => isActive ? "linkClass dark:text-orange-400 text-green-500" : "linkClass"}
+          >{t("ABOUT")}</NavLink>
+          <NavLink to={"/contact-us"}
+            className={({ isActive }) => isActive ? "linkClass dark:text-orange-400 text-green-500" : "linkClass"}
+          >{t("CONTACT US")}</NavLink>
         </div>
 
         <div>
