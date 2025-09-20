@@ -12,6 +12,10 @@ import TeamMemberSidebar from '../../components/TeamMemberSidebar';
 import ShowArticleSkeleton from '../../components/skeleton/ShowArticleSkeleton';
 import { useTranslation } from 'react-i18next';
 import { localizedNumber } from '../../utils/localizedNumber';
+import { GoCommentDiscussion } from "react-icons/go";
+import { TbMessagePlus } from 'react-icons/tb';
+import Comment from '../../components/Comment';
+import ResponseComment from '../../components/ResponseComment';
 
 export default function ShowArticle() {
     const { t, i18n } = useTranslation("main");
@@ -108,6 +112,29 @@ export default function ShowArticle() {
                                 }
                             </div>
                         ))}
+
+                        {/* Comments part */}
+                        <div className='w-full bg-white dark:bg-slate-900/70 mt-28 px-2 sm:px-3 md:px-5 py-5 rounded border border-slate-300 dark:border-slate-700/60'>
+                            <div className='flex justify-between items-center mb-5'>
+                                <div className='flex items-center gap-x-2 text-lg font-semibold' >
+                                    <GoCommentDiscussion className='size-6 md:size-8 text-sky-500' />
+                                    {t("comments")}
+                                </div>
+                                <div onClick={() => { }} className='flex items-center gap-x-2 text-sm font-medium rounded-md text-white bg-sky-500 p-1 md:p-1.5 cursor-pointer'>
+                                    {t("add-comment")}
+                                    <TbMessagePlus className='size-4.5 sm:size-5' />
+                                </div>
+                            </div>
+
+                            {/*  */}
+                            <Comment>
+                                <ResponseComment />
+                                <ResponseComment />
+                                <ResponseComment />
+                            </Comment>
+                            
+                            {/*  */}
+                        </div>
 
                     </div>
 

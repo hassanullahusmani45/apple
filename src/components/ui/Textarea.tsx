@@ -18,7 +18,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({ name, label, 
 
     return (
         <div className="">
-            {label && <label htmlFor={elementId} className="ms-4">{label} :</label>}
+            {label && <label htmlFor={elementId} className="ms-4 text-sm md:text-base">{label} :</label>}
 
             <textarea
                 id={elementId}
