@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { LuMapPinned } from 'react-icons/lu';
+import { LuLinkedin, LuMapPinned } from 'react-icons/lu';
 import { BsEnvelopeAt } from 'react-icons/bs';
 import { HiOutlineDevicePhoneMobile, HiOutlineGlobeAlt } from 'react-icons/hi2';
 import { GrSend } from "react-icons/gr";
@@ -17,6 +17,8 @@ import { toastSuccess } from '../../utils/toastSuccess';
 import { toastError } from '../../utils/toastError';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { useTranslation } from 'react-i18next';
+import { FiFacebook, FiGithub } from 'react-icons/fi';
+import { FaInstagram } from 'react-icons/fa6';
 
 
 export default function ContactUs() {
@@ -139,6 +141,34 @@ export default function ContactUs() {
                         <HiOutlineGlobeAlt className="size-6 text-slate-950 dark:text-white" />
                         <span className="break-all">{t("website")}</span>
                     </a>
+                </div>
+                <div className="my-10">
+                    <div className="flex justify-center items-center gap-4 md:gap-6">
+                        <a
+                            className='p-2.5 rounded-full hover:bg-slate-300 dark:hover:bg-slate-700 hover:-translate-y-2 duration-150 transition-all'
+                            href="https://www.linkedin.com/in/hassanullahusmani" target="_blank"
+                            rel="noopener noreferrer" >
+                            <LuLinkedin className="size-6" />
+                        </a>
+                        <a
+                            className='p-2.5 rounded-full hover:bg-slate-300 dark:hover:bg-slate-700 hover:-translate-y-2 duration-150 transition-all'
+                            href="https://github.com/hassanullahusmani45" target="_blank"
+                            rel="noopener noreferrer" >
+                            <FiGithub className="size-6" />
+                        </a>
+                        <a
+                            className='p-2.5 rounded-full hover:bg-slate-300 dark:hover:bg-slate-700 hover:-translate-y-2 duration-150 transition-all'
+                            href="https://www.facebook.com/profile.php?id=61579164404688" target="_blank"
+                            rel="noopener noreferrer" >
+                            <FiFacebook className="size-6" />
+                        </a>
+                        <a
+                            className='p-2.5 rounded-full hover:bg-slate-300 dark:hover:bg-slate-700 hover:-translate-y-2 duration-150 transition-all'
+                            href="https://www.instagram.com/hassanullahusmani45" target="_blank"
+                            rel="noopener noreferrer" >
+                            <FaInstagram className="size-6" />
+                        </a>
+                    </div>
                 </div>
             </div>
         </div >
