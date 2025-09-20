@@ -34,6 +34,7 @@ html {
 .them-button-style {
     @apply flex justify-center items-center p-1.5 sm:p-2 md:p-2.5 rounded-full text-black dark:text-white bg-slate-300 dark:bg-slate-700 dark:hover:text-orange-400 hover:text-green-500;
 }
+
 .contactSocialMedia {
     @apply p-2.5 rounded-full hover:bg-slate-300 dark:hover:bg-slate-700 hover:-translate-y-2 duration-150 transition-all;
 }
@@ -47,11 +48,14 @@ html {
 
 @font-face {
     font-family: vazirmatn;
-    src: url(/public/fonts/vazirmatn/Vazirmatn-Medium.woff2);
+    src: url("/fonts/vazirmatn/Vazirmatn-Medium.woff2") format("woff2");
+    font-display: swap;
 }
+
 @font-face {
     font-family: GeomerricArabic;
-    src: url(/public/fonts/URWGeometricArabic-Bold.ttf);
+    src: url("/fonts/URWGeometricArabic-Bold.ttf") format("truetype");
+    font-display: swap;
 }
 
 @theme {
