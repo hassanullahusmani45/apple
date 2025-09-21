@@ -108,7 +108,7 @@ export const profileImgSchema = z.object({
             (val) => val instanceof FileList && val.length > 0,
             { message: "Please upload image file!" }
         )
-        
+
         .refine(
             (files) =>
                 files && /\.(jpg|jpeg|png|webp)$/i.test(files[0]?.name),
@@ -117,6 +117,15 @@ export const profileImgSchema = z.object({
             }
         ),
 });
+
+
+export const commentSchema = z.object({
+    comment_text: z
+        .string()
+        .nonempty("comment is required!")
+        .min(10, "comment must be at least 10 characters!")
+        .max(2000, "comment cannot exceed 2000 characters!")
+})
 
 
 

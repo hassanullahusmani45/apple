@@ -39,6 +39,13 @@ html {
     @apply p-2.5 rounded-full hover:bg-slate-300 dark:hover:bg-slate-700 hover:-translate-y-2 duration-150 transition-all;
 }
 
+.success-button {
+    @apply flex justify-center items-center gap-1.5 px-2 py-1.5 rounded-md text-xs md:text-sm font-semibold text-white bg-gradient-to-r from-green-500 to-green-900 transform transition-transform duration-300 hover:scale-95 cursor-pointer disabled:hover:scale-100 disabled:opacity-70 disabled:cursor-no-drop shadow-md shadow-slate-400 dark:shadow-slate-700;
+}
+.cancel-button {
+    @apply flex justify-center items-center gap-1.5 px-2 py-1.5 rounded-md text-xs md:text-sm font-semibold text-white bg-gradient-to-r from-red-400 to-red-700 transform transition-transform duration-300 hover:scale-95 cursor-pointer disabled:hover:scale-100 disabled:opacity-70 disabled:cursor-no-drop shadow-md shadow-slate-400 dark:shadow-slate-700;
+}
+
 @layer utilities {
     .animate-spin-slow {
         animation: spin 6s linear infinite;

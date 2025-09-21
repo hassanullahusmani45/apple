@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { HiBars4, HiSquare2Stack } from "react-icons/hi2";
 import { FaEye, FaUser } from "react-icons/fa6";
@@ -16,6 +16,13 @@ import { GoCommentDiscussion } from "react-icons/go";
 import { TbMessagePlus } from 'react-icons/tb';
 import Comment from '../../components/Comment';
 import ResponseComment from '../../components/ResponseComment';
+import hassanProfile from '../../assets/hassan.jpeg';
+import RHFTextarea from '../../components/form/RHFTextarea';
+import { FormProvider, useForm } from 'react-hook-form';
+import type z from 'zod';
+import { commentSchema } from '../../types/zodSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
+
 
 export default function ShowArticle() {
     const { t, i18n } = useTranslation("main");
@@ -25,7 +32,8 @@ export default function ShowArticle() {
     const [articleBody] = useAutoAnimate<HTMLDivElement>();
     const [articleTitles] = useAutoAnimate<HTMLDivElement>();
 
-    const [isTitleOpen, setIsTitleOpen] = useState(true)
+    const [isTitleOpen, setIsTitleOpen] = useState(true);
+    const [isCommentOpen, setIsCommentOpen] = useState(false);
     const [fetchDone, setFetchDone] = useState(false);
 
     const { article, loading } = useAppSelector((state) => state.article);
@@ -49,6 +57,19 @@ export default function ShowArticle() {
     // article Sections
     const articleSections = article?.article_sections ?? [];
 
+    type commentData = z.infer<typeof commentSchema>
+
+    const methods = useForm<commentData>({
+        defaultValues: {
+            comment_text: ''
+        },
+        resolver: zodResolver(commentSchema)
+    });
+
+    const onsubmit = (data: commentData) => {
+        console.log(data);
+        methods.reset();
+    }
 
     return (
         <div>
@@ -120,11 +141,58 @@ export default function ShowArticle() {
                                     <GoCommentDiscussion className='size-6 md:size-8 text-sky-500' />
                                     {t("comments")}
                                 </div>
-                                <div onClick={() => { }} className='flex items-center gap-x-2 text-sm font-medium rounded-md text-white bg-sky-500 p-1 md:p-1.5 cursor-pointer'>
+                                <div onClick={() => { setIsCommentOpen(true) }} className='flex items-center gap-x-2 text-sm font-medium rounded-md text-white bg-sky-500 p-1 md:p-1.5 cursor-pointer shadow-md shadow-slate-400 dark:shadow-slate-700'>
                                     {t("add-comment")}
                                     <TbMessagePlus className='size-4.5 sm:size-5' />
                                 </div>
                             </div>
+
+                            {/* new-comment start */}
+                            {isCommentOpen &&
+                                <Fragment>
+                                    <div className='flex justify-start items-center gap-x-2'>
+                                        <div className="relative w-12 md:w-15 h-12 md:h-15 rounded-full bg-inherit p-[1px]">
+                                            <div className="absolute inset-0 custom-gradient rounded-full animate-spin-slow"></div>
+                                            <img
+                                                className="relative w-full h-full rounded-full object-cover bg-slate-50 dark:bg-slate-900"
+                                                src={hassanProfile}
+                                                alt="commenter-profile"
+                                            />
+                                        </div>
+                                        <div className=''>
+                                            <span>hassan ullah usmani</span>
+                                            <div className="text-sm">{t("new-comment")}</div>
+                                        </div>
+                                    </div>
+                                    <div className="">
+                                        <FormProvider {...methods}>
+                                            <form onSubmit={methods.handleSubmit(onsubmit)} className='my-3'>
+                                                <RHFTextarea
+                                                    name='comment_text'
+                                                    placeholder={t('comment-pleacholder')}
+                                                    rows={4}
+                                                />
+
+                                                <div className="flex justify-end gap-x-3">
+                                                    <button
+                                                        type='button'
+                                                        className='cancel-button px-5!'
+                                                        onClick={() => {
+                                                            setIsCommentOpen(false);
+                                                            methods.reset();
+                                                        }}
+                                                    >
+                                                        {t("cancel")}
+                                                    </button>
+                                                    <button type='submit' className='success-button'>{t("submit-comment")}</button>
+                                                </div>
+                                            </form>
+                                        </FormProvider>
+                                    </div>
+                                </Fragment>
+                            }
+
+                            {/* new-comment end */}
 
                             {/*  */}
                             <Comment>
@@ -132,7 +200,7 @@ export default function ShowArticle() {
                                 <ResponseComment />
                                 <ResponseComment />
                             </Comment>
-                            
+
                             {/*  */}
                         </div>
 

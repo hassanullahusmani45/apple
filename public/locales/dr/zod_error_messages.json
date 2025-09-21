@@ -26,5 +26,8 @@
     "confirm password cannot exceed 20 characters!": "پسورد دوباره بیشتر از ۲۰ حرف شد!",
     "new pasword and confirm password is not equle!": "پسورد جدید و پسورد دوباره یکی نیستند!",
     "Please upload image file!": "لطفا عکس را اپلود کنید!",
-    "The profile image format must be JPG, JPEG, PNG or WEBP!": "عکس پروفایل باید دارای یکی از فورمت ها باشد JPG, JPEG, PNG یا WEBP!"
+    "The profile image format must be JPG, JPEG, PNG or WEBP!": "عکس پروفایل باید دارای یکی از فورمت ها باشد JPG, JPEG, PNG یا WEBP!",
+    "comment is required!": "نظر ضروری هست!",
+    "comment must be at least 10 characters!": "نظر از 10 حرف نباید کم باشد!",
+    "comment cannot exceed 20 characters!": "نظر بیشتر از ۲۰۰۰ حرف شد!"
 }

@@ -26,5 +26,8 @@
     "confirm password cannot exceed 20 characters!": "confirm password cannot exceed 20 characters!",
     "new pasword and confirm password is not equle!": "new pasword and confirm password is not equle!",
     "Please upload image file!": "Please upload image file!",
-    "The profile image format must be JPG, JPEG, PNG or WEBP!": "The profile image format must be JPG, JPEG, PNG or WEBP!"
+    "The profile image format must be JPG, JPEG, PNG or WEBP!": "The profile image format must be JPG, JPEG, PNG or WEBP!",
+    "comment is required!": "comment is required!",
+    "comment must be at least 10 characters!": "comment must be at least 10 characters!",
+    "comment cannot exceed 20 characters!": "comment cannot exceed 20 characters!"
 }
