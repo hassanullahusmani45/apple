@@ -90,3 +90,26 @@ export interface loginType {
   email: string;
   password: string;
 }
+export interface commentType {
+  id: number;
+  article_id: number;
+  visitor_id?: string | null;
+  team_member_id?: string | null;
+  comment_text: string;
+  parent_comment_id?: number | null;
+  created_at: string;
+
+  visitors?: {
+    first_name: string;
+    last_name: string;
+    role_id: number;
+    profile: string;
+  } | null;
+
+  team_members?: {
+    first_name: string;
+    last_name: string;
+    role_id: number;
+    profile: string;
+  } | null;
+}

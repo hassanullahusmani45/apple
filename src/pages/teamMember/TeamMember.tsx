@@ -63,13 +63,13 @@ export default function TeamMember() {
 
                                     <div className='grid grid-cols-12 gap-4 w-[85%] xl:w-[85%] 2xl:w-full sm:w-full mx-auto my-8'>
                                         {teamMemberArticles.map(article => (
-                                            <div  key={article.id} className=" col-span-12 sm:col-span-6 md:col-span-12 lg:col-span-6 2xl:col-span-4">
+                                            <div key={article.id} className=" col-span-12 sm:col-span-6 md:col-span-12 lg:col-span-6 2xl:col-span-4">
                                                 <ArticleCard
                                                     src={article.cover_image || articleImage}
                                                     author={`${article.team_members?.first_name} ${article.team_members?.last_name}`}
                                                     authorID={article.team_members?.id}
                                                     date={article.created_at?.slice(0, 10)}
-                                                    link={`/article/${encodeURIComponent(article.title)}`}
+                                                    link={`/article/${encodeURIComponent(article.title)}/${article.id}`}
                                                     title={article.title}
                                                     desc={article.summary || ''}
                                                     viewCount={article.view_count}

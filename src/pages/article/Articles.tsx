@@ -165,7 +165,7 @@ export default function Articles() {
                                                 author={`${team_members.first_name} ${team_members.last_name}`}
                                                 authorID={team_members.id}
                                                 date={created_at.slice(0, 10)}
-                                                link={`/article/${encodeURIComponent(title)}`}
+                                                link={`/article/${encodeURIComponent(title)}/${id}`}
                                                 title={title}
                                                 desc={summary || ''}
                                                 viewCount={view_count}

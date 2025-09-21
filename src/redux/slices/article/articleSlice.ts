@@ -1,17 +1,21 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { supabase } from "../../../lib/SupabaseClient";
-import type { Article } from "../../../types/type";
+import type { Article, commentType } from "../../../types/type";
 
 
 interface ArticleState {
     article: Article | null;
-    loading: boolean;
+    comments: commentType[];
+    articleDataLoading: boolean;
+    articleCommentsLoading: boolean;
     error: string | null;
 }
 
 const initialState: ArticleState = {
     article: null,
-    loading: false,
+    comments: [],
+    articleDataLoading: false,
+    articleCommentsLoading: false,
     error: null,
 };
 
@@ -28,6 +32,18 @@ export const fetchArticleData = createAsyncThunk(
     }
 );
 
+export const fetchArticleComments = createAsyncThunk(
+    'article/fetchArticleComments',
+    async (article_id: string) => {
+        const { data: comments } = await supabase
+            .from('comments')
+            .select(`*,team_members (first_name,last_name,profile,role_id), visitors (first_name,last_name,profile,role_id)`)
+            .eq("article_id", article_id)
+            .eq("isShow", true);
+        return comments;
+    }
+);
+
 
 const articleSlice = createSlice({
     name: 'article',
@@ -36,17 +52,29 @@ const articleSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchArticleData.pending, (state) => {
-                state.loading = true;
+                state.articleDataLoading = true;
             })
             .addCase(fetchArticleData.fulfilled, (state, action) => {
-                state.loading = false;
+                state.articleDataLoading = false;
                 state.error = null;
                 state.article = action.payload;
             })
             .addCase(fetchArticleData.rejected, (state, action) => {
-                state.loading = false;
+                state.articleDataLoading = false;
                 state.error = action.error.message || "Failed to fetch article data"
             })
+            .addCase(fetchArticleComments.pending, (state) => {
+                state.articleCommentsLoading = true;
+            })
+            .addCase(fetchArticleComments.fulfilled, (state, action) => {
+                state.articleCommentsLoading = false;
+                state.error = null;
+                state.comments = action.payload || [];
+            })
+            .addCase(fetchArticleComments.rejected, (state, action) => {
+                state.articleCommentsLoading = false;
+                state.error = action.error.message || "Failed to fetch article data"
+            });
     }
 });
 

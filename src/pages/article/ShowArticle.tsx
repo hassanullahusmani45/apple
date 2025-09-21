@@ -2,11 +2,11 @@
 import { Fragment, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { HiBars4, HiSquare2Stack } from "react-icons/hi2";
-import { FaEye, FaUser } from "react-icons/fa6";
+import { FaCommentSlash, FaEye, FaUser } from "react-icons/fa6";
 import { IoCalendarSharp } from "react-icons/io5";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { fetchArticleData } from "../../redux/slices/article/articleSlice";
+import { fetchArticleComments, fetchArticleData } from "../../redux/slices/article/articleSlice";
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import TeamMemberSidebar from '../../components/TeamMemberSidebar';
 import ShowArticleSkeleton from '../../components/skeleton/ShowArticleSkeleton';
@@ -26,7 +26,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 export default function ShowArticle() {
     const { t, i18n } = useTranslation("main");
-    const { title } = useParams<{ title: string }>();
+    const { title, article_id } = useParams<{ title: string, article_id: string }>();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const [articleBody] = useAutoAnimate<HTMLDivElement>();
@@ -36,13 +36,20 @@ export default function ShowArticle() {
     const [isCommentOpen, setIsCommentOpen] = useState(false);
     const [fetchDone, setFetchDone] = useState(false);
 
-    const { article, loading } = useAppSelector((state) => state.article);
+    const { article, comments, articleDataLoading, articleCommentsLoading } = useAppSelector((state) => state.article);
 
     useEffect(() => {
-        if (title) {
-            dispatch(fetchArticleData(title)).finally(() => setFetchDone(true));
-        }
-    }, [title, dispatch]);
+        const fetchData = async () => {
+            if (title && article_id) {
+                await dispatch(fetchArticleData(title));
+                await dispatch(fetchArticleComments(article_id));
+                setFetchDone(true);
+            }
+        };
+
+        fetchData();
+    }, [title, article_id, dispatch]);
+
 
     useEffect(() => {
         if (fetchDone && article === null) {
@@ -71,9 +78,11 @@ export default function ShowArticle() {
         methods.reset();
     }
 
+    console.log("Comments:", comments);
+
     return (
         <div>
-            {loading ? (<ShowArticleSkeleton />) : (
+            {(articleDataLoading || articleCommentsLoading) ? (<ShowArticleSkeleton />) : (
                 <div className='grid grid-cols-12 gap-8 sm:gap-x-2 mb-16' ref={articleBody}>
 
                     {/* the autor or this article */}
@@ -134,7 +143,7 @@ export default function ShowArticle() {
                             </div>
                         ))}
 
-                        {/* Comments part */}
+                        {/* start Comments part */}
                         <div className='w-full bg-white dark:bg-slate-900/70 mt-28 px-2 sm:px-3 md:px-5 py-5 rounded border border-slate-300 dark:border-slate-700/60'>
                             <div className='flex justify-between items-center mb-5'>
                                 <div className='flex items-center gap-x-2 text-lg font-semibold' >
@@ -194,15 +203,31 @@ export default function ShowArticle() {
 
                             {/* new-comment end */}
 
-                            {/*  */}
-                            <Comment>
-                                <ResponseComment />
-                                <ResponseComment />
-                                <ResponseComment />
-                            </Comment>
-
-                            {/*  */}
+                            {/* comments  */}
+                            <Fragment>
+                                {comments.length === 0 ? (
+                                    <div className="flex justify-center items-center gap-x-2 text-center py-16 rounded-lg bg-slate-200 dark:bg-slate-700">
+                                        <FaCommentSlash className='size-8 text-yellow-700 dark:text-yellow-500' />
+                                        <span className='font-semibold text-yellow-600'>{t("no-comments-yet")}</span>
+                                    </div>
+                                ) : (
+                                    comments
+                                        .filter(comment => !comment.parent_comment_id)
+                                        .map(comment => (
+                                            <Comment key={comment.id} comment={comment}>
+                                                {comments
+                                                    .filter(c => c.parent_comment_id === comment.id)
+                                                    .map(response => (
+                                                        <ResponseComment key={response.id} responceComment={response} />
+                                                    ))
+                                                }
+                                            </Comment>
+                                        ))
+                                )}
+                            </Fragment>
+                            {/* comments */}
                         </div>
+                        {/* end Comments part */}
 
                     </div>
 

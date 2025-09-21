@@ -28,7 +28,7 @@
     "Role": "نقش",
     "User": "کاربر",
     "Admin": "ادمین",
-    "Team Member": "هم تیم یا کارمند",
+    "Team Member": "هم تیمی",
     "Change the Profile Information": "ویرایش معلومات پروفایل",
     "First Name": "نام",
     "Last Name": "تخلص",
@@ -65,6 +65,6 @@
     "comment-pleacholder": "نظر خود را وارد نماید ...",
     "submit-comment": "ثبت نظر",
     "cancel": "لغو",
-
+    "no-comments-yet": "تا حالا نظریی ثبت نشده هست!",
     "": ""
 }
