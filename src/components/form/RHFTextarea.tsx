@@ -7,10 +7,11 @@ import Textarea from "../ui/Textarea";
 interface RHFTextareaPrpos extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     name: string,
     label?: string,
+    className?: string,
 }
 
 
-const RHFTextarea = ({ name, label, ...reset }: RHFTextareaPrpos) => {
+const RHFTextarea = ({ name, label, className, ...reset }: RHFTextareaPrpos) => {
 
     const { control } = useFormContext();
     return (
@@ -22,6 +23,7 @@ const RHFTextarea = ({ name, label, ...reset }: RHFTextareaPrpos) => {
                     {...field}
                     {...reset}
                     label={label}
+                    className={className}
                     error={fieldState.error?.message}
                 />
             )}

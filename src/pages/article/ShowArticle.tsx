@@ -180,6 +180,7 @@ export default function ShowArticle() {
                                                     name='comment_text'
                                                     placeholder={t('comment-pleacholder')}
                                                     rows={4}
+                                                    className='dark:bg-slate-700!'
                                                 />
 
                                                 <div className="flex justify-end gap-x-3">

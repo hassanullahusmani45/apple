@@ -8,9 +8,10 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     label?: string,
     error?: string
     id?: string;
+    className?: string;
 }
 
-const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({ name, label, error, id, ...props }, ref) => {
+const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({ name, label, error, id, className, ...props }, ref) => {
 
     const elementId = id || name;
     const { t } = useTranslation('zod_error_messages');
@@ -25,7 +26,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({ name, label, 
                 ref={ref}
                 name={name}
                 {...props}
-                className="textarea-style"
+                className={`textarea-style ${className}`}
             ></textarea>
             {error ? <span className="flex justify-start items-center gap-1 text-sm font-semibold text-red-500 ms-4"><TiWarningOutline className="size-6" />{t(error)}</span> : <div className="min-h-[1.5rem]"></div>}
         </div>

@@ -37,8 +37,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
         setActiveIndex(-1);
     }, [debouncedValue, articles]);
 
-    const searchHandler = (title: string) => {
-        navigate(`/article/${encodeURIComponent(title)}`);
+    const searchHandler = (title: string, id: number) => {
+        navigate(`/article/${encodeURIComponent(title)}/${id}`);
         setOnFocus(false);
     };
 
@@ -48,7 +48,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
         } else if (e.key === 'ArrowUp') {
             setActiveIndex(prev => Math.max(prev - 1, 0));
         } else if (e.key === 'Enter' && activeIndex >= 0) {
-            searchHandler(searchArticle[activeIndex].title);
+            searchHandler(searchArticle[activeIndex].title, searchArticle[activeIndex].id);
         }
     };
 
@@ -91,7 +91,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ articles }) => {
                     </div> :
                     searchArticle.map((article, index) => (
                         <div
-                            onClick={() => searchHandler(article.title)}
+                            onClick={() => searchHandler(article.title, article.id)}
                             key={article.id}
                             className={`block text-xs md:text-xs font-normal px-6 md:px-8 lg:px-12 py-2 md:py-3 cursor-pointer hover:bg-slate-300 dark:hover:bg-slate-600 pointer-events-auto ${index === activeIndex ? 'bg-slate-300 dark:bg-slate-600' : ''
                                 }`}
