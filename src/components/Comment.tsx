@@ -32,7 +32,7 @@ export default function Comment({ children, comment }: Props) {
                         {comment.team_members?.first_name}{" "}{comment.team_members?.last_name}
                     </span>
                     <span className="mx-1 font-bold text-lg">|</span>
-                    <span className='text-sm font-semibold'>
+                    <span className='text-sm font-semibold rtl:font-GeomerricArabic'>
                         {comment.visitors?.role_id === 1 && t("Admin")}
                         {comment.visitors?.role_id === 2 && t("Team Member")}
                         {comment.visitors?.role_id === 3 && t("User")}
@@ -46,7 +46,7 @@ export default function Comment({ children, comment }: Props) {
                 </div>
             </div>
             <hr className="my-2 text-slate-500" />
-            <div className="text-sm leading-7 my-4">{comment.comment_text}</div>
+            <div className="text-sm leading-7 mt-4 font-vazirmatn">{comment.comment_text}</div>
 
 
             {/* children */}

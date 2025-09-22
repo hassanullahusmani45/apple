@@ -6,7 +6,7 @@ import { FaCommentSlash, FaEye, FaUser } from "react-icons/fa6";
 import { IoCalendarSharp } from "react-icons/io5";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { fetchArticleComments, fetchArticleData } from "../../redux/slices/article/articleSlice";
+import { createNewComment, fetchArticleComments, fetchArticleData } from "../../redux/slices/article/articleSlice";
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import TeamMemberSidebar from '../../components/TeamMemberSidebar';
 import ShowArticleSkeleton from '../../components/skeleton/ShowArticleSkeleton';
@@ -22,10 +22,12 @@ import { FormProvider, useForm } from 'react-hook-form';
 import type z from 'zod';
 import { commentSchema } from '../../types/zodSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toastSuccess } from '../../utils/toastSuccess';
+import { toastError } from '../../utils/toastError';
 
 
 export default function ShowArticle() {
-    const { t, i18n } = useTranslation("main");
+    const { t, i18n } = useTranslation(["main","toast"]);
     const { title, article_id } = useParams<{ title: string, article_id: string }>();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -36,7 +38,8 @@ export default function ShowArticle() {
     const [isCommentOpen, setIsCommentOpen] = useState(false);
     const [fetchDone, setFetchDone] = useState(false);
 
-    const { article, comments, articleDataLoading, articleCommentsLoading } = useAppSelector((state) => state.article);
+    const { user } = useAppSelector((state) => state.auth);
+    const { article, comments, articleDataLoading, articleCommentsLoading, error, isCreated } = useAppSelector((state) => state.article);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -73,12 +76,27 @@ export default function ShowArticle() {
         resolver: zodResolver(commentSchema)
     });
 
-    const onsubmit = (data: commentData) => {
+    const onsubmit = async (data: commentData) => {
         console.log(data);
-        methods.reset();
+        const newComment = {
+            article_id: article!.id,
+            visitor_id: user!.id,
+            comment_text: data.comment_text.trim()
+        }
+
+        await dispatch(createNewComment(newComment));
     }
 
-    console.log("Comments:", comments);
+    useEffect(() => {
+        if (isCreated) {
+            toastSuccess(t("create-new-comment",{ ns: "toast" }));
+            methods.reset();
+            setIsCommentOpen(false);
+        }
+        if (error) {
+            toastError(error);
+        }
+    }, [isCreated, error]);
 
     return (
         <div>

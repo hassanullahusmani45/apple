@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { supabase } from "../../../lib/SupabaseClient";
-import type { Article, commentType } from "../../../types/type";
+import type { Article, commentType, newCommentType } from "../../../types/type";
 
 
 interface ArticleState {
@@ -8,6 +8,8 @@ interface ArticleState {
     comments: commentType[];
     articleDataLoading: boolean;
     articleCommentsLoading: boolean;
+    newCommentLoading: boolean;
+    isCreated: boolean;
     error: string | null;
 }
 
@@ -16,6 +18,8 @@ const initialState: ArticleState = {
     comments: [],
     articleDataLoading: false,
     articleCommentsLoading: false,
+    newCommentLoading: false,
+    isCreated: false,
     error: null,
 };
 
@@ -43,6 +47,19 @@ export const fetchArticleComments = createAsyncThunk(
         return comments;
     }
 );
+
+export const createNewComment = createAsyncThunk(
+    'article/createNewComment',
+    async (newComment: newCommentType, { rejectWithValue }) => {
+        const { error: commentError } = await supabase
+            .from("comments")
+            .insert(newComment);
+
+        if (commentError) {
+            return rejectWithValue(commentError.message);
+        }
+    }
+)
 
 
 const articleSlice = createSlice({
@@ -74,6 +91,21 @@ const articleSlice = createSlice({
             .addCase(fetchArticleComments.rejected, (state, action) => {
                 state.articleCommentsLoading = false;
                 state.error = action.error.message || "Failed to fetch article data"
+            })
+            .addCase(createNewComment.pending, (state) => {
+                state.newCommentLoading = true;
+                state.error = null;
+                state.isCreated = false;
+            })
+            .addCase(createNewComment.fulfilled, (state) => {
+                state.newCommentLoading = false;
+                state.error = null;
+                state.isCreated = true;
+            })
+            .addCase(createNewComment.rejected, (state, action) => {
+                state.newCommentLoading = false;
+                state.error = action.error.message || "Failed to Save a new comment."
+                state.isCreated = false;
             });
     }
 });

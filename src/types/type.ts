@@ -113,3 +113,9 @@ export interface commentType {
     profile: string;
   } | null;
 }
+
+export interface newCommentType {
+  article_id: number;
+  visitor_id: string;
+  comment_text: string;
+}
