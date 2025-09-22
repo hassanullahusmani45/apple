@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import hassanProfile from '../assets/hassan.jpeg';
 import type { commentType } from '../types/type';
 import i18n from '../i18n';
+import { getTextDirection } from '../utils/getTextDirection';
 
 type Props = {
     responceComment: commentType;
@@ -43,7 +44,10 @@ export default function ResponseComment({ responceComment }: Props) {
                 </div>
             </div>
             <hr className="my-2 text-slate-500" />
-            <div className="text-sm leading-7 mt-4">{responceComment.comment_text}</div>
+            <div
+                className="text-sm leading-7 mt-4"
+                dir={getTextDirection(responceComment.comment_text)}
+            >{responceComment.comment_text}</div>
         </div>
     )
 }

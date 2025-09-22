@@ -3,6 +3,7 @@ import hassanProfile from '../assets/hassan.jpeg';
 import type { commentType } from '../types/type';
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
+import { getTextDirection } from '../utils/getTextDirection';
 
 
 type Props = {
@@ -46,7 +47,12 @@ export default function Comment({ children, comment }: Props) {
                 </div>
             </div>
             <hr className="my-2 text-slate-500" />
-            <div className="text-sm leading-7 mt-4 font-vazirmatn">{comment.comment_text}</div>
+            <div
+                className="text-sm leading-7 mt-4 font-vazirmatn"
+                dir={getTextDirection(comment.comment_text)}
+            >
+                {comment.comment_text}
+            </div>
 
 
             {/* children */}
