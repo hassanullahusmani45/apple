@@ -13,7 +13,7 @@ interface AuthLayoutProps {
 export default function AuthLayout({ page, information, children }: AuthLayoutProps) {
 
     const { theme } = useTheme();
-    const { t } = useTranslation("authantication")
+    const { t } = useTranslation("authentication")
 
     return (
         <div className='flex justify-center items-center w-full h-screen bg-inherit text-inherit overflow-x-hidden'>

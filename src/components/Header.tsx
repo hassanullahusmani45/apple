@@ -20,6 +20,7 @@ import { LuLanguages } from "react-icons/lu";
 
 export default function Header() {
   const { t } = useTranslation("header_and_footer");
+  const { t: t_toast } = useTranslation("toast");
   const currentLang = i18n.language;
   const navigate = useNavigate()
   const dispatch = useAppDispatch();
@@ -30,7 +31,7 @@ export default function Header() {
 
   useEffect(() => {
     if (success) {
-      toastSuccess("You have successfully logged out.");
+      toastSuccess(t_toast("successfullyLoggedOut"));
       navigate("/login");
       dispatch(resetStatus());
     }
@@ -38,9 +39,9 @@ export default function Header() {
     if (error) {
 
       if (isOnline) {
-        toastError("Something went wrong. Please try again later!");
+        toastError(t_toast("Something was wrong. please try agin later!"));
       } else {
-        toastError("Logout failed. Please check your internet and try again.");
+        toastError(t_toast("Logout failed. Please check your internet and try again."));
       }
       dispatch(resetStatus());
 
@@ -58,7 +59,7 @@ export default function Header() {
   const logout = async () => {
     try {
       if (!isOnline) {
-        toastError("No internet connection. Please try again.");
+        toastError(t_toast("No internet connection. Please try again."));
         return;
       }
       await dispatch(logoutUser()).unwrap();

@@ -10,8 +10,6 @@ type Props = {
 
 export default function ResponseComment({ responceComment }: Props) {
     const { t } = useTranslation('main');
-    console.log("comment responce :", responceComment);
-
 
     return (
         <div className="bg-slate-100 dark:bg-slate-600 shadow-md rounded-lg px-2 sm:px-3 md:px-5 py-5 my-2">

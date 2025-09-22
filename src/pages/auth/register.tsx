@@ -26,7 +26,9 @@ export default function Register() {
     const [isShow, setIsShow] = useState<boolean>(false);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const { t } = useTranslation("authantication")
+    const { t } = useTranslation("authentication");
+    const { t:t_main } = useTranslation("main");
+    const { t:t_toast } = useTranslation("toast");
 
     const { success, loading, error } = useAppSelector((state) => state.auth);
 
@@ -61,7 +63,7 @@ export default function Register() {
 
     useEffect(() => {
         if (success) {
-            toastSuccess("You are successfully Register 🤣.");
+            toastSuccess(t_toast("successfullyRegister"));
             methods.reset();
             dispatch(resetStatus());
             navigate('/');
@@ -98,7 +100,7 @@ export default function Register() {
                             type="submit"
                             disabled={loading}
                         >
-                            {loading ? "Loading ..." : t("Register")}
+                            {loading ? t_main("Loading...") : t("Register")}
 
                         </Button>
                     </div>

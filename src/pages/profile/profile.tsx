@@ -21,7 +21,7 @@ import { useTranslation } from "react-i18next";
 
 
 export default function Profile() {
-    const { t } = useTranslation("main");
+    const { t } = useTranslation(["main", "toast"]);
     const dispatch = useAppDispatch();
     const { user, checkingSession } = useAppSelector(state => state.auth);
     const { nameloading, passwordloading, profileImgloading, nameError, passwordError, profileImgError, successProfileImg, successPassword, updatedUser } = useAppSelector(state => state.profile);
@@ -29,22 +29,22 @@ export default function Profile() {
     // Toasts for name Update
     useEffect(() => {
         if (updatedUser!!) {
-            toastSuccess("Your first or last name is successfuly updated.");
+            toastSuccess(t("Your first or last name is successfuly updated.", { ns: 'toast' }));
         }
         if (nameError!!) {
-            toastError("Something was wrong. please try agin later!")
+            toastError(t("Something was wrong. please try agin later!"))
         }
     }, [nameError, updatedUser]);
 
     // Toasts for Password Update
     useEffect(() => {
-        if (successPassword) toastSuccess("Password updated successfully!");
+        if (successPassword) toastSuccess(t("Password updated successfully!"));
         if (passwordError) toastError(passwordError);
     }, [successPassword, passwordError]);
 
     // Toasts for profile image Update.
     useEffect(() => {
-        if (successProfileImg) toastSuccess("Your profile image updated successfully!");
+        if (successProfileImg) toastSuccess(t("Your profile image updated successfully!", { ns: "toast" }));
         if (profileImgError) toastError(profileImgError);
     }, [successProfileImg, profileImgError]);
 
@@ -95,7 +95,7 @@ export default function Profile() {
                 last_name: visitorPayload.last_name,
             });
         } catch (err) {
-            toastError("Failed to update name. Try again.");
+            toastError(t("Failed to update name. Try again."));
         }
     };
 
@@ -105,7 +105,7 @@ export default function Profile() {
             await dispatch(updatePassword(formData.new_password)).unwrap();
             passwordMethods.reset();
         } catch (err) {
-            toastError("Failed to update password. Try again.");
+            toastError(t("Failed to update password. Try again."));
         }
     }
 
@@ -185,7 +185,7 @@ export default function Profile() {
                                             className={`button-style`}
                                             disabled={nameloading}
                                         >
-                                            {nameloading ? "Loading..." : t("Seve Changes")}
+                                            {nameloading ? t("Loading...") : t("Seve Changes")}
                                         </Button>
                                     </div>
                                 </form>
@@ -216,11 +216,9 @@ export default function Profile() {
                                     <div className='col-span-8 xl:col-span-1 flex justify-center items-center  text-center text-nowrap'>
                                         <Button
                                             type="submit"
-                                            className="xl:h-11 mt-0"
                                             disabled={passwordloading}
                                         >
-
-                                            {passwordloading ? "Loading..." : t("Change Password")}
+                                            {passwordloading ? t("Loading...") : t("Change Password")}
                                         </Button>
                                     </div>
                                 </form>
@@ -273,7 +271,7 @@ export default function Profile() {
                                             type="submit"
                                             disabled={profileImgloading}
                                         >
-                                            {profileImgloading ? "Loading..." : t("Changes Profile")}
+                                            {profileImgloading ? t("Loading...") : t("Changes Profile")}
                                         </Button>
                                     </div>
                                 </form>

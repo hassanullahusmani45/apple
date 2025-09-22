@@ -43,7 +43,9 @@ export const fetchArticleComments = createAsyncThunk(
             .from('comments')
             .select(`*,team_members (first_name,last_name,profile,role_id), visitors (first_name,last_name,profile,role_id)`)
             .eq("article_id", article_id)
-            .eq("isShow", true);
+            .eq("isShow", true)
+            .order("created_at", { ascending: false })
+            .limit(10);
         return comments;
     }
 );

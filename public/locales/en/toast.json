@@ -1,3 +1,15 @@
 {
-    "create-new-comment": "New Comment is successfully created."
+    "create-new-comment": "New Comment is successfully created.",
+    "Your first or last name is successfuly updated.": "Your first or last name is successfuly updated.",
+    "Something was wrong. please try agin later!": "Something was wrong. please try agin later!",
+    "Password updated successfully!": "Password updated successfully!",
+    "Your profile image updated successfully!": "Your profile image updated successfully!",
+    "Failed to update name. Try again.": "Failed to update name. Try again.",
+    "Failed to update password. Try again.": "Failed to update password. Try again.",
+    "The contact message was saved successfully.": "The contact message was saved successfully.",
+    "successfullyLogin": "You are successfully Login 🤣.",
+    "successfullyRegister": "You are successfully Register 🤣.",
+    "successfullyLoggedOut": "You have successfully logged out.",
+    "Logout failed. Please check your internet and try again.": "Logout failed. Please check your internet and try again.",
+    "No internet connection. Please try again.": "No internet connection. Please try again."
 }

@@ -13,7 +13,6 @@ type Props = {
 
 export default function Comment({ children, comment }: Props) {
     const { t } = useTranslation('main');
-    console.log("Comment:", comment);
 
     return (
         <div className="bg-slate-200/90 dark:bg-slate-700 shadow-md rounded-lg px-2 sm:px-3 md:px-5 py-5 mt-5">

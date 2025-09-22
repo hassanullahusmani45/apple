@@ -25,7 +25,9 @@ export default function login() {
     const [isShow, setIsShow] = useState<boolean>(false);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const { t } = useTranslation("authantication")
+    const { t } = useTranslation("authentication");
+    const { t: t_main } = useTranslation('main');
+    const { t: t_toast } = useTranslation('toast');
 
 
     const { success, loading, error } = useAppSelector((state) => state.auth);
@@ -49,7 +51,7 @@ export default function login() {
     useEffect(() => {
         if (success) {
             methods.reset();
-            toastSuccess("You are successfully Login 🤣.");
+            toastSuccess(t_toast("successfullyLogin"));
             navigate('/');
             dispatch(resetStatus());
 
@@ -84,7 +86,7 @@ export default function login() {
                             type="submit"
                             disabled={loading}
                         >
-                            {loading ? "Loading ..." : t("Login")}
+                            {loading ? t_main("Loading...") : t("Login")}
                         </Button>
                     </div>
 

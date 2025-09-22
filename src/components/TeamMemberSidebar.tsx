@@ -37,7 +37,7 @@ export default function TeamMemberSidebar({ author }: TeamMemberSidebarProps) {
             </div>
 
             <div className='flex justify-start items-center gap-2 text-lg font-medium mt-6 mb-2 text-slate-900 dark:text-white'>My Skills <LuBicepsFlexed className='size-6 text-green-500 dark:text-orange-400' /> </div>
-            <div className='text-sm font-serif text-slate-700 dark:text-slate-300'>{author?.skills}</div>
+            <div className='text-sm text-slate-700 dark:text-slate-300'>{author?.skills}</div>
 
         </div>
     )

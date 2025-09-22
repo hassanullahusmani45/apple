@@ -22,7 +22,9 @@ import { FaInstagram } from 'react-icons/fa6';
 
 
 export default function ContactUs() {
-    const { t } = useTranslation("contect_us")
+    const { t } = useTranslation("contect_us");
+    const { t: t_main } = useTranslation("main");
+    const { t: t_toast } = useTranslation("toast");
     const dispatch = useAppDispatch();
     const { success, error, loading } = useAppSelector(state => state.contactUs);
     const [contacFormBody] = useAutoAnimate<HTMLFormElement>();
@@ -46,12 +48,12 @@ export default function ContactUs() {
 
     useEffect(() => {
         if (success) {
-            toastSuccess("The contact message was saved successfully.");
+            toastSuccess(t_toast("The contact message was saved successfully."));
             methods.reset();
             dispatch(resetStatus());
         }
         if (error) {
-            toastError("Something was wrong, please try again!");
+            toastError(t_toast("Something was wrong, please try again!"));
             console.error("ERROR :", error);
 
             dispatch(resetStatus());
@@ -88,7 +90,7 @@ export default function ContactUs() {
                                 type="submit"
                                 disabled={loading}
                             >
-                                {loading ? <div>Loading ...</div> :
+                                {loading ? <div>{t_main("Loading...")}</div> :
                                     (<>
                                         <GrSend className="size-5" />
                                         {t("Send")}
