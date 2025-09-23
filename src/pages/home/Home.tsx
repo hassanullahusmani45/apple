@@ -240,7 +240,7 @@ export default function Home() {
         <div className='mt-10 md:mt-20 text-center font-semibold text-base md:text-2xl text-teal-400'>{t("WhyApple")}</div>
         <div className=' w-[350px] mx-auto mt-1 border-t-2 border-dotted border-teal-500' ></div>
 
-        <div className='py-8 px-5 md:px-10 leading-8 text-justify text-slate-600 dark:text-slate-300 text-sm md:text-base font-semibold'>
+        <div className='py-8 px-5 md:px-10 indent-8 leading-7 text-justify text-slate-600 dark:text-slate-300 text-sm md:text-base font-semibold'>
           {t("WhyChoseAppleInfo")}
          </div>
 

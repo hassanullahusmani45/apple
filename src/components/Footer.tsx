@@ -58,7 +58,6 @@ export default function Footer() {
         </div>
 
         <div className="col-span-8 text-center mt-6">
-          {/* <div className="text-md font-semibold text-green-500 dark:text-orange-500 my-2">{t("follow")}</div> */}
           <SocialMedia />
         </div>
         <div className="col-span-8 text-center border-t border-slate-600 py-4 font-semibold">
