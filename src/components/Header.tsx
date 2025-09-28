@@ -11,12 +11,14 @@ import { IoMdLogIn } from "react-icons/io";
 import HeaderDropdownMenu from "./HeaderDropdownMenu";
 import { toastError } from "../utils/toastError";
 import { toastSuccess } from "../utils/toastSuccess";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useOnlineStatus } from "../hooks/useOnlineStatus";
 import { TiThMenu } from "react-icons/ti";
 import i18n from "../i18n";
 import { useTranslation } from "react-i18next";
 import { LuLanguages } from "react-icons/lu";
+import { useGSAP } from "@gsap/react"
+import { headerAnimations } from "../animations/headerAnimations";
 
 export default function Header() {
   const { t } = useTranslation("header_and_footer");
@@ -26,8 +28,16 @@ export default function Header() {
   const dispatch = useAppDispatch();
   const { theme } = useTheme();
   const isOnline = useOnlineStatus();
+  const navLinksRef = useRef<HTMLDivElement>(null);
 
   const { user, success, error } = useAppSelector(state => state.auth);
+
+  useGSAP(() => {
+    if (navLinksRef.current) {
+      const links = Array.from(navLinksRef.current.querySelectorAll<HTMLAnchorElement>("a"));
+      headerAnimations(links);
+    }
+  }, []);
 
   useEffect(() => {
     if (success) {
@@ -63,8 +73,12 @@ export default function Header() {
         return;
       }
       await dispatch(logoutUser()).unwrap();
-    } catch (error: any) {
-      toastError(error?.message || "Logout failed.");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toastError(error.message);
+      } else {
+        toastError("Logout failed.");
+      }
     }
   };
 
@@ -76,7 +90,7 @@ export default function Header() {
           <img src={theme === 'dark' ? LogoLight : LogoDark} className="w-8 h-10 md:w-10 md:h-12 rounded-full hover:opacity-80 dark:hover:opacity-70" alt="logo" />
         </Link>
 
-        <div className="flex justify-center items-center gap-x-3 sm:gap-x-4 md:gap-6 lg:gap-x-8">
+        <div ref={navLinksRef} className="flex justify-center items-center gap-x-3 sm:gap-x-4 md:gap-6 lg:gap-x-8">
           <NavLink to={"/"}
             className={({ isActive }) => isActive ? "linkClass dark:text-orange-400 text-green-500" : "linkClass"}
           >{t("HOME")}</NavLink>
@@ -101,7 +115,7 @@ export default function Header() {
                 <div className="auth-link-style" onClick={() => { i18n.changeLanguage('dr') }}>{t("Dari")}</div>
               </HeaderDropdownMenu>
 
-              {user!! ?
+              {user ?
                 (
                   <HeaderDropdownMenu icon={<TiThMenu className="size-3 sm:size-4 group-hover:rotate-90 rtl:group-hover:-rotate-90 transition-all" />}>
                     <Link to={"/profile"} className="auth-link-style">
