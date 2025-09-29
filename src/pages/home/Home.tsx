@@ -23,6 +23,8 @@ import NewArticlesSkeleton from '../../components/skeleton/homepage/NewArticlesS
 import { useTranslation } from "react-i18next";
 import { useGSAP } from '@gsap/react';
 import { title } from '../../animations/homeAnimations';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
 
 
 export default function Home() {
@@ -38,6 +40,7 @@ export default function Home() {
   const swiperRef = useRef<SwiperType | null>(null);
   const title1Ref = useRef<HTMLDivElement>(null);
   const title2Ref = useRef<HTMLDivElement>(null);
+  const teamMemberTitleRef = useRef<HTMLDivElement>(null);
 
   const handleNext = () => {
     if (swiperRef.current) {
@@ -56,6 +59,31 @@ export default function Home() {
       title(title1Ref.current, title2Ref.current);
     }
   }, []);
+
+
+  useGSAP(() => {
+    gsap.from(teamMemberTitleRef.current, {
+      opacity: 0,
+      x: 300,
+      delay: 0.2,
+      duration: 0.5,
+      scrollTrigger: {
+        trigger: teamMemberTitleRef.current,
+        start: "top 98%",
+        toggleActions: "play none none reverse"
+      },
+    });
+
+    gsap.set(".team-slide", { opacity: 0, y: 300 });
+    ScrollTrigger.batch('.team-slide', {
+      interval: 0.3,
+      batchMax: 7,
+      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.2, duration: 0.8 }),
+      onLeaveBack: batch => gsap.set(batch, { opacity: 0, y: 300, duration: 0 }),
+      start: "top 100%",
+    });
+  }, [loading]);
+
 
   return (
     <div>
@@ -95,9 +123,9 @@ export default function Home() {
 
         {loading ? <TeamMembersSkeleton /> : (
           <>
-            <div className='mt-20 md:mt-28 text-start font-semibold text-base md:text-xl text-teal-500'><HiSparkles className='inline size-6 md:size-8 text-green-500' /> {t("Our Experienced Team")}</div>
+            <div ref={teamMemberTitleRef} className='mt-20 md:mt-28 text-start font-semibold text-base md:text-xl text-teal-500'><HiSparkles className='inline size-6 md:size-8 text-green-500' /> {t("Our Experienced Team")}</div>
             <div className='w-[16rem] rtl:w-[10rem] mt-1 border-t-2 border-dotted border-teal-300'></div>
-            <div className='w-[85%] sm:w-full mx-auto py-8'>
+            <div className='w-[85%] sm:w-full mx-auto py-8 team-wrapper'>
               <Swiper
                 key={lang}
                 dir={lang == "dr" ? "rtl" : 'ltr'}
@@ -117,7 +145,7 @@ export default function Home() {
                 }}
               >
                 {teamMembers.map(({ id, profile, emaillink, linkedinlink, weblink, first_name, last_name, position, info }) => (
-                  <SwiperSlide key={id}>
+                  <SwiperSlide key={id} className="team-slide">
                     <TeamMemmberCard
                       id={id}
                       profile={profile || hassanProfile}

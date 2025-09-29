@@ -33,3 +33,6 @@ export const title = (title1: HTMLDivElement, title2: HTMLDivElement) => {
             , "-=2")
 }
 
+
+
+
