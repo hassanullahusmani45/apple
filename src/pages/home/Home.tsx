@@ -21,6 +21,8 @@ import TeamMembersSkeleton from '../../components/skeleton/homepage/TeamMembersS
 import AllArticlesSkeleton from '../../components/skeleton/homepage/AllArticlesSkeleton';
 import NewArticlesSkeleton from '../../components/skeleton/homepage/NewArticlesSkeleton';
 import { useTranslation } from "react-i18next";
+import { useGSAP } from '@gsap/react';
+import { title } from '../../animations/homeAnimations';
 
 
 export default function Home() {
@@ -34,6 +36,8 @@ export default function Home() {
   const lang = i18n.language;
 
   const swiperRef = useRef<SwiperType | null>(null);
+  const title1Ref = useRef<HTMLDivElement>(null);
+  const title2Ref = useRef<HTMLDivElement>(null);
 
   const handleNext = () => {
     if (swiperRef.current) {
@@ -46,14 +50,21 @@ export default function Home() {
       swiperRef.current.slidePrev();
     }
   };
+
+  useGSAP(() => {
+    if (title1Ref.current && title2Ref.current) {
+      title(title1Ref.current, title2Ref.current);
+    }
+  }, []);
+
   return (
     <div>
       {/*start heading part  */}
       <div className='flex flex-col justify-center items-center pt-10 md:pt-16 lg:pt-20'>
 
-        <div className='text-2xl md:text-3xl font-bold font-serif rtl:md:text-4xl rtl:font-GeomerricArabic py-2 text-center bg-gradient-to-r from-green-600 dark:from-orange-500 to-orange-500 dark:to-green-500 bg-clip-text text-transparent'>
-          <div className="mb-2 md:mb-4">{t("Apple Tecnology")}</div>
-          <div className="">{t("The Best Place For Learning Modren Articles")}</div>
+        <div className='text-2xl md:text-3xl font-bold font-serif rtl:md:text-4xl rtl:font-GeomerricArabic py-2 text-center'>
+          <div ref={title1Ref} className="mb-2 md:mb-4 bg-gradient-to-r from-green-600 dark:from-orange-500 to-orange-500 dark:to-green-500 bg-clip-text text-transparent">{t("Apple Tecnology")}</div>
+          <div ref={title2Ref} className="bg-gradient-to-r from-green-600 dark:from-orange-500 to-orange-500 dark:to-green-500 bg-clip-text text-transparent">{t("The Best Place For Learning Modren Articles")}</div>
         </div>
         <SearchBar articles={articles} />
 
@@ -242,7 +253,7 @@ export default function Home() {
 
         <div className='py-8 px-5 md:px-10 indent-8 leading-7 text-justify text-slate-600 dark:text-slate-300 text-sm md:text-base font-semibold'>
           {t("WhyChoseAppleInfo")}
-         </div>
+        </div>
 
         {/* end Discription abute site articeles */}
 
