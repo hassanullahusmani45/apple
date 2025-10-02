@@ -22,7 +22,7 @@ import AllArticlesSkeleton from '../../components/skeleton/homepage/AllArticlesS
 import NewArticlesSkeleton from '../../components/skeleton/homepage/NewArticlesSkeleton';
 import { useTranslation } from "react-i18next";
 import { useGSAP } from '@gsap/react';
-import { title } from '../../animations/homeAnimations';
+import { appleInfo, sectionTitle, title } from '../../animations/homeAnimations';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 
@@ -41,6 +41,11 @@ export default function Home() {
   const title1Ref = useRef<HTMLDivElement>(null);
   const title2Ref = useRef<HTMLDivElement>(null);
   const teamMemberTitleRef = useRef<HTMLDivElement>(null);
+  const articlesTitleRef = useRef<HTMLDivElement>(null);
+  const categoryTitleRef = useRef<HTMLDivElement>(null);
+  const newArticlesTitleRef = useRef<HTMLDivElement>(null);
+  const whyChoseAppleTitleRef = useRef<HTMLDivElement>(null);
+  const whyChoseAppleInfoRef = useRef<HTMLDivElement>(null);
 
   const handleNext = () => {
     if (swiperRef.current) {
@@ -55,33 +60,34 @@ export default function Home() {
   };
 
   useGSAP(() => {
-    if (title1Ref.current && title2Ref.current) {
+    if (title1Ref.current && title2Ref.current && whyChoseAppleInfoRef.current) {
       title(title1Ref.current, title2Ref.current);
+      appleInfo(whyChoseAppleInfoRef.current);
     }
   }, []);
 
 
   useGSAP(() => {
-    gsap.from(teamMemberTitleRef.current, {
-      opacity: 0,
-      x: 300,
-      delay: 0.2,
-      duration: 0.5,
-      scrollTrigger: {
-        trigger: teamMemberTitleRef.current,
-        start: "top 98%",
-        toggleActions: "play none none reverse"
-      },
-    });
 
-    gsap.set(".team-slide", { opacity: 0, y: 300 });
-    ScrollTrigger.batch('.team-slide', {
+    if (teamMemberTitleRef.current && articlesTitleRef.current && categoryTitleRef.current && newArticlesTitleRef.current && whyChoseAppleTitleRef.current) {
+      sectionTitle(teamMemberTitleRef.current);
+      sectionTitle(articlesTitleRef.current);
+      sectionTitle(categoryTitleRef.current);
+      sectionTitle(newArticlesTitleRef.current);
+      sectionTitle(whyChoseAppleTitleRef.current);
+
+
+    }
+
+    gsap.set(".team-card", { opacity: 0, y: 300 });
+    ScrollTrigger.batch('.team-card', {
       interval: 0.3,
       batchMax: 7,
       onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.2, duration: 0.8 }),
       onLeaveBack: batch => gsap.set(batch, { opacity: 0, y: 300, duration: 0 }),
-      start: "top 100%",
+      start: "top 140%",
     });
+    
   }, [loading]);
 
 
@@ -90,9 +96,9 @@ export default function Home() {
       {/*start heading part  */}
       <div className='flex flex-col justify-center items-center pt-10 md:pt-16 lg:pt-20'>
 
-        <div className='text-2xl md:text-3xl font-bold font-serif rtl:md:text-4xl rtl:font-GeomerricArabic py-2 text-center'>
-          <div ref={title1Ref} className="mb-2 md:mb-4 bg-gradient-to-r from-green-600 dark:from-orange-500 to-orange-500 dark:to-green-500 bg-clip-text text-transparent">{t("Apple Tecnology")}</div>
-          <div ref={title2Ref} className="bg-gradient-to-r from-green-600 dark:from-orange-500 to-orange-500 dark:to-green-500 bg-clip-text text-transparent">{t("The Best Place For Learning Modren Articles")}</div>
+        <div className='text-2xl md:text-3xl font-bold font-serif rtl:md:text-4xl rtl:font-GeomerricArabic text-center'>
+          <div ref={title1Ref} className="mb-2 md:mb-4 bg-gradient-to-r from-green-600 dark:from-orange-500 to-orange-500 dark:to-green-500 bg-clip-text text-transparent py-2">{t("Apple Tecnology")}</div>
+          <div ref={title2Ref} className="bg-gradient-to-r from-green-600 dark:from-orange-500 to-orange-500 dark:to-green-500 bg-clip-text text-transparent py-2">{t("The Best Place For Learning Modren Articles")}</div>
         </div>
         <SearchBar articles={articles} />
 
@@ -125,7 +131,7 @@ export default function Home() {
           <>
             <div ref={teamMemberTitleRef} className='mt-20 md:mt-28 text-start font-semibold text-base md:text-xl text-teal-500'><HiSparkles className='inline size-6 md:size-8 text-green-500' /> {t("Our Experienced Team")}</div>
             <div className='w-[16rem] rtl:w-[10rem] mt-1 border-t-2 border-dotted border-teal-300'></div>
-            <div className='w-[85%] sm:w-full mx-auto py-8 team-wrapper'>
+            <div className='w-[85%] sm:w-full mx-auto py-8'>
               <Swiper
                 key={lang}
                 dir={lang == "dr" ? "rtl" : 'ltr'}
@@ -145,7 +151,7 @@ export default function Home() {
                 }}
               >
                 {teamMembers.map(({ id, profile, emaillink, linkedinlink, weblink, first_name, last_name, position, info }) => (
-                  <SwiperSlide key={id} className="team-slide">
+                  <SwiperSlide key={id} className="team-card">
                     <TeamMemmberCard
                       id={id}
                       profile={profile || hassanProfile}
@@ -172,8 +178,8 @@ export default function Home() {
         {/* start all articles */}
         {loading ? <AllArticlesSkeleton /> : (
           <>
-            <div className='mt-10 md:mt-20 text-start font-semibold text-base md:text-xl text-fuchsia-500'><HiInboxStack className='inline size-6 md:size-8 text-violet-500' /> {t("All Articles")}</div>
-            <div className='w-[10rem] rtl:w-[8rem] mt-1 border-t-2 border-dotted border-fuchsia-300 '></div>
+            <div ref={articlesTitleRef} className='mt-10 md:mt-20 text-start font-semibold text-base md:text-xl text-fuchsia-500'><HiInboxStack className='inline size-6 md:size-8 text-violet-500' /> {t("All Articles")}</div>
+            <div className='w-[10rem] rtl:w-[9rem] mt-1 border-t-2 border-dotted border-fuchsia-300 '></div>
 
             <div className='w-[85%] sm:w-full mx-auto grid grid-cols-12 gap-2 md:gap-4 lg:gap-6 2xl:gap-8 my-10'>
 
@@ -205,8 +211,8 @@ export default function Home() {
         {/* start category part  */}
         {categoryLoading ? <CategoryCountSkeleton /> : (
           <>
-            <div className='mt-16 md:mt-28 text-start font-semibold text-base md:text-xl text-sky-500'><HiMiniSquare3Stack3D className='inline size-6 md:size-8 text-blue-500' /> {t("Numbers of the categories articles")}</div>
-            <div className='w-[23rem] rtl:w-[13rem] mt-1 border-t-2 border-dotted border-sky-300'></div>
+            <div ref={categoryTitleRef} className='mt-16 md:mt-28 text-start font-semibold text-base md:text-xl text-sky-500'><HiMiniSquare3Stack3D className='inline size-6 md:size-8 text-blue-500' /> {t("Numbers of the categories articles")}</div>
+            <div className='w-[23rem] rtl:w-[15rem] mt-1 border-t-2 border-dotted border-sky-300'></div>
             <CategoryCount />
           </>
         )}
@@ -221,8 +227,8 @@ export default function Home() {
           <>
             <div className='mt-10 md:mt-20 flex justify-between items-center'>
               <div className='w-full'>
-                <div className='text-start font-semibold text-base md:text-xl text-emerald-500'><MdOutlineWhatshot className='inline size-6 md:size-8 text-green-500' /> {t("New Articles")}</div>
-                <div className='w-[170px] mt-1 border-t-2 border-dotted border-emerald-300 '></div>
+                <div ref={newArticlesTitleRef} className='text-start font-semibold text-base md:text-xl text-emerald-500'><MdOutlineWhatshot className='inline size-6 md:size-8 text-green-500' /> {t("New Articles")}</div>
+                <div className='w-[170px] rtl:w-[12rem] mt-1 border-t-2 border-dotted border-emerald-300 '></div>
               </div>
 
               <div className='flex justify-center items-center gap-2'>
@@ -276,10 +282,10 @@ export default function Home() {
 
         {/* start Discription abute site articles */}
 
-        <div className='mt-10 md:mt-20 text-center font-semibold text-base md:text-2xl text-teal-400'>{t("WhyApple")}</div>
+        <div ref={whyChoseAppleTitleRef} className='mt-10 md:mt-20 text-center font-semibold text-base md:text-2xl text-teal-400'>{t("WhyApple")}</div>
         <div className=' w-[350px] mx-auto mt-1 border-t-2 border-dotted border-teal-500' ></div>
 
-        <div className='py-8 px-5 md:px-10 indent-8 leading-7 text-justify text-slate-600 dark:text-slate-300 text-sm md:text-base font-semibold'>
+        <div ref={whyChoseAppleInfoRef} className='py-8 px-5 md:px-10 indent-8 leading-7 text-justify text-slate-600 dark:text-slate-300 text-sm md:text-base font-semibold'>
           {t("WhyChoseAppleInfo")}
         </div>
 

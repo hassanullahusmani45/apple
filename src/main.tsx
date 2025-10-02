@@ -10,7 +10,7 @@ import { Toaster } from 'sonner';
 import { useTheme } from "./services/provider/ThemeContextProvider";
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollTrigger } from 'gsap/all'
 
 
 

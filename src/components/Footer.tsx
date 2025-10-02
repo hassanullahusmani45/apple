@@ -10,13 +10,27 @@ import { FaWhatsapp } from "react-icons/fa";
 import { useTheme } from "../services/provider/ThemeContextProvider";
 import { useTranslation } from "react-i18next";
 import SocialMedia from "./SocialMedia";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+import { footerAnimations } from "../animations/footerAnimations";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const { theme } = useTheme();
   const { t } = useTranslation("header_and_footer");
 
+  const appleInfoRef = useRef<HTMLDivElement>(null);
+  const articlesRef = useRef<HTMLAnchorElement>(null);
+  const aboutRef = useRef<HTMLAnchorElement>(null);
+  const contactRef = useRef<HTMLAnchorElement>(null);
+  const emailRef = useRef<HTMLDivElement>(null);
+  const phoneRef = useRef<HTMLDivElement>(null);
+  const whatsappRef = useRef<HTMLDivElement>(null);
 
+  useGSAP(() => {
+
+    footerAnimations(appleInfoRef.current!, articlesRef.current!, aboutRef.current!, contactRef.current!, emailRef.current!, phoneRef.current!, whatsappRef.current!);
+  }, []);
   return (
     <footer>
 
@@ -26,16 +40,16 @@ export default function Footer() {
           <Link to={"/"}>
             <img src={theme === 'dark' ? LogoLight : LogoDark} className="w-10 h-12 rounded-full hover:opacity-80 dark:hover:opacity-70" alt="logo" />
           </Link>
-          <div className="mt-6">{t("footer_apple_info")}</div>
+          <div ref={appleInfoRef} className="mt-6">{t("footer_apple_info")}</div>
         </div>
 
         {/*PAGES Links part */}
         <div className="col-span-8 md:col-span-2 lg:col-span-2 text-start">
           <div className="flex items-center gap-1 my-5 font-semibold">{t("PAGES")}</div>
           <div className="flex justify-evenly items-center md:block text-sm leading-[2rem] dark:text-slate-300 text-slate-800">
-            <Link to={"/articles"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><HiOutlineClipboardDocumentList className="size-5 dark:text-white text-slate-950" />{t("Articles")}</Link>
-            <Link to={"/about"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><BiMessageError className="size-5 dark:text-white text-slate-950" />{t("About")}</Link>
-            <Link to={"/contact-us"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><MdConnectWithoutContact className="size-5 dark:text-white text-slate-950" />{t("Contact Us")}</Link>
+            <Link ref={articlesRef} to={"/articles"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><HiOutlineClipboardDocumentList className="size-5 dark:text-white text-slate-950" />{t("Articles")}</Link>
+            <Link ref={aboutRef} to={"/about"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><BiMessageError className="size-5 dark:text-white text-slate-950" />{t("About")}</Link>
+            <Link ref={contactRef} to={"/contact-us"} className="flex items-center gap-x-1 hover:text-green-500 dark:hover:text-orange-400"><MdConnectWithoutContact className="size-5 dark:text-white text-slate-950" />{t("Contact Us")}</Link>
           </div>
         </div>
 
@@ -44,13 +58,13 @@ export default function Footer() {
           <div className="flex gap-1 my-5 font-semibold">{t("SUPPORT")}</div>
           <div className="text-sm leading-[2rem] dark:text-slate-300 text-slate-800">
 
-            <div className="flex items-center gap-1"><MdMarkEmailUnread className="size-5 dark:text-white text-slate-950" />
+            <div ref={emailRef} className="flex items-center gap-1"><MdMarkEmailUnread className="size-5 dark:text-white text-slate-950" />
               <span dir="ltr">hassanullahusmani45@gmail.com</span>
             </div>
-            <div className="flex items-center gap-1"><IoPhonePortraitOutline className="size-5 dark:text-white text-slate-950" />
+            <div ref={phoneRef} className="flex items-center gap-1"><IoPhonePortraitOutline className="size-5 dark:text-white text-slate-950" />
               <span dir="ltr"> {t("+93 772 181 609")} </span>
             </div>
-            <div className="flex items-center gap-1"><FaWhatsapp className="size-5 dark:text-white text-slate-950" />
+            <div ref={whatsappRef} className="flex items-center gap-1"><FaWhatsapp className="size-5 dark:text-white text-slate-950" />
               <span dir="ltr"> {t("076 723 3172")} </span>
             </div>
           </div>
