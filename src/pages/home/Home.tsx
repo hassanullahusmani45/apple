@@ -44,7 +44,6 @@ export default function Home() {
   const articlesTitleRef = useRef<HTMLDivElement>(null);
   const categoryTitleRef = useRef<HTMLDivElement>(null);
   const newArticlesTitleRef = useRef<HTMLDivElement>(null);
-  const whyChoseAppleTitleRef = useRef<HTMLDivElement>(null);
   const whyChoseAppleInfoRef = useRef<HTMLDivElement>(null);
 
   const handleNext = () => {
@@ -60,7 +59,7 @@ export default function Home() {
   };
 
   useGSAP(() => {
-    if (title1Ref.current && title2Ref.current && whyChoseAppleInfoRef.current) {
+    if (title1Ref.current && title2Ref.current && whyChoseAppleInfoRef.current && whyChoseAppleInfoRef.current) {
       title(title1Ref.current, title2Ref.current);
       appleInfo(whyChoseAppleInfoRef.current);
     }
@@ -69,14 +68,11 @@ export default function Home() {
 
   useGSAP(() => {
 
-    if (teamMemberTitleRef.current && articlesTitleRef.current && categoryTitleRef.current && newArticlesTitleRef.current && whyChoseAppleTitleRef.current) {
+    if (teamMemberTitleRef.current && articlesTitleRef.current && categoryTitleRef.current && newArticlesTitleRef.current) {
       sectionTitle(teamMemberTitleRef.current);
       sectionTitle(articlesTitleRef.current);
       sectionTitle(categoryTitleRef.current);
       sectionTitle(newArticlesTitleRef.current);
-      sectionTitle(whyChoseAppleTitleRef.current);
-
-
     }
 
     gsap.set(".team-card", { opacity: 0, y: 300 });
@@ -87,8 +83,8 @@ export default function Home() {
       onLeaveBack: batch => gsap.set(batch, { opacity: 0, y: 300, duration: 0 }),
       start: "top 140%",
     });
-    
-  }, [loading]);
+
+  }, [!loading]);
 
 
   return (
@@ -282,7 +278,7 @@ export default function Home() {
 
         {/* start Discription abute site articles */}
 
-        <div ref={whyChoseAppleTitleRef} className='mt-10 md:mt-20 text-center font-semibold text-base md:text-2xl text-teal-400'>{t("WhyApple")}</div>
+        <div className='mt-10 md:mt-20 text-center font-semibold text-base md:text-2xl text-teal-400'>{t("WhyApple")}</div>
         <div className=' w-[350px] mx-auto mt-1 border-t-2 border-dotted border-teal-500' ></div>
 
         <div ref={whyChoseAppleInfoRef} className='py-8 px-5 md:px-10 indent-8 leading-7 text-justify text-slate-600 dark:text-slate-300 text-sm md:text-base font-semibold'>

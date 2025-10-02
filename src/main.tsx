@@ -8,9 +8,7 @@ import { Provider } from 'react-redux'
 import { store } from './redux/store.ts'
 import { Toaster } from 'sonner';
 import { useTheme } from "./services/provider/ThemeContextProvider";
-import gsap from 'gsap';
-import { SplitText } from 'gsap/SplitText'
-import { ScrollTrigger } from 'gsap/all'
+
 
 
 
@@ -19,7 +17,6 @@ import { ScrollTrigger } from 'gsap/all'
 
 function Root() {
   const { theme } = useTheme();
-  gsap.registerPlugin(ScrollTrigger, SplitText);
   return (
     <>
       <Router />

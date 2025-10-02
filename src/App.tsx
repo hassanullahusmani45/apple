@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import { useEffect } from "react";
@@ -6,8 +6,10 @@ import { fetchHomeData } from "./redux/slices/homeSlice";
 import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks";
 import { fetchStats } from "./redux/slices/statsSlice";
 import { initAuthListener } from "./redux/slices/auth/authListener";
-// import { Toaster } from 'sonner';
-// import { useTheme } from "./services/provider/ThemeContextProvider";
+import { ScrollTrigger } from "gsap/all";
+import gsap from "gsap";
+
+
 function App() {
   const dispatch = useAppDispatch();
   const { fetched } = useAppSelector(state => state.stats)
@@ -25,7 +27,15 @@ function App() {
   useEffect(() => {
     initAuthListener();
   }, []);
-  
+
+  const location = useLocation();
+  gsap.registerPlugin(ScrollTrigger)
+  useEffect(() => {
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+  }, [location.pathname]);
+
 
   return (
     <div className="container mx-auto overflow-x-hidden overflow-y-auto">

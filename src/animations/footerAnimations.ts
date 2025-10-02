@@ -9,7 +9,9 @@ export const footerAnimations = (info: HTMLDivElement, articles: HTMLAnchorEleme
             ease: 'power3.inOut',
         },
         scrollTrigger: {
-            start: "60% 50%",
+            trigger: info,
+            // markers:true,
+            start: "top 90%",
             toggleActions: "play none none reverse",
         }
     });

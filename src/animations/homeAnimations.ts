@@ -42,21 +42,20 @@ export const sectionTitle = (title: HTMLDivElement) => {
         ease: 'bounce.out',
         scrollTrigger: {
             trigger: title,
-            start: "top 80%",
+            start: "top 90%",
             toggleActions: "play none none reverse"
         },
     });
 }
 export const appleInfo = (info: HTMLDivElement) => {
     gsap.from(info, {
-        delay: 0.5,
         opacity: 0,
-        y: -100,
+        y: -30,
         duration: 1.5,
         ease: 'elastic.out',
         scrollTrigger: {
             trigger: info,
-            start: "top 80%",
+            start: "top 70%",
             toggleActions: "play none none reverse"
         },
     });
