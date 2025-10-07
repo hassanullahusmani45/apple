@@ -59,7 +59,7 @@ export default function Home() {
   };
 
   useGSAP(() => {
-    if (title1Ref.current && title2Ref.current && whyChoseAppleInfoRef.current && whyChoseAppleInfoRef.current) {
+    if (title1Ref.current && title2Ref.current && whyChoseAppleInfoRef.current) {
       title(title1Ref.current, title2Ref.current);
       appleInfo(whyChoseAppleInfoRef.current);
     }
@@ -84,6 +84,24 @@ export default function Home() {
       start: "top 140%",
     });
 
+    gsap.set(".article-item", { opacity: 0, y: 130 });
+    ScrollTrigger.batch(".article-item", {
+      interval: 0.3,
+      batchMax: 7,
+      onEnter: batch => gsap.to(batch, {
+        opacity: 1,
+        y: 0,
+        stagger: 0.15,
+        duration: 0.8,
+        ease: 'bounce.out'
+      }),
+      onLeaveBack: batch => gsap.to(batch, {
+        y: 130,
+        opacity: 0,
+        duration: 0.8
+      }),
+      start: "top 75%",
+    });
   }, [!loading]);
 
 
@@ -180,7 +198,7 @@ export default function Home() {
             <div className='w-[85%] sm:w-full mx-auto grid grid-cols-12 gap-2 md:gap-4 lg:gap-6 2xl:gap-8 my-10'>
 
               {articles.map(({ id, cover_image, team_members, created_at, title, summary, view_count }) => (
-                <div key={id} className='col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 my-3 sm:my-0'>
+                <div key={id} className='article-item col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 my-3 sm:my-0'>
                   <ArticleCard
                     src={cover_image || articleImage}
                     author={`${team_members.first_name} ${team_members.last_name}`}
