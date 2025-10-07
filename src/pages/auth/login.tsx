@@ -72,7 +72,7 @@ export default function login() {
                     <RHFInput name="email" label={t("Email")} type="email" placeholder="user@gmail.com" />
                     <div ref={eyeWrapper} className=" relative">
                         <RHFInput name="password" label={t("Password")} type={isShow ? "text" : "password"} placeholder="************" />
-                        <span className="absolute flex justify-center items-center w-10 h-10 2xl:h-11 end-2 top-6 md:top-7 cursor-pointer" onMouseOver={() => setIsShow(true)} onMouseLeave={() => setIsShow(false)}>
+                        <span className="absolute flex justify-center items-center w-10 h-8 end-2 top-6 md:top-7 cursor-pointer" onMouseOver={() => setIsShow(true)} onMouseLeave={() => setIsShow(false)}>
                             {isShow ? <IoMdEyeOff className="size-6 text-green-600 dark:text-orange-500" /> : <IoIosEye className="size-6" />}
                         </span>
                     </div>

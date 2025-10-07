@@ -238,7 +238,7 @@ export default function ContactUs() {
                         <span className="break-all">{t("website")}</span>
                     </a>
                 </div>
-                <div className="my-10">
+                <div className="mt-10">
                     <div className="flex justify-center items-center gap-4 md:gap-6">
                         <a
                             className='contactSocialMedia'

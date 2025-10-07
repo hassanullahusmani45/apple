@@ -31,9 +31,10 @@ function App() {
   const location = useLocation();
   gsap.registerPlugin(ScrollTrigger)
   useEffect(() => {
+    document.documentElement.scrollTo({top:0});
     setTimeout(() => {
       ScrollTrigger.refresh();
-    }, 100);
+    }, 2000);
   }, [location.pathname]);
 
 

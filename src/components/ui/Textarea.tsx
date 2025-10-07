@@ -28,7 +28,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({ name, label, 
                 {...props}
                 className={`textarea-style ${className}`}
             ></textarea>
-            {error ? <span className="flex justify-start items-center gap-1 text-sm font-semibold text-red-500 ms-4"><TiWarningOutline className="size-6" />{t(error)}</span> : <div className="min-h-[1.5rem]"></div>}
+            {error ? <span className="flex justify-start items-center gap-1 text-xs font-semibold text-red-500 ms-4"><TiWarningOutline className="size-6" />{t(error)}</span> : <div className="min-h-[1.5rem]"></div>}
         </div>
     );
 });

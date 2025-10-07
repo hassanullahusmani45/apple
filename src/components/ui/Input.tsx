@@ -22,7 +22,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ label, error, id, clas
         autoComplete="off"
         className={`input-style ${className}`}
       />
-      {error ? <span className="flex justify-start items-center gap-1 text-sm font-semibold text-red-500 ms-4 min-h-[1.3rem]"><TiWarningOutline className="size-5" />{t(error)}</span> : <div className="min-h-[1.3rem]"></div>}
+      {error ? <span className="flex justify-start items-center gap-1 text-xs font-semibold text-red-500 ms-4 min-h-[1.3rem]"><TiWarningOutline className="size-5" />{t(error)}</span> : <div className="min-h-[1.3rem]"></div>}
     </div>
   );
 });
