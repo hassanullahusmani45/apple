@@ -36,9 +36,9 @@ export const title = (title1: HTMLDivElement, title2: HTMLDivElement) => {
 export const sectionTitle = (title: HTMLDivElement) => {
     gsap.from(title, {
         opacity: 0,
-        y: -80,
-        duration: 0.8,
-        ease: 'bounce.out',
+        y: -50,
+        duration: 1,
+        ease: 'power3',
         scrollTrigger: {
             trigger: title,
             start: "top 90%",
