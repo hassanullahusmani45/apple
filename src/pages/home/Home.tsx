@@ -84,7 +84,7 @@ export default function Home() {
       start: "top 140%",
     });
 
-    gsap.set(".article-item", { opacity: 0, y: 130 });
+    gsap.set(".article-item", { opacity: 0, y: 100 });
     ScrollTrigger.batch(".article-item", {
       interval: 0.3,
       batchMax: 7,
@@ -96,7 +96,7 @@ export default function Home() {
         ease: 'bounce.out'
       }),
       onLeaveBack: batch => gsap.to(batch, {
-        y: 130,
+        y: 100,
         opacity: 0,
         duration: 0.8
       }),
@@ -270,7 +270,7 @@ export default function Home() {
                 }}
               >
                 {newArticles.map(({ id, cover_image, team_members, created_at, title, summary, view_count }) => (
-                  <SwiperSlide key={id}>
+                  <SwiperSlide key={id} className='article-item'>
                     <ArticleCard
                       src={cover_image || articleImage}
                       author={`${team_members.first_name} ${team_members.last_name}`}
