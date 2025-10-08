@@ -84,8 +84,28 @@ export default function Home() {
       start: "top 140%",
     });
 
-    gsap.set(".article-item", { opacity: 0, y: 100 });
+    gsap.set(".article-item", { opacity: 0, scale:0 });
     ScrollTrigger.batch(".article-item", {
+      interval: 0.3,
+      batchMax: 7,
+      onEnter: batch => gsap.to(batch, {
+        opacity: 1,
+        scale: 1,
+        stagger: 0.15,
+        duration: 0.8,
+        ease: 'back'
+      }),
+      onLeaveBack: batch => gsap.to(batch, {
+        scale:0,
+        opacity: 0,
+        duration: 0.8
+      }),
+      start: "top 75%",
+    });
+
+
+    gsap.set(".newArticle-item", { opacity: 0, y: 100 });
+    ScrollTrigger.batch(".newArticle-item", {
       interval: 0.3,
       batchMax: 7,
       onEnter: batch => gsap.to(batch, {
@@ -93,7 +113,9 @@ export default function Home() {
         y: 0,
         stagger: 0.15,
         duration: 0.8,
-        ease: 'bounce.out'
+        ease: 'bounce',
+        // start: "center 100%",
+
       }),
       onLeaveBack: batch => gsap.to(batch, {
         y: 100,
@@ -270,7 +292,7 @@ export default function Home() {
                 }}
               >
                 {newArticles.map(({ id, cover_image, team_members, created_at, title, summary, view_count }) => (
-                  <SwiperSlide key={id} className='article-item'>
+                  <SwiperSlide key={id} className='newArticle-item'>
                     <ArticleCard
                       src={cover_image || articleImage}
                       author={`${team_members.first_name} ${team_members.last_name}`}
