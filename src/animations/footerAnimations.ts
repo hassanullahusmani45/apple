@@ -1,7 +1,6 @@
 import gsap from "gsap";
 
 export const footerAnimations = (info: HTMLDivElement, articles: HTMLAnchorElement, about: HTMLAnchorElement, contact: HTMLAnchorElement, email: HTMLDivElement, phone: HTMLDivElement, whatsapp: HTMLDivElement) => {
-    console.log(info);
 
     const tl = gsap.timeline({
         defaults: {
@@ -10,7 +9,6 @@ export const footerAnimations = (info: HTMLDivElement, articles: HTMLAnchorEleme
         },
         scrollTrigger: {
             trigger: info,
-            // markers:true,
             start: "top 90%",
             toggleActions: "play none none reverse",
         }

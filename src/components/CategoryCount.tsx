@@ -42,7 +42,8 @@ export default function CategoryCount() {
             }),
             start: "buttom 100%",
         });
-    }, [])
+    }, []);
+    
     return (
 
 

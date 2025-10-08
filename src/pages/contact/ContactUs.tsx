@@ -72,9 +72,11 @@ export default function ContactUs() {
 
 
         const tl2 = gsap.timeline({
-            defaults: {
-                duration: 0.8,
-                ease: 'power3',
+            scrollTrigger: {
+                trigger: imgWraperRef.current,
+                // markers:true,
+                start: "top 50%",
+                toggleActions: "play none none reverse",
             }
         });
 
@@ -213,10 +215,10 @@ export default function ContactUs() {
 
 
                 <div ref={aboutRef} className="text-base font-bold mt-8">{t("About Me")}</div>
-                <p className="text-slate-800 dark:text-gray-300 text-justify pt-4 leading-7">
+                <div className="text-slate-800 dark:text-gray-300 text-justify pt-4 leading-7">
                     <p ref={about_P1Ref}>{t("about_P1")}</p>
                     <p ref={about_P2Ref}>{t("about_P2")}</p>
-                </p>
+                </div>
 
                 <div ref={skilesRef} className="text-base font-semibold mt-8">{t("My Skiles")}</div>
                 <p ref={skilesInfoRef} className="text-slate-800 dark:text-gray-300 text-justify pt-4 leading-7">

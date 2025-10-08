@@ -84,7 +84,7 @@ export default function Home() {
       start: "top 140%",
     });
 
-    gsap.set(".article-item", { opacity: 0, scale:0 });
+    gsap.set(".article-item", { opacity: 0, scale: 0 });
     ScrollTrigger.batch(".article-item", {
       interval: 0.3,
       batchMax: 7,
@@ -96,7 +96,7 @@ export default function Home() {
         ease: 'back'
       }),
       onLeaveBack: batch => gsap.to(batch, {
-        scale:0,
+        scale: 0,
         opacity: 0,
         duration: 0.8
       }),
@@ -124,7 +124,7 @@ export default function Home() {
       }),
       start: "top 75%",
     });
-  }, [!loading]);
+  }, [loading]);
 
 
   return (
@@ -219,7 +219,7 @@ export default function Home() {
 
             <div className='w-[85%] sm:w-full mx-auto grid grid-cols-12 gap-2 md:gap-4 lg:gap-6 2xl:gap-8 my-10'>
 
-              {articles.map(({ id, cover_image, team_members, created_at, title, summary, view_count }) => (
+              {articles.slice(0, 12).map(({ id, cover_image, team_members, created_at, title, summary, view_count }) => (
                 <div key={id} className='article-item col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 my-3 sm:my-0'>
                   <ArticleCard
                     src={cover_image || articleImage}
