@@ -1,27 +1,50 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import articleImage from "../../assets/post1.webp"
 import { HiMiniMagnifyingGlass, HiOutlineShieldExclamation } from 'react-icons/hi2';
 import { IoFolderOpen } from "react-icons/io5";
 import ArticleCard from '../../components/ArticleCard';
 import { useAppSelector } from '../../hooks/reduxHooks';
 import { FaFilter } from "react-icons/fa6";
-import { useAutoAnimate } from '@formkit/auto-animate/react';
 import type { Article } from '../../types/type';
 import ArticlesSkeleton from '../../components/skeleton/ArticlesSkeleton';
 import { useTranslation } from 'react-i18next';
 import { localizedNumber } from '../../utils/localizedNumber';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
 
 export default function Articles() {
     const { articles, loading } = useAppSelector((state) => state.home);
-    const [articlesBody] = useAutoAnimate<HTMLDivElement>();
     const { t } = useTranslation("main")
 
 
     const [filterArticles, setFilterArticles] = useState<Article[]>([]);
     const [filterStatus, setFilterStatus] = useState("all");
     const [searchValue, setSearchValue] = useState('');
+    const articlesBody = useRef(null)
 
+    useLayoutEffect(() => {
 
+        const ctx = gsap.context(() => {
+            gsap.set(".article-item", { opacity: 0, y: 100 });
+            ScrollTrigger.batch(".article-item", {
+                interval: 0.2,
+                onEnter: batch =>
+                    gsap.to(batch, {
+                        opacity: 1,
+                        y: 0,
+                        stagger: 0.15,
+                        duration: 0.8,
+                        ease: "power3.out",
+                    }),
+                onLeaveBack: batch => gsap.to(batch, { opacity: 0, y: 100, duration: 0.6 }),
+                start: "top 90%",
+            });
+
+            ScrollTrigger.refresh();
+        }, [articlesBody]);
+        
+        return () => ctx.revert();
+    }, [filterArticles]);
 
     useEffect(() => {
         switch (filterStatus) {
@@ -155,11 +178,11 @@ export default function Articles() {
 
                     {loading ? (<ArticlesSkeleton />) :
                         (
-                            <div className='grid grid-cols-12 gap-4 my-10 w-[85%] sm:w-full mx-auto' ref={articlesBody}>
+                            <div ref={articlesBody} className='grid grid-cols-12 gap-4 my-10 w-[85%] sm:w-full mx-auto'>
 
                                 {filterArticles.length > 0 ? (
                                     filterArticles.map(({ id, cover_image, team_members, created_at, title, summary, view_count }) => (
-                                        <div key={id} className='col-span-12 sm:col-span-6 xl:col-span-4'>
+                                        <div key={id} className='article-item col-span-12 sm:col-span-6 xl:col-span-4'>
                                             <ArticleCard
                                                 src={cover_image || articleImage}
                                                 author={`${team_members.first_name} ${team_members.last_name}`}

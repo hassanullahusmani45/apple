@@ -40,7 +40,7 @@ export default function CategoryCount() {
                 opacity: 0,
                 duration: 0.8
             }),
-            start: "buttom 100%",
+            start: "buttom 90%",
         });
     }, []);
     
