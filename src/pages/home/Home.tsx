@@ -84,7 +84,7 @@ export default function Home() {
       start: "top 140%",
     });
 
-    gsap.set(".article-item", { opacity: 0, scale: 0 });
+    gsap.set(".article-item", { opacity: 0, scale: 0.5 });
     ScrollTrigger.batch(".article-item", {
       interval: 0.3,
       batchMax: 7,
@@ -96,7 +96,7 @@ export default function Home() {
         ease: 'back'
       }),
       onLeaveBack: batch => gsap.to(batch, {
-        scale: 0,
+        scale: 0.5,
         opacity: 0,
         duration: 0.8
       }),

@@ -23,7 +23,7 @@ export default function Articles() {
     const articlesBody = useRef(null)
 
     useLayoutEffect(() => {
-
+        if (!filterArticles.length || loading) return;
         const ctx = gsap.context(() => {
             gsap.set(".article-item", { opacity: 0, y: 100 });
             ScrollTrigger.batch(".article-item", {
@@ -32,9 +32,9 @@ export default function Articles() {
                     gsap.to(batch, {
                         opacity: 1,
                         y: 0,
-                        stagger: 0.15,
+                        stagger: 0.18,
                         duration: 0.8,
-                        ease: "power3.out",
+                        ease: 'bounce.out',
                     }),
                 onLeaveBack: batch => gsap.to(batch, { opacity: 0, y: 100, duration: 0.6 }),
                 start: "top 90%",
@@ -42,7 +42,7 @@ export default function Articles() {
 
             ScrollTrigger.refresh();
         }, [articlesBody]);
-        
+
         return () => ctx.revert();
     }, [filterArticles]);
 

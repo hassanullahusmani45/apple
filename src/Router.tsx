@@ -37,35 +37,35 @@ const router = createBrowserRouter([
             },
             {
                 path: '/about',
-                element: <ProtectedRout >
-                             <About />
-                        </ProtectedRout >
+                element: <About />
+
             },
             {
                 path: '/profile',
-                element: <ProtectedRout >
-                             <Profile />
-                        </ProtectedRout >
+                element:
+                    <ProtectedRout >
+                        <Profile />
+                    </ProtectedRout >
             },
-{
-    path: '/contact-us',
-        element: <ContactUs />
-},
-{
-    path: '/not-found',
-        element: <NotFoundPage />
-},
+            {
+                path: '/contact-us',
+                element: <ContactUs />
+            },
+            {
+                path: '/not-found',
+                element: <NotFoundPage />
+            },
 
         ]
     },
-{
-    path: '/login',
+    {
+        path: '/login',
         element: <Login />
-},
-{
-    path: '/register',
+    },
+    {
+        path: '/register',
         element: <Register />
-},
+    },
 ]);
 
 const Router = () => <RouterProvider router={router} />;
