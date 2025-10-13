@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import hassanProfile from '../assets/hassan.jpeg';
+import userProfile from '../assets/user.jpg'
 import type { commentType } from '../types/type';
 import i18n from '../i18n';
 import { getTextDirection } from '../utils/getTextDirection';
@@ -18,7 +18,7 @@ export default function ResponseComment({ responceComment }: Props) {
                     <div className="absolute inset-0 custom-gradient rounded-full animate-spin-slow"></div>
                     <img
                         className="relative w-full h-full rounded-full object-cover bg-slate-50 dark:bg-slate-900"
-                        src={responceComment.team_members?.profile || responceComment.visitors?.profile || hassanProfile}
+                        src={responceComment.team_members?.profile || responceComment.visitors?.profile || userProfile}
                         alt="commenter-profile"
                     />
                 </div>

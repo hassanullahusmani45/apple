@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import hassanProfile from '../assets/hassan.jpeg';
+import userProfile from '../assets/user.jpg'
 import type { commentType } from '../types/type';
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
@@ -21,7 +21,7 @@ export default function Comment({ children, comment }: Props) {
                     <div className="absolute inset-0 custom-gradient rounded-full animate-spin-slow"></div>
                     <img
                         className="relative w-full h-full rounded-full object-cover bg-slate-50 dark:bg-slate-900"
-                        src={comment.team_members?.profile || comment.visitors?.profile || hassanProfile}
+                        src={comment.team_members?.profile || comment.visitors?.profile || userProfile}
 
                         alt="commenter-profile"
                     />

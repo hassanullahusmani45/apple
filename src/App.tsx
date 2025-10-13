@@ -16,7 +16,7 @@ function App() {
   const wrapper = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
   const location = useLocation();
-  
+
   useEffect(() => {
     dispatch(fetchHomeData());
   }, [dispatch]);

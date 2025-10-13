@@ -27,7 +27,7 @@ import { toastError } from '../../utils/toastError';
 
 
 export default function ShowArticle() {
-    const { t, i18n } = useTranslation(["main","toast"]);
+    const { t, i18n } = useTranslation(["main", "toast"]);
     const { title, article_id } = useParams<{ title: string, article_id: string }>();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -89,7 +89,7 @@ export default function ShowArticle() {
 
     useEffect(() => {
         if (isCreated) {
-            toastSuccess(t("create-new-comment",{ ns: "toast" }));
+            toastSuccess(t("create-new-comment", { ns: "toast" }));
             methods.reset();
             setIsCommentOpen(false);
         }
@@ -168,10 +168,12 @@ export default function ShowArticle() {
                                     <GoCommentDiscussion className='size-6 md:size-8 text-sky-500' />
                                     {t("comments")}
                                 </div>
-                                <div onClick={() => { setIsCommentOpen(true) }} className='flex items-center gap-x-2 text-sm font-medium rounded-md text-white bg-sky-500 p-1 md:p-1.5 cursor-pointer shadow-md shadow-slate-400 dark:shadow-slate-700'>
-                                    {t("add-comment")}
-                                    <TbMessagePlus className='size-4.5 sm:size-5' />
-                                </div>
+                                {user &&
+                                    <div onClick={() => { setIsCommentOpen(true) }} className='flex items-center gap-x-2 text-sm font-medium rounded-md text-white bg-sky-500 p-1 md:p-1.5 cursor-pointer shadow-md shadow-slate-400 dark:shadow-slate-700'>
+                                        {t("add-comment")}
+                                        <TbMessagePlus className='size-4.5 sm:size-5' />
+                                    </div>
+                                }
                             </div>
 
                             {/* new-comment start */}
