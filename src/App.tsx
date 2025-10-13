@@ -1,19 +1,22 @@
 import { Outlet, useLocation } from "react-router-dom"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { fetchHomeData } from "./redux/slices/homeSlice";
 import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks";
 import { fetchStats } from "./redux/slices/statsSlice";
 import { initAuthListener } from "./redux/slices/auth/authListener";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollSmoother, ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
 
 
 function App() {
   const dispatch = useAppDispatch();
   const { fetched } = useAppSelector(state => state.stats)
-
+  const wrapper = useRef<HTMLDivElement>(null);
+  const content = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+  
   useEffect(() => {
     dispatch(fetchHomeData());
   }, [dispatch]);
@@ -28,27 +31,46 @@ function App() {
     initAuthListener();
   }, []);
 
-  const location = useLocation();
-  gsap.registerPlugin(ScrollTrigger)
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
   useEffect(() => {
-    document.documentElement.scrollTo({top:0});
-    setTimeout(() => {
+    ScrollSmoother.get()?.kill();
+
+    const smoother = ScrollSmoother.create({
+      wrapper: wrapper.current!,
+      content: content.current!,
+      smooth: 2.2,
+      effects: true,
+      smoothTouch: 0.1,
+    });
+
+    const timeout = setTimeout(() => {
+      smoother.scrollTo(0, true);
       ScrollTrigger.refresh();
-    }, 2000);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timeout);
+      smoother.kill();
+    };
   }, [location.pathname]);
 
 
   return (
-    <div className="container mx-auto overflow-x-hidden overflow-y-auto">
-      <Header />
-      <div className='w-full px-2 sm:px-6 pt-22 md:pt-28'>
-        <Outlet />
-      </div>
-      <div className="mx-2 sm:mx-6 my-5">
-        <Footer />
-      </div>
+    <div id="smooth-wrapper" ref={wrapper} className="fixed inset-0 overflow-hidden">
+      <div id="smooth-content" ref={content}>
 
-    </div>
+        <div className="container mx-auto overflow-x-hidden">
+          <Header />
+          <div className='w-full px-2 sm:px-6 pt-22 md:pt-28'>
+            <Outlet />
+          </div>
+          <div className="mx-2 sm:mx-6 my-5">
+            <Footer />
+          </div>
+        </div>
+
+      </div>
+    </div >
   )
 }
 
