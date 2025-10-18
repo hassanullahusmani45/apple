@@ -65,7 +65,14 @@ html {
     font-display: swap;
 }
 
+@font-face {
+    font-family: Doxent;
+    src: url("/fonts/Doxent-Regular.otf") format("opentype");
+    font-display: swap;
+}
+
 @theme {
     --font-vazirmatn: vazirmatn, 'mono';
     --font-GeomerricArabic: GeomerricArabic, 'mono';
+    --font-Doxent: Doxent, 'mono';
 }

@@ -132,7 +132,7 @@ export default function Home() {
       {/*start heading part  */}
       <div className='flex flex-col justify-center items-center pt-10 md:pt-16 lg:pt-20'>
 
-        <div className='text-2xl md:text-3xl font-bold font-serif rtl:md:text-4xl rtl:font-GeomerricArabic text-center'>
+        <div className='text-2xl md:text-4xl font-bold font-Doxent rtl:md:text-4xl rtl:font-GeomerricArabic text-center'>
           <div ref={title1Ref} className="mb-2 md:mb-4 bg-gradient-to-r from-green-600 dark:from-orange-500 to-orange-500 dark:to-green-500 bg-clip-text text-transparent py-2">{t("Apple Tecnology")}</div>
           <div ref={title2Ref} className="bg-gradient-to-r from-green-600 dark:from-orange-500 to-orange-500 dark:to-green-500 bg-clip-text text-transparent py-2">{t("The Best Place For Learning Modren Articles")}</div>
         </div>
