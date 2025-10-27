@@ -45,15 +45,15 @@ In this project I have used React with TypeScript and Tailwind CSS for styling a
 
 ## 📟 Pages
 
-# Home
-# Articles
-# Show Article
-# About Us
-# Profile
-# Contact Us
-# TeamMember
-# Login
-# Register
+### Home
+### Articles
+### Show Article
+### About Us
+### Profile
+### Contact Us
+### TeamMember
+### Login
+### Register
 
 ---
 
