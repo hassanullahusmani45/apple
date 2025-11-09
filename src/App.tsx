@@ -46,7 +46,7 @@ function App() {
     const timeout = setTimeout(() => {
       smoother.scrollTo(0, true);
       ScrollTrigger.refresh();
-    }, 1000);
+    }, 8000);
 
     return () => {
       clearTimeout(timeout);
@@ -56,20 +56,23 @@ function App() {
 
 
   return (
-    <div id="smooth-wrapper" ref={wrapper} className="fixed inset-0 overflow-hidden">
-      <div id="smooth-content" ref={content}>
+    <div className="">
+      <Header />
 
-        <div className="container mx-auto overflow-x-hidden">
-          <Header />
-          <div className='w-full px-2 sm:px-6 pt-22 md:pt-28'>
-            <Outlet />
+      <div id="smooth-wrapper" ref={wrapper} className="fixed inset-0 overflow-hidden">
+        <div id="smooth-content" ref={content}>
+
+          <div className="container mx-auto overflow-x-hidden">
+            <div className='w-full px-2 sm:px-6 pt-22 md:pt-28'>
+              <Outlet />
+            </div>
+            <div className="mx-2 sm:mx-6 my-5">
+              <Footer />
+            </div>
           </div>
-          <div className="mx-2 sm:mx-6 my-5">
-            <Footer />
-          </div>
+
         </div>
-
-      </div>
+      </div >
     </div >
   )
 }
