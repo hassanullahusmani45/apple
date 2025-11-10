@@ -1,71 +1,112 @@
+<h1 align="center">💻 Apple Technology</h1>
 
 <p align="center">
-    <video width="720" height="480" controls>
-        <source src="./apple-website-demo.mp4" type="video/mp4">
-    </video>
+  A modern and educational web platform for learning <b>Web Development</b> and <b>Cybersecurity</b> concepts with a beautiful and sleek UI/UX.
 </p>
 
-# 💻 Apple Technology
+</br>
+</br>
+</br>
 
-✨ The Apple Technology website is make for learning modern web development and cibersecurity Articles. It has a beautiful and slice UI/UX design for better user experience.
-For my this very good practice like refactoring, responsive design, global state management, dark/light mode toggle, localization, skalton loading, GSAP animation, Counter animation, form validation by Zod and React Hook Form and more.
-In this project I have used React with TypeScript and Tailwind CSS for styling and Superbase for backend services.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/hassanullahusmani45/apple/main/public/thumbnail/1.png"  />
+  <img src="https://raw.githubusercontent.com/hassanullahusmani45/apple/main/public/thumbnail/2.png" width="500" />
+  <img src="https://raw.githubusercontent.com/hassanullahusmani45/apple/main/public/thumbnail/3.png" width="500" />
+</p>
 
 
-🌐 **Live Site**: [https://apple-tecnology.vercel.app](https://apple-tecnology.vercel.app)
 
----
+</br>
+</br>
+</br>
 
-## 📌 Features
-- 🔃 Skeleton loading pages
-- 🌎 Localization by i18next
-- 📱 Responsive design for all screen sizes
-- 🌙 Dark / Light mode support
-- 🍕 Swiper-JS for sliedShow
-- 🧑‍💻 Fillter for all Articles
-- 🛠️ For every TeamMember show it is Articles and Commentes
-- 📞 Contact form and Validations by Zod and use React-Hooks-Form for form Fieldes
-- 📲 Supabase JWT for authantication
-- 🌐 Redux-Toolkit for global state mangmente
-- 🔎 Global Search engin
-- ....
+## ✨ Overview
 
----
+The **Apple Technology** website is built to explore modern front-end development practices and backend integration.  
+It includes best practices such as:
 
-## 🛠️ Tech Stack
+- Code refactoring and reusable components  
+- Responsive design  
+- Global state management  
+- Dark / light theme toggle  
+- Localization (multi-language support)  
+- Skeleton loading  
+- GSAP animations  
+- Counter animation  
+- Form validation with **Zod** and **React Hook Form**
 
-- **Frontend:** React, TypeScript, Zod, React-Hooks-Form, SwiperJS, Tailwind CSS
-- **Animations:** GSAP, Framer Motion
-- **State Management:** Redux-Toolkit, useState, useRefe, useEfect...
-- **Localization:** i18next
-- **Loading:** Skeleton pages and Button loading
-- **Bakend API:** Supabase and Supabase Storage for images
+This project is built with **React (TypeScript)** and **Tailwind CSS**, and powered by **Supabase** for backend services.
 
 ---
 
-## 📟 Pages
+🌐 **Live Demo:** [apple-tecnology.vercel.app](https://apple-tecnology.vercel.app)
 
-#### Home
-#### Articles
-#### Show Article
-#### About Us
-#### Profile
-#### Contact Us
-#### TeamMember
-#### Login
-#### Register
+📁 **Repository:** [GitHub Link](https://github.com/hassanullahusmani45/apple)
 
----
+</br>
+</br>
+</br>
 
+## 🚀 Features
 
-## 🚀 Getting Started
+- 🔃 Skeleton loading pages  
+- 🌎 Multi-language support using i18next  
+- 📱 Fully responsive design  
+- 🌙 Dark / Light mode toggle  
+- 🍕 SwiperJS slideshow  
+- 🧑‍💻 Article filtering system  
+- 🛠️ Individual team member articles and comments  
+- 📞 Contact form with validation (Zod + React Hook Form)  
+- 🔐 JWT authentication with Supabase  
+- 🌐 Global search functionality  
+- ⚙️ Redux Toolkit for global state management  
+- 🧩 Beautiful GSAP & Framer Motion animations  
+
+</br>
+</br>
+</br>
+
+## 🧠 Tech Stack
+
+| Category | Technologies |
+|-----------|---------------|
+| **Frontend** | React, TypeScript, Tailwind CSS |
+| **State Management** | Redux Toolkit, React Hooks |
+| **Animations** | GSAP, Framer Motion |
+| **Validation** | Zod, React Hook Form |
+| **Localization** | i18next |
+| **Backend** | Supabase (Auth, Database, Storage) |
+| **UI Enhancements** | Skeleton loading, Button loading, SwiperJS |
+
+</br>
+</br>
+</br>
+
+## 🗂️ Pages
+
+- 🏠 **Home**
+- 📄 **Articles**
+- 📰 **Show Article**
+- 👥 **Team Members**
+- 📞 **Contact Us**
+- 🧑‍💻 **Profile**
+- ℹ️ **About Us**
+- 🔑 **Login / Register**
+
+</br>
+</br>
+</br>
+
+## ⚡ Getting Started
+
+To run this project locally:
 
 ```bash
 # Clone the repository
 git clone https://github.com/hassanullahusmani45/apple.git
 
-# Navigate to the project
-cd Apple
+# Navigate to the project folder
+cd apple
 
 # Install dependencies
 npm install
