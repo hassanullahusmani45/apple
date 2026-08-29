@@ -50,7 +50,7 @@ export default function About() {
                         <img src={aboutImage} alt='abute' className='bg-cover w-[80%] sm:w[60%] md:w-full xl:w-[90%]' />
                     </div>
                     <div className='col-span-2 md:col-span-1 mt-10 lg:mt-32 px-3 sm:p-0'>
-                        <div className='text-2xl font-semibold leading-10'>{t("Apple Tecnology The Best")}<br /> {t("Place For learning Articles")}</div>
+                        <div className='text-2xl font-semibold leading-10'>{t("Apple Technology The Best")}<br /> {t("Place For learning Articles")}</div>
                         <div className='mt-5 mb-5 lg:mb-16 pl-6 text-slate-900 dark:text-slate-200 leading-7'>
                             {t("apple_info")}
                         </div>

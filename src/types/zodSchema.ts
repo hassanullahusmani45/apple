@@ -94,9 +94,6 @@ export const userPasswordSchema = z.object({
         .nonempty("confirm password is required!")
         .min(8, "confirm password must be at least 8 characters!")
         .max(200, "confirm password cannot exceed 20 characters!"),
-}).refine((data) => data.new_password === data.confirm_password, {
-    path: ["confirm_password"],
-    message: "new pasword and confirm password is not equle!",
 });
 
 

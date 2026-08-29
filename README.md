@@ -39,7 +39,7 @@ This project is built with **React (TypeScript)** and **Tailwind CSS**, and powe
 
 ---
 
-🌐 **Live Demo:** [apple-tecnology.vercel.app](https://apple-tecnology.vercel.app)
+🌐 **Live Demo:** [apple-Technology.vercel.app](https://apple-Technology.vercel.app)
 
 📁 **Repository:** [GitHub Link](https://github.com/hassanullahusmani45/apple)
 
